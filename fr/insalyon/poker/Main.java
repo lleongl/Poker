@@ -12,14 +12,17 @@ public class Main {
 
     public static void main(String[] args) {
         Deck deck ;
-        Random geny1 = new Random(System.nanoTime());
-        Random geny2 = new Random(System.nanoTime());
+        int nbAdversaires=1;
+        Random geny = new Random(System.nanoTime());
         laMain joueurCartes = null;
         LinkedList<Carte> jeuCartes;
         LinkedList<Carte> tableCartes = new LinkedList<>();
         LinkedList<Carte> cartesInit = new LinkedList<>();
-        boolean brelan=true;
+        boolean brelan=false;
         boolean carre=true;
+        boolean paire=false;
+        boolean doublePaire= true;
+        boolean full=true;
         int nbTirages = 10000;
         //initialise le cartes initiales du joueur et les enleve du jeuCartes
         for (int k = 0; k < nbTirages; k++) {
@@ -62,18 +65,21 @@ public class Main {
 */
 
             //enleve 2 cartes au hasard (1 adversaire) du jeuCartes
-            int randomNb1 = geny1.nextInt(jeuCartes.size());
-            Carte t1= jeuCartes.get(randomNb1);
-            deck.removeCard(jeuCartes,t1.getValeur(),t1.getCouleur());
-            int randomNb2 = geny2.nextInt(jeuCartes.size());
-            Carte t2= jeuCartes.get(randomNb2);
-            deck.removeCard(jeuCartes,t2.getValeur(),t2.getCouleur());
+
+            for (int j=0; j<nbAdversaires;j++){
+                Carte t1= jeuCartes.get(geny.nextInt(jeuCartes.size()));
+                Carte t2= jeuCartes.get(geny.nextInt(jeuCartes.size()));
+                deck.removeCard(jeuCartes,t1.getValeur(),t1.getCouleur());
+                deck.removeCard(jeuCartes,t2.getValeur(),t2.getCouleur());
+            }
+
 
 /*            for(int i=0;i<jeuCartes.size();i++) {
                 System.out.println("carte "+i+":");
                 System.out.println(jeuCartes.get(i).getCouleur());
                 System.out.println(jeuCartes.get(i).getValeur());
             }*/
+
 
             //Tire les cartes sur la table
             while (tableCartes.size() < 5) {
@@ -81,26 +87,36 @@ public class Main {
                 jeuCartes.remove(jeuCartes.get(0));
             }
 
-/*            for(int i=0;i<jeuCartes.size();i++) {
+/*
+            for(int i=0;i<jeuCartes.size();i++) {
                 System.out.println("carte "+i+":");
                 System.out.println(jeuCartes.get(i).getCouleur());
                 System.out.println(jeuCartes.get(i).getValeur());
-            }*/
+            }
+*/
 
             //Défini les Cartes que le joueur peut utiliser
             joueurCartes = new laMain(cartesInit, tableCartes,nbTirages);
 
+/*
 
-/*            System.out.println("les cartes : ");
+            System.out.println("les cartes : ");
             for (int p=0;p<joueurCartes.getMain().size();p++){
                 System.out.print(joueurCartes.getMain().get(p).getValeur()+" ");
             }
-            System.out.println();*/
+*/
+            System.out.println();
             if (brelan==true) {
                 joueurCartes.Brelan();
             }
             if(carre==true) {
                 joueurCartes.Carre();
+            }
+            if (paire==true||doublePaire==true){
+                joueurCartes.PaireDoublePaire();
+            }
+            if(full==true) {
+                joueurCartes.Full();
             }
 
             tableCartes.clear();
@@ -114,6 +130,15 @@ public class Main {
 
         if(carre==true) {
             System.out.println("proba Carre : " + joueurCartes.getProbaCarre()+"%");
+        }
+        if(paire==true) {
+            System.out.println("proba Paire : " + joueurCartes.getProbaPaire()+"%");
+        }
+        if(doublePaire==true) {
+            System.out.println("proba Double Paire : " + joueurCartes.getProbaDoublePaire()+"%");
+        }
+        if(full==true) {
+            System.out.println("proba Full : " + joueurCartes.getProbaFull()+"%");
         }
     }
 
