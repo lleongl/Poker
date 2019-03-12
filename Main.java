@@ -1,12 +1,5 @@
-package fr.insalyon.poker;
-
-import fr.insalyon.poker.entity.Carte;
-import fr.insalyon.poker.entity.Deck;
-import fr.insalyon.poker.entity.laMain;
-
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Main {
 
@@ -18,9 +11,9 @@ public class Main {
         LinkedList<Carte> jeuCartes;
         LinkedList<Carte> tableCartes = new LinkedList<>();
         LinkedList<Carte> cartesInit = new LinkedList<>();
-        boolean brelan=false;
+        boolean brelan =true;
         boolean carre=true;
-        boolean paire=false;
+        boolean paire= true;
         boolean doublePaire= true;
         boolean full=true;
         int nbTirages = 10000;

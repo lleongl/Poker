@@ -1,5 +1,3 @@
-package fr.insalyon.poker.entity;
-
 import java.util.LinkedList;
 
 public class Carte {
