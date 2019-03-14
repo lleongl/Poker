@@ -80,27 +80,22 @@ public class interfaces extends JFrame {
 		
 		lblA = new JLabel();
 		lblA.setSize(100,160);
-		lblA.setIcon( getCardLogo(lblA,X) );
 		panel_4.add(lblA);
 		
 		lblB = new JLabel();
 		lblB.setSize(100,160);
-		lblB.setIcon( getCardLogo(lblB,X) );
 		panel_4.add(lblB);
 		
 		lblC = new JLabel();
 		lblC.setSize(100,160);
-		lblC.setIcon( getCardLogo(lblC,X) );
 		panel_4.add(lblC);
 		
 		lblD = new JLabel();
 		lblD.setSize(100,160);
-		lblD.setIcon( getCardLogo(lblD,X) );
 		panel_4.add(lblD);
 		
 		lblE = new JLabel();
 		lblE.setSize(100,160);
-		lblE.setIcon( getCardLogo(lblE,X) );
 		panel_4.add(lblE);
 		
 		
@@ -171,18 +166,17 @@ public class interfaces extends JFrame {
 		
 		lblF = new JLabel("");
 		lblF.setSize(100,160);
-		lblF.setIcon( getCardLogo(lblF,X) );
 		panel_3.add(lblF);
 		
 		lblG = new JLabel();
 		lblG.setSize(100,160);
 		panel_3.add(lblG);
-		lblG.setIcon( getCardLogo(lblG,X) );
 		
 		JButton btnNewButton = new JButton("Sexy Button");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(364, 319, 210, 40);
 		contentPane.add(btnNewButton);
+		Reset();
 		UpdateJpanel();
 	}
 
@@ -200,6 +194,26 @@ public class interfaces extends JFrame {
 		
 		if(Hand.get(1)==null)
 			System.out.println("null");
+		
+	}
+	
+	public void Reset() { // Vide la liste et mets à les images
+		Hand.clear();
+		for (int i =0;i<2;i++) { 
+		    Hand.add(new Carte());
+		}
+		
+		River.clear();
+		for (int i =0;i<5;i++) { 
+			River.add(new Carte());
+		}
+		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
+		lblB.setIcon( getCardLogo(lblB,River.get(1)) );
+		lblC.setIcon( getCardLogo(lblC,River.get(2)) );
+		lblD.setIcon( getCardLogo(lblD,River.get(3)) );
+		lblE.setIcon( getCardLogo(lblE,River.get(4)) );
+		lblF.setIcon( getCardLogo(lblF,River.get(0)) );
+		lblG.setIcon( getCardLogo(lblG,River.get(1)) );
 		
 	}
 }

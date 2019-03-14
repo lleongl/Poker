@@ -47,8 +47,9 @@ public class Carte {
         
     }
     
-    public Carte() {//NUlle ou foled
-    	ImageIcon pic=new ImageIcon("images/card-back.jpg","cachée");
+    public Carte() {//NUlle ou folded
+    	pic=new ImageIcon("images/card-back.jpg","cachée");
+    	valeur =-1;
     }
 
     public String getCouleur() {
