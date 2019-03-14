@@ -19,14 +19,17 @@ import java.util.ArrayList;
 public class interfaces extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	
+	private JTextField txtField_nbj;
+	
 	private Carte X= new Carte(1,"diamonds");
+	
 	private ArrayList<Carte> Hand =new ArrayList<Carte>(2);
 	private ArrayList<Carte> River =new ArrayList<Carte>(5);
+	
 	private JLabel lblA,lblB,lblC,lblD,lblE,lblF,lblG;
-	/**
-	 * Launch the application.
-	 */
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,6 +46,8 @@ public class interfaces extends JFrame {
 	
 	
 	public interfaces() {
+		//------------------Fenetre---------------------\\
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
@@ -51,131 +56,150 @@ public class interfaces extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(24, 43, 117, 52);
-		contentPane.add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		//------------------Panel pour le nombre de Joueur---------------------\\ utilise un FlowLayout
 		
-		JLabel nbJLbl = new JLabel("Nombre de joueurs");
-		panel.add(nbJLbl);
+		JPanel panelNbJ = new JPanel();
+		panelNbJ.setBounds(24, 43, 117, 52);
+		contentPane.add(panelNbJ);
+		panelNbJ.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		textField = new JTextField();
-		textField.setText("1");
-		panel.add(textField);
-		textField.setColumns(10);
+		JLabel lblnbj = new JLabel("Nombre de joueurs");
+		panelNbJ.add(lblnbj);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(194, 43, 550, 265);
-		contentPane.add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+	
+		txtField_nbj = new JTextField();
+		txtField_nbj.setText("1");
+		panelNbJ.add(txtField_nbj);
+		txtField_nbj.setColumns(2);
 		
-		JLabel lblNewLabel = new JLabel("TURN/FLOP/RIVER\r\n");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		panel_1.add(lblNewLabel, BorderLayout.NORTH);
+		//------------------Panel pour la River---------------------\\ utilise un Border Layout
 		
-		JPanel panel_4 = new JPanel();
-		panel_1.add(panel_4, BorderLayout.CENTER);
-		panel_4.setLayout(new GridLayout(0, 5, 10, 10));
+		JPanel panelRiver = new JPanel();
+		panelRiver.setBounds(194, 43, 550, 265);
+		contentPane.add(panelRiver);
+		panelRiver.setLayout(new BorderLayout(0, 0));
+		
+		JLabel riverTxt = new JLabel("TURN/FLOP/RIVER\r\n");
+		riverTxt.setHorizontalAlignment(SwingConstants.CENTER);
+		riverTxt.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		panelRiver.add(riverTxt, BorderLayout.NORTH);
+		
+		JPanel Table = new JPanel();	//GridLayout
+		panelRiver.add(Table, BorderLayout.CENTER);
+		Table.setLayout(new GridLayout(0, 5, 10, 10));
 		
 		lblA = new JLabel();
 		lblA.setSize(100,160);
-		panel_4.add(lblA);
+		Table.add(lblA);
 		
 		lblB = new JLabel();
 		lblB.setSize(100,160);
-		panel_4.add(lblB);
+		Table.add(lblB);
 		
 		lblC = new JLabel();
 		lblC.setSize(100,160);
-		panel_4.add(lblC);
+		Table.add(lblC);
 		
 		lblD = new JLabel();
 		lblD.setSize(100,160);
-		panel_4.add(lblD);
+		Table.add(lblD);
 		
 		lblE = new JLabel();
 		lblE.setSize(100,160);
-		panel_4.add(lblE);
+		Table.add(lblE);
 		
+		//------------------Fenetre---------------------\\
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(819, 43, 150, 409);
-		contentPane.add(panel_2);
-		panel_2.setLayout(new GridLayout(11, 1, 0, 0));
+		JPanel panelResults = new JPanel();
+		panelResults.setBounds(767, 43, 202, 409);
+		contentPane.add(panelResults);
+		panelResults.setLayout(new GridLayout(12, 1, 0, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("Probabilit\u00E9s");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblNewLabel_2);
+		panelResults.add(lblNewLabel_2);
 		
 		JLabel label = new JLabel("Probabilit\u00E9s");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label);
+		panelResults.add(label);
 		
 		JLabel label_1 = new JLabel("Probabilit\u00E9s");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_1);
+		panelResults.add(label_1);
 		
 		JLabel label_2 = new JLabel("Probabilit\u00E9s");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_2);
+		panelResults.add(label_2);
 		
 		JLabel label_4 = new JLabel("Probabilit\u00E9s");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_4);
+		panelResults.add(label_4);
 		
 		JLabel label_5 = new JLabel("Probabilit\u00E9s");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_5);
+		panelResults.add(label_5);
 		
 		JLabel label_7 = new JLabel("Probabilit\u00E9s");
 		label_7.setHorizontalAlignment(SwingConstants.CENTER);
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_7);
+		panelResults.add(label_7);
 		
 		JLabel label_6 = new JLabel("Probabilit\u00E9s");
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_6);
+		panelResults.add(label_6);
 		
 		JLabel label_3 = new JLabel("Probabilit\u00E9s");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_3);
+		panelResults.add(label_3);
 		
 		JLabel label_8 = new JLabel("Probabilit\u00E9s");
 		label_8.setHorizontalAlignment(SwingConstants.CENTER);
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_8);
+		panelResults.add(label_8);
 		
 		JLabel label_9 = new JLabel("Probabilit\u00E9s");
 		label_9.setHorizontalAlignment(SwingConstants.CENTER);
 		label_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_2.add(label_9);
+		panelResults.add(label_9);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(364, 370, 210, 160);
-		contentPane.add(panel_3);
-		panel_3.setLayout(new GridLayout(1, 2, 10, 0));
+		JLabel lblChanceDeGagner = new JLabel("chance de gagner :");
+		lblChanceDeGagner.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChanceDeGagner.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panelResults.add(lblChanceDeGagner);
+		
+		//------------------Panel Hand---------------------\\ utilise un GridLayout
+		
+		JPanel panelHand = new JPanel();
+		panelHand.setBounds(364, 370, 210, 160);
+		contentPane.add(panelHand);
+		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
 		
 		lblF = new JLabel("");
 		lblF.setSize(100,160);
-		panel_3.add(lblF);
+		panelHand.add(lblF);
 		
 		lblG = new JLabel();
 		lblG.setSize(100,160);
-		panel_3.add(lblG);
+		panelHand.add(lblG);
 		
-		JButton btnNewButton = new JButton("Sexy Button");
+		//------------------Boutons pour lancer ou reset---------------------\\
+		
+		JButton btnNewButton = new JButton("Lancer !");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(364, 319, 210, 40);
 		contentPane.add(btnNewButton);
+		
+		
+		//------------------Reste du constructeur---------------------\\
+		
 		Reset();
 		UpdateJpanel();
 	}
@@ -185,19 +209,19 @@ public class interfaces extends JFrame {
 		return (new ImageIcon(img));
 	}
 	
-	public void addCard(Carte C,LinkedList<Carte> X) {
-		
-		
+	
+	public void UpdateJpanel() {//mets à jour l'affichage des cartes :)  en fonction du contenue des listes
+		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
+		lblB.setIcon( getCardLogo(lblB,River.get(1)) ); 
+		lblC.setIcon( getCardLogo(lblC,River.get(2)) );
+		lblD.setIcon( getCardLogo(lblD,River.get(3)) );
+		lblE.setIcon( getCardLogo(lblE,River.get(4)) );
+		lblF.setIcon( getCardLogo(lblF,River.get(0)) );
+		lblG.setIcon( getCardLogo(lblG,River.get(1)) );
 	}
 	
-	public void UpdateJpanel() {
-		
-		if(Hand.get(1)==null)
-			System.out.println("null");
-		
-	}
 	
-	public void Reset() { // Vide la liste et mets à les images
+	public void Reset() { // Vide les listes Hand et River
 		Hand.clear();
 		for (int i =0;i<2;i++) { 
 		    Hand.add(new Carte());
@@ -207,13 +231,34 @@ public class interfaces extends JFrame {
 		for (int i =0;i<5;i++) { 
 			River.add(new Carte());
 		}
-		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
-		lblB.setIcon( getCardLogo(lblB,River.get(1)) );
-		lblC.setIcon( getCardLogo(lblC,River.get(2)) );
-		lblD.setIcon( getCardLogo(lblD,River.get(3)) );
-		lblE.setIcon( getCardLogo(lblE,River.get(4)) );
-		lblF.setIcon( getCardLogo(lblF,River.get(0)) );
-		lblG.setIcon( getCardLogo(lblG,River.get(1)) );
-		
 	}
+	
+	public ArrayList<Carte> getHand(){ //renvoie l'arrayList des cartes dans la Hand
+		return Hand;
+	}
+	
+	public ArrayList<Carte> getRiver(){ //renvoie l'arrayList des cartes dans la river
+		return River;
+	}
+	
+	public int getNbj() {// Retourne le nombre de joueur entré !! Si le nombre entré n'est pas un entier ou est < à 1 renvoie 0 !!!
+		
+		try {
+	        int d = Integer.parseInt(txtField_nbj.getText());
+	    } catch (NumberFormatException | NullPointerException nfe) {
+	        return 0;
+	    }
+		if(Integer.parseInt(txtField_nbj.getText())<1){
+			return 0;
+		}else {
+	    return Integer.parseInt(txtField_nbj.getText());
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 }
