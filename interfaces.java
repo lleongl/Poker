@@ -16,11 +16,16 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.util.LinkedList;
 import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 public class interfaces extends JFrame {
 
 	private JPanel contentPane;
 	
 	private JTextField txtField_nbj;
+	private JLabel lblQuinteFlushRoyale,lblQuinteFlush,lblCarr,
+	lblFull,lblCouleur,lblSuite,lblBrelan,lblDoublePaire,lblPaire,
+	lblCarteHaute,lblwin;
 	
 	private Carte X= new Carte(1,"diamonds");
 	
@@ -47,7 +52,7 @@ public class interfaces extends JFrame {
 	
 	public interfaces() {
 		//------------------Fenetre---------------------\\
-		
+		setTitle("Poker Master");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
@@ -108,77 +113,66 @@ public class interfaces extends JFrame {
 		lblE.setSize(100,160);
 		Table.add(lblE);
 		
-		//------------------Fenetre---------------------\\
+		//------------------Panel des resultats---------------------\\
 		
 		JPanel panelResults = new JPanel();
 		panelResults.setBounds(767, 43, 202, 409);
 		contentPane.add(panelResults);
 		panelResults.setLayout(new GridLayout(12, 1, 0, 0));
 		
-		JLabel lblNewLabel_2 = new JLabel("Probabilit\u00E9s");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panelResults.add(lblNewLabel_2);
+		JLabel lblproba = new JLabel("Probabilit\u00E9s");
+		lblproba.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblproba.setHorizontalAlignment(SwingConstants.CENTER);
+		panelResults.add(lblproba);
 		
-		JLabel label = new JLabel("Probabilit\u00E9s");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label);
+		 lblQuinteFlushRoyale = new JLabel("Quinte flush royale :");
+		lblQuinteFlushRoyale.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblQuinteFlushRoyale);
 		
-		JLabel label_1 = new JLabel("Probabilit\u00E9s");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_1);
+		 lblQuinteFlush = new JLabel("Quinte flush :");
+		lblQuinteFlush.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblQuinteFlush);
 		
-		JLabel label_2 = new JLabel("Probabilit\u00E9s");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_2);
+		 lblCarr = new JLabel("Carr\u00E9 :");
+		lblCarr.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblCarr);
 		
-		JLabel label_4 = new JLabel("Probabilit\u00E9s");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_4);
+		 lblFull = new JLabel("Full :");
+		lblFull.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblFull);
 		
-		JLabel label_5 = new JLabel("Probabilit\u00E9s");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_5);
+		 lblCouleur = new JLabel("Couleur :");
+		lblCouleur.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblCouleur);
 		
-		JLabel label_7 = new JLabel("Probabilit\u00E9s");
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_7);
+		 lblSuite = new JLabel("Suite :");
+		lblSuite.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblSuite);
 		
-		JLabel label_6 = new JLabel("Probabilit\u00E9s");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_6);
+		 lblBrelan = new JLabel("Brelan :");
+		lblBrelan.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblBrelan);
 		
-		JLabel label_3 = new JLabel("Probabilit\u00E9s");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_3);
+		 lblDoublePaire = new JLabel("Double paire :");
+		lblDoublePaire.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblDoublePaire);
 		
-		JLabel label_8 = new JLabel("Probabilit\u00E9s");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_8);
+		 lblPaire = new JLabel("Paire : ");
+		lblPaire.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblPaire);
 		
-		JLabel label_9 = new JLabel("Probabilit\u00E9s");
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(label_9);
+		 lblCarteHaute = new JLabel("Carte haute : ");
+		lblCarteHaute.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lblCarteHaute);
 		
-		JLabel lblwin = new JLabel("chance de gagner :");
-		lblwin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblwin.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		 lblwin = new JLabel("Chance de gagner : ");
+		lblwin.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panelResults.add(lblwin);
 		
 		//------------------Panel Hand---------------------\\ utilise un GridLayout
 		
 		JPanel panelHand = new JPanel();
-		panelHand.setBounds(364, 370, 210, 160);
+		panelHand.setBounds(372, 370, 210, 160);
 		contentPane.add(panelHand);
 		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
 		
@@ -192,15 +186,29 @@ public class interfaces extends JFrame {
 		
 		//------------------Boutons pour lancer ou reset---------------------\\
 		
-		JButton btnNewButton = new JButton("Lancer !");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(364, 319, 210, 40);
-		contentPane.add(btnNewButton);
+		JButton Launcher = new JButton("Lancer !");
+		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Launcher.setBounds(256, 319, 210, 40);
+		contentPane.add(Launcher);
+		
+		JButton Reset = new JButton("Reset");
+		Reset.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				Reset();
+				UpdateJpanel();
+			}
+		});
+		Reset.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Reset.setBounds(473, 319, 210, 40);
+		contentPane.add(Reset);
 		
 		
 		//------------------Reste du constructeur---------------------\\
 		
 		Reset();
+		River.remove(4);River.add(X);
+
 		UpdateJpanel();
 	}
 
@@ -255,10 +263,30 @@ public class interfaces extends JFrame {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
+	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilités afficher en résultats :
+		à rentré dans l'ordre :
+		QuinteFlushRoyale
+		QuinteFlush
+		carré
+		full
+		Couleur
+		suite
+		brelan
+		double paire
+		paire
+		carte haute
+		winning chances
+		*/
+		lblQuinteFlushRoyale.setText("Quinte flush royale : "+a+" %");
+		lblQuinteFlush.setText("Quinte flush : "+b+" %");
+		lblCarr.setText("carr\\u00E9 : "+c+" %");
+		lblFull.setText("Full : "+d+" %");
+		lblCouleur.setText("Couleur : "+e+" %");
+		lblSuite.setText("Suite : "+f+" %");
+		lblBrelan.setText("Brelan : "+g+" %");
+		lblDoublePaire.setText("Double paire : "+h+" %");
+		lblPaire.setText("Paire : "+i+" %");
+		lblCarteHaute.setText("Carte haute : "+j+" %");
+		lblwin.setText("Chance de gagner : "+k+" %");
+	}
 }
