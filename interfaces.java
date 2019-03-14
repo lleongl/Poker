@@ -14,13 +14,16 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.*;
-
+import java.util.LinkedList;
+import java.util.ArrayList;
 public class interfaces extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private Carte X= new Carte(1,"diamonds");
-
+	private ArrayList<Carte> Hand =new ArrayList<Carte>(2);
+	private ArrayList<Carte> River =new ArrayList<Carte>(5);
+	private JLabel lblA,lblB,lblC,lblD,lblE,lblF,lblG;
 	/**
 	 * Launch the application.
 	 */
@@ -37,9 +40,8 @@ public class interfaces extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
+	
 	public interfaces() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,27 +78,27 @@ public class interfaces extends JFrame {
 		panel_1.add(panel_4, BorderLayout.CENTER);
 		panel_4.setLayout(new GridLayout(0, 5, 10, 10));
 		
-		JLabel lblA = new JLabel();
+		lblA = new JLabel();
 		lblA.setSize(100,160);
 		lblA.setIcon( getCardLogo(lblA,X) );
 		panel_4.add(lblA);
 		
-		JLabel lblB = new JLabel();
+		lblB = new JLabel();
 		lblB.setSize(100,160);
 		lblB.setIcon( getCardLogo(lblB,X) );
 		panel_4.add(lblB);
 		
-		JLabel lblC = new JLabel();
+		lblC = new JLabel();
 		lblC.setSize(100,160);
 		lblC.setIcon( getCardLogo(lblC,X) );
 		panel_4.add(lblC);
 		
-		JLabel lblD = new JLabel();
+		lblD = new JLabel();
 		lblD.setSize(100,160);
 		lblD.setIcon( getCardLogo(lblD,X) );
 		panel_4.add(lblD);
 		
-		JLabel lblE = new JLabel();
+		lblE = new JLabel();
 		lblE.setSize(100,160);
 		lblE.setIcon( getCardLogo(lblE,X) );
 		panel_4.add(lblE);
@@ -105,7 +107,7 @@ public class interfaces extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(819, 43, 150, 409);
 		contentPane.add(panel_2);
-		panel_2.setLayout(new GridLayout(10, 1, 0, 0));
+		panel_2.setLayout(new GridLayout(11, 1, 0, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("Probabilit\u00E9s");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -157,29 +159,47 @@ public class interfaces extends JFrame {
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panel_2.add(label_8);
 		
+		JLabel label_9 = new JLabel("Probabilit\u00E9s");
+		label_9.setHorizontalAlignment(SwingConstants.CENTER);
+		label_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_2.add(label_9);
+		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(364, 370, 210, 160);
 		contentPane.add(panel_3);
 		panel_3.setLayout(new GridLayout(1, 2, 10, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setSize(100,160);
-		lblNewLabel_1.setIcon( getCardLogo(lblNewLabel_1,X) );
-		panel_3.add(lblNewLabel_1);
+		lblF = new JLabel("");
+		lblF.setSize(100,160);
+		lblF.setIcon( getCardLogo(lblF,X) );
+		panel_3.add(lblF);
 		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setSize(100,160);
-		panel_3.add(lblNewLabel_3);
-		lblNewLabel_3.setIcon( getCardLogo(lblNewLabel_3,X) );
+		lblG = new JLabel();
+		lblG.setSize(100,160);
+		panel_3.add(lblG);
+		lblG.setIcon( getCardLogo(lblG,X) );
 		
 		JButton btnNewButton = new JButton("Sexy Button");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(364, 319, 210, 40);
 		contentPane.add(btnNewButton);
+		UpdateJpanel();
 	}
 
 	public ImageIcon getCardLogo(JLabel panneau,Carte card) { //mets l'image aux dimensions du pannel d'entrée
 		Image img =card.getIcon().getImage().getScaledInstance(panneau.getWidth(),panneau.getHeight(),Image.SCALE_SMOOTH);
 		return (new ImageIcon(img));
+	}
+	
+	public void addCard(Carte C,LinkedList<Carte> X) {
+		
+		
+	}
+	
+	public void UpdateJpanel() {
+		
+		if(Hand.get(1)==null)
+			System.out.println("null");
+		
 	}
 }

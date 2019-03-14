@@ -5,7 +5,6 @@ public class Carte {
     private String couleur;
     private int valeur;
     private ImageIcon pic;
-    private ImageIcon folded =new ImageIcon("images/card-back.jpg","cachée");
     
 
     public Carte(int valeur, String couleur) {
@@ -47,6 +46,10 @@ public class Carte {
         pic =new ImageIcon("images/"+ValPath+"-"+couleur+".jpg");
         
     }
+    
+    public Carte() {//NUlle ou foled
+    	ImageIcon pic=new ImageIcon("images/card-back.jpg","cachée");
+    }
 
     public String getCouleur() {
         return couleur;
@@ -61,7 +64,4 @@ public class Carte {
     	
     }
     
-    public ImageIcon getFolded() {
-    	return folded;
-    }
 }
