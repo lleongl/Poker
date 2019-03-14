@@ -170,10 +170,10 @@ public class interfaces extends JFrame {
 		label_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelResults.add(label_9);
 		
-		JLabel lblChanceDeGagner = new JLabel("chance de gagner :");
-		lblChanceDeGagner.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChanceDeGagner.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelResults.add(lblChanceDeGagner);
+		JLabel lblwin = new JLabel("chance de gagner :");
+		lblwin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblwin.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panelResults.add(lblwin);
 		
 		//------------------Panel Hand---------------------\\ utilise un GridLayout
 		
