@@ -28,21 +28,25 @@ public class Les7Cartes {
         compteurCouleurChar = getCompteurCouleurChar();
         for (int j = 0; j < compteurCouleurChar.length; j++) {
             if (compteurCouleurChar[j] == '5' || compteurCouleurChar[j] == '6' || compteurCouleurChar[j] == '7') {
-                chiffreCouleur = j;
+                chiffreCouleur = (compteurCouleurChar.length)-j;
                 compteurCouleur++;
                 compteurCouleurChar=getCompteurCouleurChar();
             }
         }
         if (compteurCouleur==1) {
             switch (chiffreCouleur) {
-                case 0:
-                    couleur = "Trefle";
                 case 1:
-                    couleur = "Coeur";
+                    couleur = "Pique";
+                    break;
                 case 2:
                     couleur = "Carreau";
+                    break;
                 case 3:
-                    couleur = "Pique";
+                    couleur = "Coeur";
+                    break;
+                case 4:
+                    couleur = "Trefle";
+                    break;
             }
             for (int i = 0; i < this.tLes7Cartes.size(); i++) {
                 if (this.tLes7Cartes.get(i).getCouleur() == couleur) {
@@ -58,13 +62,17 @@ public class Les7Cartes {
                 compteur += Math.pow(10, val);
             }
 
-            System.out.println("compteur des cartes de meme couleur : "+compteur);
+//            System.out.println("compteur des cartes de meme couleur : "+compteur);
 
             //transforme en String le compteur (a changer)
             t = compteur + "";
             compteurValChar = t.toCharArray();
-            for (int k = 0; k < compteurValChar.length-4; k++) {
-                if (compteurValChar[k] > 0 && compteurValChar[k+1] > 0 && compteurValChar[k+2] > 0 && compteurValChar[k+3] > 0 && compteurValChar[k+4] > 0) {
+            compteurValInt = new int[compteurValChar.length];
+            for (int i = 0; i < compteurValChar.length; i++) {
+                compteurValInt[i] = compteurValChar[i] - '0';
+            }
+            for (int k = 0; k < compteurValInt.length-4; k++) {
+                if (compteurValInt[k] > 0 && compteurValInt[k+1] > 0 && compteurValInt[k+2] > 0 && compteurValInt[k+3] > 0 && compteurValInt[k+4] > 0) {
                     tCompteurs[0]++;
                     meilleureMain=true;
                     break;
@@ -177,8 +185,8 @@ public class Les7Cartes {
             tCompteurs[8]++;
         }
 
-/*        //Affiche le compteur de valeur en char
-        compteurValChar = getCompteurValChar();
+        //Affiche le compteur de valeur en char
+/*        compteurValChar = getCompteurValChar();
         System.out.print("compteurValChar : ");
         for (int k = 0; k < compteurValChar.length; k++) {
             System.out.print(compteurValChar[k] + " ");
@@ -224,7 +232,7 @@ public class Les7Cartes {
     public char[] getCompteurCouleurChar() {
         int compteur = 0;
         String t;
-        int[] compteurCouleur;
+        char[] compteurCouleurChar;
         int val = 0;
 
         for (int i = 0; i < this.tLes7Cartes.size(); i++) {

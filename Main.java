@@ -1,152 +1,112 @@
-import java.util.LinkedList;
-import java.util.Random;
-
 public class Main {
-
     public static void main(String[] args) {
-        Deck deck ;
-        int nbAdversaires=1;
-        Random geny = new Random(System.nanoTime());
-        laMain joueurCartes = null;
-        LinkedList<Carte> jeuCartes;
-        LinkedList<Carte> tableCartes = new LinkedList<>();
-        LinkedList<Carte> cartesInit = new LinkedList<>();
-        boolean brelan =true;
-        boolean carre=true;
-        boolean paire= true;
-        boolean doublePaire= true;
-        boolean full=true;
+        int nbAdversaires = 2;
         int nbTirages = 10000;
-        //initialise le cartes initiales du joueur et les enleve du jeuCartes
+        int [] tCompteurs= new int [9];
+        boolean quinteFlush=true;
+        boolean carre =true;
+        boolean full=true;
+        boolean couleur=true;
+        boolean suite=true;
+        boolean brelan=true;
+        boolean doublePaire=true;
+        boolean paire=true;
+        boolean carteHaute=true;
+
+        //établit les 2 cartes initiales du joueur
+        int valeur1 = 8;
+        int valeur2 = 9;
+        String couleur1 = "Carreau";
+        String couleur2 = "Carreau";
+        Les2Cartes les2Cartes = new Les2Cartes(valeur1, valeur2, couleur1, couleur2);
+
+
         for (int k = 0; k < nbTirages; k++) {
-            deck = new Deck();
-            jeuCartes = deck.creationJeuCartes();
+            //création deck trié
+            Deck paquet = new Deck();
+            //melange du paquet
+            paquet.contenu = paquet.melangePaquet();
+            paquet.removeCard(les2Cartes.tLes2Cartes.get(0).getValeur(), les2Cartes.tLes2Cartes.get(0).getCouleur());
+            paquet.removeCard(les2Cartes.tLes2Cartes.get(1).getValeur(), les2Cartes.tLes2Cartes.get(1).getCouleur());
 
-/*
-            for(int i=0;i<jeuCartes.size();i++) {
-                System.out.println("carte "+i+":");
-                System.out.println(jeuCartes.get(i).getCouleur());
-                System.out.println(jeuCartes.get(i).getValeur());
-            }
-*/
+            //distribution des cartes aux adversaires et tirage des 5 cartes
+            Les5Cartes les5Cartes = new Les5Cartes();
+            paquet.distribution(les5Cartes.tLes5Cartes, nbAdversaires);
 
-            //au clavier pour le moment
-           /* Scanner sc = new Scanner(System.in);
-            System.out.println("couleur de la premiere carte ?");
-            String couleur1 = sc.next();
-            System.out.println("valeur de la premiere carte ?");
-            int valeur1 = sc.nextInt();
-            System.out.println("couleur de la deuxieme carte ?");
-            String couleur2 = sc.next();
-            System.out.println("valeur de la deuxieme carte ?");
-            int valeur2 = sc.nextInt();
-            Carte carte1 = new Carte(valeur1, couleur1);
-            Carte carte2 = new Carte(valeur2, couleur2);*/
-            Carte carte1=new Carte(10, "Pique");
-            Carte carte2=new Carte(1, "Carreau");
-            cartesInit.add(carte1);
-            cartesInit.add(carte2);
-            deck.removeCard(jeuCartes,10,"Pique");
-            deck.removeCard(jeuCartes,1,"Carreau");
-
-/*
-            for(int i=0;i<jeuCartes.size();i++) {
-                System.out.println("carte "+i+":");
-                System.out.println(jeuCartes.get(i).getCouleur());
-                System.out.println(jeuCartes.get(i).getValeur());
-            }
-*/
-
-            //enleve 2 cartes au hasard (1 adversaire) du jeuCartes
-
-            for (int j=0; j<nbAdversaires;j++){
-                Carte t1= jeuCartes.get(geny.nextInt(jeuCartes.size()));
-                Carte t2= jeuCartes.get(geny.nextInt(jeuCartes.size()));
-                deck.removeCard(jeuCartes,t1.getValeur(),t1.getCouleur());
-                deck.removeCard(jeuCartes,t2.getValeur(),t2.getCouleur());
+            //(Affichage des cartes du paquet)
+/*            for (int i = 0; i < paquet.contenu.size(); i++) {
+                System.out.println("carte " + i + ":");
+                System.out.println(paquet.contenu.get(i).getCouleur());
+                System.out.println(paquet.contenu.get(i).getValeur());
             }
 
+            System.out.println("les 2 Cartes :");
+            for (int i = 0; i < les2Cartes.tLes2Cartes.size(); i++) {
+                System.out.println("carte " + i + ":");
+                System.out.println(les2Cartes.tLes2Cartes.get(i).getCouleur());
+                System.out.println(les2Cartes.tLes2Cartes.get(i).getValeur());
+            }
 
-/*            for(int i=0;i<jeuCartes.size();i++) {
-                System.out.println("carte "+i+":");
-                System.out.println(jeuCartes.get(i).getCouleur());
-                System.out.println(jeuCartes.get(i).getValeur());
+            System.out.println("les 5 Cartes :");
+            for (int i = 0; i < les5Cartes.tLes5Cartes.size(); i++) {
+                System.out.println("carte " + i + ":");
+                System.out.println(les5Cartes.tLes5Cartes.get(i).getCouleur());
+                System.out.println(les5Cartes.tLes5Cartes.get(i).getValeur());
             }*/
 
-
-            //Tire les cartes sur la table
-            while (tableCartes.size() < 5) {
-                tableCartes.add(jeuCartes.get(0));
-                jeuCartes.remove(jeuCartes.get(0));
-            }
-
+            //regroupement des 2 cartes du joueurs et de celles sur la table
+            Les7Cartes les7Cartes = new Les7Cartes(les5Cartes.tLes5Cartes, les2Cartes.tLes2Cartes);
 /*
-            for(int i=0;i<jeuCartes.size();i++) {
-                System.out.println("carte "+i+":");
-                System.out.println(jeuCartes.get(i).getCouleur());
-                System.out.println(jeuCartes.get(i).getValeur());
-            }
-*/
+            System.out.println("les 7 Cartes :");
+            for (int i = 0; i < les7Cartes.tLes7Cartes.size(); i++) {
+                System.out.println("carte " + i + ":");
+                System.out.println(les7Cartes.tLes7Cartes.get(i).getCouleur());
+                System.out.println(les7Cartes.tLes7Cartes.get(i).getValeur());
+            }*/
 
-            //Défini les Cartes que le joueur peut utiliser
-            joueurCartes = new laMain(cartesInit, tableCartes,nbTirages);
+            //Opération de la chaine de test
+            les7Cartes.chaineTest(tCompteurs);
+        }
+/*      System.out.println("Tableau de compteurs : ");
+        for (int i=0; i<tCompteurs.length; i++){
+            System.out.print(tCompteurs[i]+" ");
+        }*/
 
-/*
-
-            System.out.println("les cartes : ");
-            for (int p=0;p<joueurCartes.getMain().size();p++){
-                System.out.print(joueurCartes.getMain().get(p).getValeur()+" ");
-            }
-*/
-            System.out.println();
-            if (brelan==true) {
-                joueurCartes.Brelan();
-            }
-            if(carre==true) {
-                joueurCartes.Carre();
-            }
-            if (paire==true||doublePaire==true){
-                joueurCartes.PaireDoublePaire();
-            }
-            if(full==true) {
-                joueurCartes.Full();
-            }
-
-            tableCartes.clear();
-            cartesInit.clear();
-//            System.out.println();
+        //Affiche les probabilités recherchées
+        if (quinteFlush==true){
+            System.out.println("Probabilité d'avoir une Quinte Flush : "+(tCompteurs[0]/(float) nbTirages)*100+"%");
+        }
+        if (carre==true){
+            System.out.println("Probabilité d'avoir un Carre : "+(tCompteurs[1]/(float) nbTirages)*100+"%");
+        }
+        if (full==true){
+            System.out.println("Probabilité d'avoir un Full : "+(tCompteurs[2]/(float) nbTirages)*100+"%");
+        }
+        if (couleur==true){
+            System.out.println("Probabilité d'avoir une Couleur : "+(tCompteurs[3]/(float) nbTirages)*100+"%");
+        }
+        if (suite==true){
+            System.out.println("Probabilité d'avoir une Suite : "+(tCompteurs[4]/(float) nbTirages)*100+"%");
+        }
+        if (brelan==true){
+            System.out.println("Probabilité d'avoir un Brelan : "+(tCompteurs[5]/(float) nbTirages)*100+"%");
+        }
+        if (doublePaire==true){
+            System.out.println("Probabilité d'avoir une Double Paire : "+(tCompteurs[6]/(float) nbTirages)*100+"%");
+        }
+        if (paire==true){
+            System.out.println("Probabilité d'avoir une Paire : "+(tCompteurs[7]/(float) nbTirages)*100+"%");
+        }
+        if (carteHaute==true){
+            System.out.println("Probabilité d'avoir une Carte Haute : "+(tCompteurs[8]/(float) nbTirages)*100+"%");
         }
 
-        if (brelan==true) {
-            System.out.println("proba Brelan : " + joueurCartes.getProbaBrelan()+"%");
-        }
+        float total=0;
+        for (int n=0; n<9;n++){
+            total+=(tCompteurs[n]/(float) nbTirages)*100;
 
-        if(carre==true) {
-            System.out.println("proba Carre : " + joueurCartes.getProbaCarre()+"%");
         }
-        if(paire==true) {
-            System.out.println("proba Paire : " + joueurCartes.getProbaPaire()+"%");
-        }
-        if(doublePaire==true) {
-            System.out.println("proba Double Paire : " + joueurCartes.getProbaDoublePaire()+"%");
-        }
-        if(full==true) {
-            System.out.println("proba Full : " + joueurCartes.getProbaFull()+"%");
-        }
+        System.out.println("total :" +total);
     }
 
-    //Affiche les cartes de la table
-        /*for(int i=0;i<tableCartes.size();i++) {
-            System.out.println("carte "+i+":");
-            System.out.println(tableCartes.get(i).getCouleur());
-            System.out.println(tableCartes.get(i).getValeur());
-        }
-
-        //Affiche les 7 cartes
-        for(int i=0;i<joueurCartes.size();i++) {
-            System.out.println("carte "+i+":");
-            System.out.println(joueurCartes.get(i).getCouleur());
-            System.out.println(joueurCartes.get(i).getValeur());
-        }*/
 }
-
