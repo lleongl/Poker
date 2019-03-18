@@ -40,6 +40,7 @@ public class Carte {
 	        case 13: ValPath =  "king";
 	        
 	        default: ValPath = "card";
+	        		 couleur = "back";
 	                 break;
         }
         
@@ -64,5 +65,11 @@ public class Carte {
     	return pic;
     	
     }
+    public void setCouleur(String C) { //delete this
+    	this.couleur=C;
+    }
     
+    public void setValeur(int V) { //delete this
+    	this.valeur=V;
+    }
 }

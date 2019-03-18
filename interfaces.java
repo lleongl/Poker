@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.CardLayout;
 public class interfaces extends JFrame {
 
 	private JPanel contentPane;
@@ -224,8 +225,8 @@ public class interfaces extends JFrame {
 		lblC.setIcon( getCardLogo(lblC,River.get(2)) );
 		lblD.setIcon( getCardLogo(lblD,River.get(3)) );
 		lblE.setIcon( getCardLogo(lblE,River.get(4)) );
-		lblF.setIcon( getCardLogo(lblF,River.get(0)) );
-		lblG.setIcon( getCardLogo(lblG,River.get(1)) );
+		lblF.setIcon( getCardLogo(lblF,Hand.get(0)) );
+		lblG.setIcon( getCardLogo(lblG,Hand.get(1)) );
 	}
 	
 	
