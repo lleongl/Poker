@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 public class Calculatrice {
-    public void lancerCalcul() {
-        int nbAdversaires = 3;
+    public float[] lancerCalcul(int x,  ArrayList <Carte> Hand, ArrayList <Carte> River) {
+        int nbAdversaires = x-1;
         int nbTirages = 10000;
         int [] tCompteurs= new int [9];
+        float[] tProba= new float[11];
         Joueur [] tJoueurs= new Joueur[nbAdversaires+1];
         boolean quinteFlush=true;
         boolean carre =true;
@@ -21,12 +24,8 @@ public class Calculatrice {
         }
 
         //établit les 2 cartes initiales du joueur
-        int valeur1 = 12;
-        int valeur2 = 12;
-        String couleur1 = "Carreau";
-        String couleur2 = "Pique";
-        tJoueurs[0].tLes2Cartes.add(new Carte (valeur1, couleur1));
-        tJoueurs[0].tLes2Cartes.add(new Carte (valeur2, couleur2));
+        tJoueurs[0].tLes2Cartes.add(Hand.get(0));
+        tJoueurs[0].tLes2Cartes.add(Hand.get(1));
 
 
 
@@ -45,6 +44,11 @@ public class Calculatrice {
 
             //tirage des 5 cartes
             Les5Cartes les5Cartes = new Les5Cartes();
+
+            for(int i=0; i<River.size();i++) {
+                les5Cartes.tLes5Cartes.add(River.get(i));
+                paquet.removeCard(River.get(i).getValeur(), (River.get(i).getCouleur()));
+            }
             paquet.tirage(les5Cartes.tLes5Cartes);
 //            tJoueurs[1].tLes2Cartes.add(new Carte (valeur1, "Coeur"));
 //            tJoueurs[1].tLes2Cartes.add(new Carte (valeur2, "Trefle"));
@@ -127,6 +131,17 @@ public class Calculatrice {
         }*/
 
         //Affiche les probabilités recherchées
+        int victoiresAdversaires=0;
+        for (int i=1; i<tJoueurs.length;i++){
+            victoiresAdversaires+=tJoueurs[i].getVictoire();
+        }
+
+        for (int i=0; i<tProba.length-2;i++){
+            tProba[i]=(tCompteurs[i]/(float) nbTirages)*100;
+        }
+        tProba[9]=(tJoueurs[0].getVictoire()/(float)nbTirages)*100;
+        tProba[10]=(victoiresAdversaires/(float)nbTirages)*100;
+
         if (quinteFlush==true){
             System.out.println("Probabilité d'avoir une Quinte Flush : "+(tCompteurs[0]/(float) nbTirages)*100+"%");
         }
@@ -155,10 +170,6 @@ public class Calculatrice {
             System.out.println("Probabilité d'avoir une Carte Haute : "+(tCompteurs[8]/(float) nbTirages)*100+"%");
         }
 
-        int victoiresAdversaires=0;
-        for (int i=1; i<tJoueurs.length;i++){
-            victoiresAdversaires+=tJoueurs[i].getVictoire();
-        }
         float total=0;
         for (int n=0; n<9;n++){
             total+=(tCompteurs[n]/(float) nbTirages)*100;
@@ -167,6 +178,8 @@ public class Calculatrice {
 
         System.out.println("Probabilité de gagner : "+(tJoueurs[0].getVictoire()/(float)nbTirages)*100+"%");
         System.out.println("Probabilité de perdre : "+(victoiresAdversaires/(float)nbTirages)*100+"%");
+
+        return tProba;
     }
 
 }
