@@ -1,4 +1,3 @@
-import sun.misc.Launcher;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -197,6 +196,9 @@ public class interfaces extends JFrame {
 				k.lancerCalcul();
 			}
 		});
+		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Launcher.setBounds(256, 319, 210, 40);
+		contentPane.add(Launcher);
 		
 		Reset = new JButton("Reset");
 		Reset.addMouseListener(new MouseAdapter() {
@@ -213,7 +215,6 @@ public class interfaces extends JFrame {
 		//------------------Reste du constructeur---------------------\\
 		
 		Reset();
-		River.remove(4);River.add(X);
 
 	}
 	
@@ -226,19 +227,9 @@ public class interfaces extends JFrame {
 		
 		Hand.set(0,lblF.getCard());
 		Hand.set(1,lblG.getCard());
-		UpdateJpanel();
 	}
 
 	
-	public void UpdateJpanel() {//mets � jour l'affichage des cartes :)  en fonction du contenue des listes
-		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
-		lblB.setIcon( getCardLogo(lblB,River.get(1)) ); 
-		lblC.setIcon( getCardLogo(lblC,River.get(2)) );
-		lblD.setIcon( getCardLogo(lblD,River.get(3)) );
-		lblE.setIcon( getCardLogo(lblE,River.get(4)) );
-		lblF.setIcon( getCardLogo(lblF,Hand.get(0)) );
-		lblG.setIcon( getCardLogo(lblG,Hand.get(1)) );
-	}
 	
 	public void Reset() { // Vide les listes Hand et River
 		Hand.clear();
