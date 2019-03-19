@@ -1,6 +1,6 @@
 
 import javax.swing.ImageIcon;
-public class Carte {
+public class Carte implements Comparable<Carte> {
 
     private String couleur;
     private int valeur;
@@ -11,7 +11,38 @@ public class Carte {
         this.couleur = couleur;
         this.valeur = valeur;
         
-        String ValPath ;
+        
+        pic =new ImageIcon("images/"+getValPath()+"-"+couleur+".jpg");
+        
+    }
+    
+    public Carte() {//NUlle ou folded
+    	pic=new ImageIcon("images/card-back.jpg","cachee");
+    	valeur =-1;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public int getValeur() {
+        return valeur;
+    }
+    
+    public ImageIcon getIcon() {
+    	pic =new ImageIcon("images/"+getValPath()+"-"+couleur+".jpg");
+    	return pic;
+    	
+    }
+    public void setCouleur(String C) { //delete this
+    	this.couleur=C;
+    }
+    
+    public void setValeur(int V) { //delete this
+    	this.valeur=V;
+    }
+    public String getValPath() {
+    	String ValPath ;
         switch (valeur) {
 	        case 1:  ValPath = "ace";
 	                 break;
@@ -38,18 +69,23 @@ public class Carte {
 	        case 12: ValPath = "queen";
 	                 break;
 	        case 13: ValPath =  "king";
+					break;
+			case -1 :
 	        
 	        default: ValPath = "card";
 	        		 couleur = "back";
 	                 break;
         }
+<<<<<<< HEAD
+        return ValPath;
+=======
         
         pic =new ImageIcon("images/"+ValPath+"-"+couleur+".jpg");
         
     }
     
     public Carte() {//NUlle ou folded
-    	pic=new ImageIcon("images/card-back.jpg","cachée");
+    	pic=new ImageIcon("images/card-back.jpg","cachï¿½e");
     	valeur =-1;
     }
 
@@ -65,11 +101,29 @@ public class Carte {
     	return pic;
     	
     }
+<<<<<<< Updated upstream
     public void setCouleur(String C) { //delete this
     	this.couleur=C;
     }
     
     public void setValeur(int V) { //delete this
     	this.valeur=V;
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
     }
+=======
+
+
+    public int compareTo(Carte autreCarte){
+		if (this.getValeur()<autreCarte.getValeur()){
+			return -1;
+		}
+		else if (this.getValeur()>autreCarte.getValeur()){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+>>>>>>> Stashed changes
 }

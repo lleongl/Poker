@@ -44,26 +44,31 @@ public class Deck {
         }
     }
 
-    public void distribution( LinkedList<Carte> tLes5Cartes, int nbAdversaires){
-        //enleve au hasard 2 cartes par avdersaire
-        for (int j=0; j<nbAdversaires;j++){
+    public void distribution(Joueur[] tJoueurs, int nbAdversaires){
+        //distribue 2 cartes par avdersaire
+        for (int j=1; j<nbAdversaires+1;j++){
             Random geny= new Random(System.nanoTime());
             Carte t1= this.contenu.get(geny.nextInt(this.contenu.size()));
             Carte t2= this.contenu.get(geny.nextInt(this.contenu.size()));
+            tJoueurs[j].tLes2Cartes.add(t1);
+            tJoueurs[j].tLes2Cartes.add(t2);
             this.removeCard(t1.getValeur(),t1.getCouleur());
             this.removeCard(t2.getValeur(),t2.getCouleur());
         }
 
-        //tirage des cartes sur la table
+
+
+    }
+     public void tirage(LinkedList<Carte> tLes5Cartes){
+         //tirage des cartes sur la table
 /*        tLes5Cartes.add(new Carte(7, "Coeur"));
         tLes5Cartes.add(new Carte(4, "Coeur"));
         tLes5Cartes.add(new Carte(1, "Trefle"));
         tLes5Cartes.add(new Carte(3, "Coeur"));
         tLes5Cartes.add(new Carte(5, "Coeur"));*/
-        while (tLes5Cartes.size() < 5) {
-            tLes5Cartes.add(this.contenu.get(0));
-            this.contenu.remove(this.contenu.get(0));
-        }
-
-    }
+         while (tLes5Cartes.size() < 5) {
+             tLes5Cartes.add(this.contenu.get(0));
+             this.contenu.remove(this.contenu.get(0));
+         }
+     }
 }

@@ -1,3 +1,5 @@
+import sun.misc.Launcher;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -5,23 +7,37 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 import javax.swing.*;
+<<<<<<< HEAD
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+=======
+=======
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
+import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+<<<<<<< Updated upstream
 import java.awt.CardLayout;
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 public class interfaces extends JFrame {
+=======
+import java.awt.event.ActionListener;
+public class interfaces extends JFrame implements ActionListener{
+>>>>>>> Stashed changes
 
 	private JPanel contentPane;
+    private JButton Launcher;
+    private JButton Reset;
 	
 	private JTextField txtField_nbj;
 	private JLabel lblQuinteFlushRoyale,lblQuinteFlush,lblCarr,
@@ -33,7 +49,7 @@ public class interfaces extends JFrame {
 	private ArrayList<Carte> Hand =new ArrayList<Carte>(2);
 	private ArrayList<Carte> River =new ArrayList<Carte>(5);
 	
-	private JLabel lblA,lblB,lblC,lblD,lblE,lblF,lblG;
+	private Select lblA,lblB,lblC,lblD,lblE,lblF,lblG;
 	
 	
 	public static void main(String[] args) {
@@ -81,7 +97,7 @@ public class interfaces extends JFrame {
 		//------------------Panel pour la River---------------------\\ utilise un Border Layout
 		
 		JPanel panelRiver = new JPanel();
-		panelRiver.setBounds(194, 43, 550, 265);
+		panelRiver.setBounds(194, 43, 552, 223);
 		contentPane.add(panelRiver);
 		panelRiver.setLayout(new BorderLayout(0, 0));
 		
@@ -94,23 +110,23 @@ public class interfaces extends JFrame {
 		panelRiver.add(Table, BorderLayout.CENTER);
 		Table.setLayout(new GridLayout(0, 5, 10, 10));
 		
-		lblA = new JLabel();
+		lblA = new Select();
 		lblA.setSize(100,160);
 		Table.add(lblA);
 		
-		lblB = new JLabel();
+		lblB = new Select();
 		lblB.setSize(100,160);
 		Table.add(lblB);
 		
-		lblC = new JLabel();
+		lblC = new Select();
 		lblC.setSize(100,160);
 		Table.add(lblC);
 		
-		lblD = new JLabel();
+		lblD = new Select();
 		lblD.setSize(100,160);
 		Table.add(lblD);
 		
-		lblE = new JLabel();
+		lblE = new Select();
 		lblE.setSize(100,160);
 		Table.add(lblE);
 		
@@ -177,27 +193,43 @@ public class interfaces extends JFrame {
 		contentPane.add(panelHand);
 		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
 		
-		lblF = new JLabel("");
-		lblF.setSize(100,160);
+		lblF = new Select();
 		panelHand.add(lblF);
 		
-		lblG = new JLabel();
+		lblG = new Select();
 		lblG.setSize(100,160);
 		panelHand.add(lblG);
 		
 		//------------------Boutons pour lancer ou reset---------------------\\
 		
+<<<<<<< HEAD
+<<<<<<< HEAD
 		JButton Launcher = new JButton("Lancer !");
+		Launcher.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) { //Completer ca
+				UpdateHR();
+				Calculatrice k=new Calculatrice();
+				k.lancerCalcul();
+			}
+		});
+=======
+		Launcher = new JButton("Lancer !");
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
+=======
+		Launcher = new JButton("Lancer !");
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Launcher.setBounds(256, 319, 210, 40);
 		contentPane.add(Launcher);
+		Launcher.addActionListener(this);
 		
-		JButton Reset = new JButton("Reset");
+		Reset = new JButton("Reset");
+		Reset.addActionListener(this);
 		Reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				Reset();
-				UpdateJpanel();
 			}
 		});
 		Reset.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -210,16 +242,29 @@ public class interfaces extends JFrame {
 		Reset();
 		River.remove(4);River.add(X);
 
+<<<<<<< HEAD
+	}
+	
+	public void UpdateHR(){ // mets a jours les arrays List de Carte a partir des jlabels et de leur contenu :)
+		River.set(0, lblA.getCard());
+		River.set(1, lblB.getCard());
+		River.set(2, lblC.getCard());
+		River.set(3, lblD.getCard());
+		River.set(4, lblE.getCard());
+		
+		Hand.set(0,lblF.getCard());
+		Hand.set(1,lblG.getCard());
+=======
 		UpdateJpanel();
 	}
 
-	public ImageIcon getCardLogo(JLabel panneau,Carte card) { //mets l'image aux dimensions du pannel d'entrée
+	public ImageIcon getCardLogo(JLabel panneau,Carte card) { //mets l'image aux dimensions du pannel d'entrï¿½e
 		Image img =card.getIcon().getImage().getScaledInstance(panneau.getWidth(),panneau.getHeight(),Image.SCALE_SMOOTH);
 		return (new ImageIcon(img));
 	}
 	
 	
-	public void UpdateJpanel() {//mets à jour l'affichage des cartes :)  en fonction du contenue des listes
+	public void UpdateJpanel() {//mets ï¿½ jour l'affichage des cartes :)  en fonction du contenue des listes
 		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
 		lblB.setIcon( getCardLogo(lblB,River.get(1)) ); 
 		lblC.setIcon( getCardLogo(lblC,River.get(2)) );
@@ -227,8 +272,8 @@ public class interfaces extends JFrame {
 		lblE.setIcon( getCardLogo(lblE,River.get(4)) );
 		lblF.setIcon( getCardLogo(lblF,Hand.get(0)) );
 		lblG.setIcon( getCardLogo(lblG,Hand.get(1)) );
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 	}
-	
 	
 	public void Reset() { // Vide les listes Hand et River
 		Hand.clear();
@@ -240,6 +285,15 @@ public class interfaces extends JFrame {
 		for (int i =0;i<5;i++) { 
 			River.add(new Carte());
 		}
+		lblA.ResetCard();
+		lblB.ResetCard();
+		lblC.ResetCard();
+		lblD.ResetCard();
+		lblE.ResetCard();
+		
+		lblF.ResetCard();
+		lblG.ResetCard();
+		
 	}
 	
 	public ArrayList<Carte> getHand(){ //renvoie l'arrayList des cartes dans la Hand
@@ -250,7 +304,15 @@ public class interfaces extends JFrame {
 		return River;
 	}
 	
-	public int getNbj() {// Retourne le nombre de joueur entré !! Si le nombre entré n'est pas un entier ou est < à 1 renvoie 0 !!!
+<<<<<<< HEAD
+<<<<<<< HEAD
+	public int getNbj() {// Retourne le nombre de joueur entre !! Si le nombre entre n'est pas un entier ou est < a 1 renvoie 0 !!!
+=======
+	public int getNbj() {// Retourne le nombre de joueur entrï¿½ !! Si le nombre entrï¿½ n'est pas un entier ou est < ï¿½ 1 renvoie 0 !!!
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
+=======
+	public int getNbj() {// Retourne le nombre de joueur entrï¿½ !! Si le nombre entrï¿½ n'est pas un entier ou est < ï¿½ 1 renvoie 0 !!!
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 		
 		try {
 	        int d = Integer.parseInt(txtField_nbj.getText());
@@ -264,11 +326,27 @@ public class interfaces extends JFrame {
 		}
 	}
 	
-	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilités afficher en résultats :
-		à rentré dans l'ordre :
+<<<<<<< HEAD
+<<<<<<< HEAD
+	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilites afficher en resultats :
+		a rentre dans l'ordre :
 		QuinteFlushRoyale
 		QuinteFlush
-		carré
+		carre
+=======
+	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilitï¿½s afficher en rï¿½sultats :
+		ï¿½ rentrï¿½ dans l'ordre :
+		QuinteFlushRoyale
+		QuinteFlush
+		carrï¿½
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
+=======
+	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilitï¿½s afficher en rï¿½sultats :
+		ï¿½ rentrï¿½ dans l'ordre :
+		QuinteFlushRoyale
+		QuinteFlush
+		carrï¿½
+>>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 		full
 		Couleur
 		suite
@@ -289,5 +367,15 @@ public class interfaces extends JFrame {
 		lblPaire.setText("Paire : "+i+" %");
 		lblCarteHaute.setText("Carte haute : "+j+" %");
 		lblwin.setText("Chance de gagner : "+k+" %");
+	}
+
+	public void actionPerformed (ActionEvent e){
+        if(e.getSource()== Launcher){
+            Calculatrice k = new Calculatrice();
+            k.lancerCalcul();
+        }
+        else {
+            this.Reset();
+        }
 	}
 }

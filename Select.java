@@ -1,8 +1,6 @@
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -11,11 +9,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class Select extends JPanel {
 	private CardLayout C1 = new CardLayout();
 	private String[] listContent={"CARD_1", "CARD_2", "CARD_3"};
-	private int indice = 0;
 	private JPanel Day = new JPanel();
 	private JPanel months = new JPanel();
 	private JPanel seasons = new JPanel();
@@ -33,8 +31,8 @@ public class Select extends JPanel {
 	private final JButton btn12 = new JButton("dame");
 	private final JButton btn13 = new JButton("roi");
 	private final JButton btnCancel = new JButton("X");
-	private final JButton btnBack = new JButton("retour");
-	public Carte Card= new Carte();
+	private final JButton btnBack = new JButton("R");
+	private Carte Card= new Carte();
 	private int valeur=-1;
 	private String Couleur;
 	private final JLabel C_Carreau = new JLabel("");
@@ -47,11 +45,15 @@ public class Select extends JPanel {
 
 	public Select() { //content = this
 		this.setSize(100,160);
-		Day.setBackground(Color.blue);
-	    months.setBackground(Color.red);	
-	    seasons.setBackground(Color.green);
+		Day.setBackground(new Color(0,0,0,0));
+	    months.setBackground(new Color(0,0,0,0));	
+	    seasons.setBackground(Color.DARK_GRAY);
 	    this.setLayout(C1);
 	    this.add(Day, listContent[0]);
+	    
+	    //--------------------Days-------------------\\
+
+	    
 	    Day.setLayout(null);
 	    
 	    lblDay = new JLabel();
@@ -70,6 +72,7 @@ public class Select extends JPanel {
 	    
 		    this.add(months, listContent[1]);
 		    months.setLayout(new GridLayout(3, 5, 0, 0));
+		    btnAs.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    
 		    btnAs.addMouseListener(new MouseAdapter() {
 		    	@Override
@@ -80,6 +83,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btnAs);
+		    btn2.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn2.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -89,6 +93,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn2);
+		    btn3.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn3.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -98,6 +103,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn3);
+		    btn4.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn4.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -107,6 +113,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn4);
+		    btn5.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn5.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -116,6 +123,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn5);
+		    btn6.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn6.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent arg0) {
@@ -125,6 +133,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn6);
+		    btn7.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn7.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -134,6 +143,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn7);
+		    btn8.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn8.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -143,6 +153,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn8);
+		    btn9.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn9.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -152,6 +163,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn9);
+		    btn10.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn10.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -161,6 +173,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn10);
+		    btn11.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn11.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -170,6 +183,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn11);
+		    btn12.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn12.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -179,6 +193,7 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn12);
+		    btn13.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btn13.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
@@ -188,19 +203,22 @@ public class Select extends JPanel {
 		    });
 		    
 		    months.add(btn13);
+		    btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btnCancel.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
-		    		setView(0);
+		    		Previous();
 		    	}
 		    });
 		    
 		    months.add(btnCancel);
+		    btnBack.setFont(new Font("Tahoma", Font.PLAIN, 5));
 		    btnBack.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent e) {
 		    		valeur =-1;
-		    		setView(0);
+		    		UpdatePic();
+		    		Previous();
 		    	}
 		    });
 		    
@@ -268,25 +286,32 @@ public class Select extends JPanel {
 	    seasons.add(C_Coeur);
 	    
 	  //--------------------reste de l'année-------------------\\
-	    Card = new Carte(valeur,Couleur);
 	    
 	}
 	
 	public void Next() {
 		C1.next(this);
 	}
-	
-	public void setView(int x) {
-		if(++indice >2)
-		  indice = 0;
-	      //Via cette instruction, on passe au conteneur correspondant au nom fourni en paramètre
-	      C1.show(this, listContent[indice]);
-		
+	public void Previous() {
+		C1.previous(this);
 	}
 	
+
+	
 	public void UpdatePic() {
+		Card.setCouleur(Couleur);
+		Card.setValeur(valeur);
 	    Image shot =Card.getIcon().getImage().getScaledInstance(lblDay.getWidth(),lblDay.getHeight(),Image.SCALE_SMOOTH);
 	    lblDay.setIcon(new ImageIcon(shot));
 		
+	}
+	
+	public Carte getCard() {
+		return Card;
+	}
+	public void ResetCard() {
+		Card = new Carte();
+		valeur =-1;
+		UpdatePic();
 	}
 }
