@@ -11,7 +11,19 @@ public class Carte implements Comparable<Carte> {
         this.couleur = couleur;
         this.valeur = valeur;
         
-        String ValPath ;
+        
+        pic =new ImageIcon("images/"+getValPath()+"-"+couleur+".jpg");
+        
+    }
+    
+    
+    public ImageIcon getIcon() {
+    	pic =new ImageIcon("images/"+getValPath()+"-"+couleur+".jpg");
+    	return pic;
+    	
+    }
+    public String getValPath() {
+    	String ValPath ;
         switch (valeur) {
 	        case 1:  ValPath = "ace";
 	                 break;
@@ -38,18 +50,20 @@ public class Carte implements Comparable<Carte> {
 	        case 12: ValPath = "queen";
 	                 break;
 	        case 13: ValPath =  "king";
+					break;
+			case -1 :
 	        
 	        default: ValPath = "card";
 	        		 couleur = "back";
 	                 break;
         }
+        return ValPath;
         
-        pic =new ImageIcon("images/"+ValPath+"-"+couleur+".jpg");
         
     }
     
     public Carte() {//NUlle ou folded
-    	pic=new ImageIcon("images/card-back.jpg","cach�e");
+    	pic=new ImageIcon("images/card-back.jpg","cachee");
     	valeur =-1;
     }
 
@@ -61,11 +75,7 @@ public class Carte implements Comparable<Carte> {
         return valeur;
     }
     
-    public ImageIcon getIcon() {
-    	return pic;
-    	
-    }
-<<<<<<< Updated upstream
+
     public void setCouleur(String C) { //delete this
     	this.couleur=C;
     }
@@ -73,7 +83,6 @@ public class Carte implements Comparable<Carte> {
     public void setValeur(int V) { //delete this
     	this.valeur=V;
     }
-=======
 
 
     public int compareTo(Carte autreCarte){
@@ -88,5 +97,4 @@ public class Carte implements Comparable<Carte> {
 		}
 	}
 
->>>>>>> Stashed changes
 }
