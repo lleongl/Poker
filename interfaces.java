@@ -1,33 +1,26 @@
 import sun.misc.Launcher;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-<<<<<<< Updated upstream
 import java.awt.CardLayout;
 public class interfaces extends JFrame {
-=======
-import java.awt.event.ActionListener;
-public class interfaces extends JFrame implements ActionListener{
->>>>>>> Stashed changes
 
 	private JPanel contentPane;
     private JButton Launcher;
@@ -38,12 +31,11 @@ public class interfaces extends JFrame implements ActionListener{
 	lblFull,lblCouleur,lblSuite,lblBrelan,lblDoublePaire,lblPaire,
 	lblCarteHaute,lblwin;
 	
-	private Carte X= new Carte(1,"diamonds");
 	
 	private ArrayList<Carte> Hand =new ArrayList<Carte>(2);
 	private ArrayList<Carte> River =new ArrayList<Carte>(5);
 	
-	private JLabel lblA,lblB,lblC,lblD,lblE,lblF,lblG;
+	private Select lblA,lblB,lblC,lblD,lblE,lblF,lblG;
 	
 	
 	public static void main(String[] args) {
@@ -91,7 +83,7 @@ public class interfaces extends JFrame implements ActionListener{
 		//------------------Panel pour la River---------------------\\ utilise un Border Layout
 		
 		JPanel panelRiver = new JPanel();
-		panelRiver.setBounds(194, 43, 550, 265);
+		panelRiver.setBounds(194, 43, 552, 223);
 		contentPane.add(panelRiver);
 		panelRiver.setLayout(new BorderLayout(0, 0));
 		
@@ -104,23 +96,23 @@ public class interfaces extends JFrame implements ActionListener{
 		panelRiver.add(Table, BorderLayout.CENTER);
 		Table.setLayout(new GridLayout(0, 5, 10, 10));
 		
-		lblA = new JLabel();
+		lblA = new Select();
 		lblA.setSize(100,160);
 		Table.add(lblA);
 		
-		lblB = new JLabel();
+		lblB = new Select();
 		lblB.setSize(100,160);
 		Table.add(lblB);
 		
-		lblC = new JLabel();
+		lblC = new Select();
 		lblC.setSize(100,160);
 		Table.add(lblC);
 		
-		lblD = new JLabel();
+		lblD = new Select();
 		lblD.setSize(100,160);
 		Table.add(lblD);
 		
-		lblE = new JLabel();
+		lblE = new Select();
 		lblE.setSize(100,160);
 		Table.add(lblE);
 		
@@ -187,21 +179,24 @@ public class interfaces extends JFrame implements ActionListener{
 		contentPane.add(panelHand);
 		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
 		
-		lblF = new JLabel("");
-		lblF.setSize(100,160);
+		lblF = new Select();
 		panelHand.add(lblF);
 		
-		lblG = new JLabel();
+		lblG = new Select();
 		lblG.setSize(100,160);
 		panelHand.add(lblG);
 		
 		//------------------Boutons pour lancer ou reset---------------------\\
-		
-		Launcher = new JButton("Lancer !");
-		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Launcher.setBounds(256, 319, 210, 40);
-		contentPane.add(Launcher);
-		Launcher.addActionListener(this);
+
+		JButton Launcher = new JButton("Lancer !");
+		Launcher.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) { //Completer ca
+				UpdateHR();
+				Calculatrice k=new Calculatrice();
+				k.lancerCalcul();
+			}
+		});
 		
 		Reset = new JButton("Reset");
 		Reset.addActionListener(this);
@@ -209,7 +204,6 @@ public class interfaces extends JFrame implements ActionListener{
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				Reset();
-				UpdateJpanel();
 			}
 		});
 		Reset.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -222,14 +216,20 @@ public class interfaces extends JFrame implements ActionListener{
 		Reset();
 		River.remove(4);River.add(X);
 
+	}
+	
+	public void UpdateHR(){ // mets a jours les arrays List de Carte a partir des jlabels et de leur contenu :)
+		River.set(0, lblA.getCard());
+		River.set(1, lblB.getCard());
+		River.set(2, lblC.getCard());
+		River.set(3, lblD.getCard());
+		River.set(4, lblE.getCard());
+		
+		Hand.set(0,lblF.getCard());
+		Hand.set(1,lblG.getCard());
 		UpdateJpanel();
 	}
 
-	public ImageIcon getCardLogo(JLabel panneau,Carte card) { //mets l'image aux dimensions du pannel d'entr�e
-		Image img =card.getIcon().getImage().getScaledInstance(panneau.getWidth(),panneau.getHeight(),Image.SCALE_SMOOTH);
-		return (new ImageIcon(img));
-	}
-	
 	
 	public void UpdateJpanel() {//mets � jour l'affichage des cartes :)  en fonction du contenue des listes
 		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
@@ -241,7 +241,6 @@ public class interfaces extends JFrame implements ActionListener{
 		lblG.setIcon( getCardLogo(lblG,Hand.get(1)) );
 	}
 	
-	
 	public void Reset() { // Vide les listes Hand et River
 		Hand.clear();
 		for (int i =0;i<2;i++) { 
@@ -252,6 +251,15 @@ public class interfaces extends JFrame implements ActionListener{
 		for (int i =0;i<5;i++) { 
 			River.add(new Carte());
 		}
+		lblA.ResetCard();
+		lblB.ResetCard();
+		lblC.ResetCard();
+		lblD.ResetCard();
+		lblE.ResetCard();
+		
+		lblF.ResetCard();
+		lblG.ResetCard();
+		
 	}
 	
 	public ArrayList<Carte> getHand(){ //renvoie l'arrayList des cartes dans la Hand
@@ -261,9 +269,10 @@ public class interfaces extends JFrame implements ActionListener{
 	public ArrayList<Carte> getRiver(){ //renvoie l'arrayList des cartes dans la river
 		return River;
 	}
-	
+
+
 	public int getNbj() {// Retourne le nombre de joueur entr� !! Si le nombre entr� n'est pas un entier ou est < � 1 renvoie 0 !!!
-		
+
 		try {
 	        int d = Integer.parseInt(txtField_nbj.getText());
 	    } catch (NumberFormatException | NullPointerException nfe) {
@@ -275,12 +284,12 @@ public class interfaces extends JFrame implements ActionListener{
 	    return Integer.parseInt(txtField_nbj.getText());
 		}
 	}
-	
+
 	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilit�s afficher en r�sultats :
 		� rentr� dans l'ordre :
 		QuinteFlushRoyale
 		QuinteFlush
-		carr�
+		carre
 		full
 		Couleur
 		suite
@@ -303,13 +312,4 @@ public class interfaces extends JFrame implements ActionListener{
 		lblwin.setText("Chance de gagner : "+k+" %");
 	}
 
-	public void actionPerformed (ActionEvent e){
-        if(e.getSource()== Launcher){
-            Calculatrice k = new Calculatrice();
-            k.lancerCalcul();
-        }
-        else {
-            this.Reset();
-        }
-	}
 }
