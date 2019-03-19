@@ -1,3 +1,5 @@
+import sun.misc.Launcher;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -14,14 +16,22 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+<<<<<<< Updated upstream
 import java.awt.CardLayout;
 public class interfaces extends JFrame {
+=======
+import java.awt.event.ActionListener;
+public class interfaces extends JFrame implements ActionListener{
+>>>>>>> Stashed changes
 
 	private JPanel contentPane;
+    private JButton Launcher;
+    private JButton Reset;
 	
 	private JTextField txtField_nbj;
 	private JLabel lblQuinteFlushRoyale,lblQuinteFlush,lblCarr,
@@ -187,12 +197,14 @@ public class interfaces extends JFrame {
 		
 		//------------------Boutons pour lancer ou reset---------------------\\
 		
-		JButton Launcher = new JButton("Lancer !");
+		Launcher = new JButton("Lancer !");
 		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Launcher.setBounds(256, 319, 210, 40);
 		contentPane.add(Launcher);
+		Launcher.addActionListener(this);
 		
-		JButton Reset = new JButton("Reset");
+		Reset = new JButton("Reset");
+		Reset.addActionListener(this);
 		Reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -213,13 +225,13 @@ public class interfaces extends JFrame {
 		UpdateJpanel();
 	}
 
-	public ImageIcon getCardLogo(JLabel panneau,Carte card) { //mets l'image aux dimensions du pannel d'entrée
+	public ImageIcon getCardLogo(JLabel panneau,Carte card) { //mets l'image aux dimensions du pannel d'entrï¿½e
 		Image img =card.getIcon().getImage().getScaledInstance(panneau.getWidth(),panneau.getHeight(),Image.SCALE_SMOOTH);
 		return (new ImageIcon(img));
 	}
 	
 	
-	public void UpdateJpanel() {//mets à jour l'affichage des cartes :)  en fonction du contenue des listes
+	public void UpdateJpanel() {//mets ï¿½ jour l'affichage des cartes :)  en fonction du contenue des listes
 		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
 		lblB.setIcon( getCardLogo(lblB,River.get(1)) ); 
 		lblC.setIcon( getCardLogo(lblC,River.get(2)) );
@@ -250,7 +262,7 @@ public class interfaces extends JFrame {
 		return River;
 	}
 	
-	public int getNbj() {// Retourne le nombre de joueur entré !! Si le nombre entré n'est pas un entier ou est < à 1 renvoie 0 !!!
+	public int getNbj() {// Retourne le nombre de joueur entrï¿½ !! Si le nombre entrï¿½ n'est pas un entier ou est < ï¿½ 1 renvoie 0 !!!
 		
 		try {
 	        int d = Integer.parseInt(txtField_nbj.getText());
@@ -264,11 +276,11 @@ public class interfaces extends JFrame {
 		}
 	}
 	
-	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilités afficher en résultats :
-		à rentré dans l'ordre :
+	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilitï¿½s afficher en rï¿½sultats :
+		ï¿½ rentrï¿½ dans l'ordre :
 		QuinteFlushRoyale
 		QuinteFlush
-		carré
+		carrï¿½
 		full
 		Couleur
 		suite
@@ -289,5 +301,15 @@ public class interfaces extends JFrame {
 		lblPaire.setText("Paire : "+i+" %");
 		lblCarteHaute.setText("Carte haute : "+j+" %");
 		lblwin.setText("Chance de gagner : "+k+" %");
+	}
+
+	public void actionPerformed (ActionEvent e){
+        if(e.getSource()== Launcher){
+            Calculatrice k = new Calculatrice();
+            k.lancerCalcul();
+        }
+        else {
+            this.Reset();
+        }
 	}
 }

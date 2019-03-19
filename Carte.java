@@ -1,6 +1,6 @@
 
 import javax.swing.ImageIcon;
-public class Carte {
+public class Carte implements Comparable<Carte> {
 
     private String couleur;
     private int valeur;
@@ -49,7 +49,7 @@ public class Carte {
     }
     
     public Carte() {//NUlle ou folded
-    	pic=new ImageIcon("images/card-back.jpg","cachée");
+    	pic=new ImageIcon("images/card-back.jpg","cachï¿½e");
     	valeur =-1;
     }
 
@@ -65,6 +65,7 @@ public class Carte {
     	return pic;
     	
     }
+<<<<<<< Updated upstream
     public void setCouleur(String C) { //delete this
     	this.couleur=C;
     }
@@ -72,4 +73,20 @@ public class Carte {
     public void setValeur(int V) { //delete this
     	this.valeur=V;
     }
+=======
+
+
+    public int compareTo(Carte autreCarte){
+		if (this.getValeur()<autreCarte.getValeur()){
+			return -1;
+		}
+		else if (this.getValeur()>autreCarte.getValeur()){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+>>>>>>> Stashed changes
 }
