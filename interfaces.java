@@ -192,8 +192,7 @@ public class interfaces extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent arg0) { //Completer ca
 				UpdateHR();
-				Calculatrice k=new Calculatrice();
-				k.lancerCalcul();
+				setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
 			}
 		});
 		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -275,7 +274,7 @@ public class interfaces extends JFrame {
 		}
 	}
 
-	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilit�s afficher en r�sultats :
+	public void setProba(float []t) {/* permets de changer les probabilit�s afficher en r�sultats :
 		� rentr� dans l'ordre :
 		QuinteFlushRoyale
 		QuinteFlush
@@ -289,17 +288,20 @@ public class interfaces extends JFrame {
 		carte haute
 		winning chances
 		*/
-		lblQuinteFlushRoyale.setText("Quinte flush royale : "+a+" %");
-		lblQuinteFlush.setText("Quinte flush : "+b+" %");
-		lblCarr.setText("carr\\u00E9 : "+c+" %");
-		lblFull.setText("Full : "+d+" %");
-		lblCouleur.setText("Couleur : "+e+" %");
-		lblSuite.setText("Suite : "+f+" %");
-		lblBrelan.setText("Brelan : "+g+" %");
-		lblDoublePaire.setText("Double paire : "+h+" %");
-		lblPaire.setText("Paire : "+i+" %");
-		lblCarteHaute.setText("Carte haute : "+j+" %");
-		lblwin.setText("Chance de gagner : "+k+" %");
+		
+
+
+		lblQuinteFlushRoyale.setText("Quinte flush royale : "+t[0]+" %");
+		lblQuinteFlush.setText("Quinte flush : "+t[1]+" %");
+		lblCarr.setText("carr\\u00E9 : "+t[2]+" %");
+		lblFull.setText("Full : "+t[3]+" %");
+		lblCouleur.setText("Couleur : "+t[4]+" %");
+		lblSuite.setText("Suite : "+t[5]+" %");
+		lblBrelan.setText("Brelan : "+t[6]+" %");
+		lblDoublePaire.setText("Double paire : "+t[7]+" %");
+		lblPaire.setText("Paire : "+t[8]+" %");
+		lblCarteHaute.setText("Carte haute : "+t[9]+" %");
+		lblwin.setText("Chance de gagner : "+t[10]+" %");
 	}
 
 }
