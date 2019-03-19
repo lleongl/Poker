@@ -285,7 +285,7 @@ public class Select extends JPanel {
 	    
 	    seasons.add(C_Coeur);
 	    
-	  //--------------------reste de l'année-------------------\\
+	  //--------------------reste de l'annÃ©e-------------------\\
 	    
 	}
 	
