@@ -26,7 +26,7 @@ public class interfaces extends JFrame {
     private JButton Reset;
 	
 	private JTextField txtField_nbj;
-	private JLabel lblQuinteFlushRoyale,lblQuinteFlush,lblCarr,
+	private JLabel lblQuinteFlushRoyale,lollosingchances,lblCarr,
 	lblFull,lblCouleur,lblSuite,lblBrelan,lblDoublePaire,lblPaire,
 	lblCarteHaute,lblwin;
 	
@@ -131,9 +131,6 @@ public class interfaces extends JFrame {
 		lblQuinteFlushRoyale.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panelResults.add(lblQuinteFlushRoyale);
 		
-		 lblQuinteFlush = new JLabel("Quinte flush :");
-		lblQuinteFlush.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		panelResults.add(lblQuinteFlush);
 		
 		 lblCarr = new JLabel("Carr\u00E9 :");
 		lblCarr.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -170,6 +167,11 @@ public class interfaces extends JFrame {
 		 lblwin = new JLabel("Chance de gagner : ");
 		lblwin.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panelResults.add(lblwin);
+
+
+		 lollosingchances = new JLabel("Quinte flush :");
+		lollosingchances.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelResults.add(lollosingchances);
 		
 		//------------------Panel Hand---------------------\\ utilise un GridLayout
 		
@@ -276,7 +278,6 @@ public class interfaces extends JFrame {
 
 	public void setProba(float []t) {/* permets de changer les probabilit�s afficher en r�sultats :
 		� rentr� dans l'ordre :
-		QuinteFlushRoyale
 		QuinteFlush
 		carre
 		full
@@ -287,21 +288,22 @@ public class interfaces extends JFrame {
 		paire
 		carte haute
 		winning chances
+		losing chances
 		*/
 		
 
 
-		lblQuinteFlushRoyale.setText("Quinte flush royale : "+t[0]+" %");
-		lblQuinteFlush.setText("Quinte flush : "+t[1]+" %");
-		lblCarr.setText("carr\\u00E9 : "+t[2]+" %");
-		lblFull.setText("Full : "+t[3]+" %");
-		lblCouleur.setText("Couleur : "+t[4]+" %");
-		lblSuite.setText("Suite : "+t[5]+" %");
-		lblBrelan.setText("Brelan : "+t[6]+" %");
-		lblDoublePaire.setText("Double paire : "+t[7]+" %");
-		lblPaire.setText("Paire : "+t[8]+" %");
-		lblCarteHaute.setText("Carte haute : "+t[9]+" %");
-		lblwin.setText("Chance de gagner : "+t[10]+" %");
+		lollosingchances.setText("Quinte flush : "+t[0]+" %");
+		lblCarr.setText("carr\\u00E9 : "+t[1]+" %");
+		lblFull.setText("Full : "+t[2]+" %");
+		lblCouleur.setText("Couleur : "+t[3]+" %");
+		lblSuite.setText("Suite : "+t[4]+" %");
+		lblBrelan.setText("Brelan : "+t[5]+" %");
+		lblDoublePaire.setText("Double paire : "+t[6]+" %");
+		lblPaire.setText("Paire : "+t[7]+" %");
+		lblCarteHaute.setText("Carte haute : "+t[8]+" %");
+		lblwin.setText("Chance de gagner : "+t[9]+" %");
+		lblQuinteFlushRoyale.setText("Chance de perdre : "+t[10]+" %"); //Change this
 	}
 
 }
