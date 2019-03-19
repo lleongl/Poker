@@ -1,8 +1,6 @@
 import sun.misc.Launcher;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,27 +11,16 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.*;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-=======
-=======
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-<<<<<<< Updated upstream
 import java.awt.CardLayout;
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 public class interfaces extends JFrame {
-=======
-import java.awt.event.ActionListener;
-public class interfaces extends JFrame implements ActionListener{
->>>>>>> Stashed changes
 
 	private JPanel contentPane;
     private JButton Launcher;
@@ -44,7 +31,6 @@ public class interfaces extends JFrame implements ActionListener{
 	lblFull,lblCouleur,lblSuite,lblBrelan,lblDoublePaire,lblPaire,
 	lblCarteHaute,lblwin;
 	
-	private Carte X= new Carte(1,"diamonds");
 	
 	private ArrayList<Carte> Hand =new ArrayList<Carte>(2);
 	private ArrayList<Carte> River =new ArrayList<Carte>(5);
@@ -201,9 +187,7 @@ public class interfaces extends JFrame implements ActionListener{
 		panelHand.add(lblG);
 		
 		//------------------Boutons pour lancer ou reset---------------------\\
-		
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		JButton Launcher = new JButton("Lancer !");
 		Launcher.addMouseListener(new MouseAdapter() {
 			@Override
@@ -213,16 +197,6 @@ public class interfaces extends JFrame implements ActionListener{
 				k.lancerCalcul();
 			}
 		});
-=======
-		Launcher = new JButton("Lancer !");
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
-=======
-		Launcher = new JButton("Lancer !");
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
-		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Launcher.setBounds(256, 319, 210, 40);
-		contentPane.add(Launcher);
-		Launcher.addActionListener(this);
 		
 		Reset = new JButton("Reset");
 		Reset.addActionListener(this);
@@ -242,7 +216,6 @@ public class interfaces extends JFrame implements ActionListener{
 		Reset();
 		River.remove(4);River.add(X);
 
-<<<<<<< HEAD
 	}
 	
 	public void UpdateHR(){ // mets a jours les arrays List de Carte a partir des jlabels et de leur contenu :)
@@ -254,15 +227,9 @@ public class interfaces extends JFrame implements ActionListener{
 		
 		Hand.set(0,lblF.getCard());
 		Hand.set(1,lblG.getCard());
-=======
 		UpdateJpanel();
 	}
 
-	public ImageIcon getCardLogo(JLabel panneau,Carte card) { //mets l'image aux dimensions du pannel d'entr�e
-		Image img =card.getIcon().getImage().getScaledInstance(panneau.getWidth(),panneau.getHeight(),Image.SCALE_SMOOTH);
-		return (new ImageIcon(img));
-	}
-	
 	
 	public void UpdateJpanel() {//mets � jour l'affichage des cartes :)  en fonction du contenue des listes
 		lblA.setIcon( getCardLogo(lblA,River.get(0)) );
@@ -272,7 +239,6 @@ public class interfaces extends JFrame implements ActionListener{
 		lblE.setIcon( getCardLogo(lblE,River.get(4)) );
 		lblF.setIcon( getCardLogo(lblF,Hand.get(0)) );
 		lblG.setIcon( getCardLogo(lblG,Hand.get(1)) );
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 	}
 	
 	public void Reset() { // Vide les listes Hand et River
@@ -303,17 +269,10 @@ public class interfaces extends JFrame implements ActionListener{
 	public ArrayList<Carte> getRiver(){ //renvoie l'arrayList des cartes dans la river
 		return River;
 	}
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public int getNbj() {// Retourne le nombre de joueur entre !! Si le nombre entre n'est pas un entier ou est < a 1 renvoie 0 !!!
-=======
+
+
 	public int getNbj() {// Retourne le nombre de joueur entr� !! Si le nombre entr� n'est pas un entier ou est < � 1 renvoie 0 !!!
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
-=======
-	public int getNbj() {// Retourne le nombre de joueur entr� !! Si le nombre entr� n'est pas un entier ou est < � 1 renvoie 0 !!!
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
-		
+
 		try {
 	        int d = Integer.parseInt(txtField_nbj.getText());
 	    } catch (NumberFormatException | NullPointerException nfe) {
@@ -325,28 +284,12 @@ public class interfaces extends JFrame implements ActionListener{
 	    return Integer.parseInt(txtField_nbj.getText());
 		}
 	}
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilites afficher en resultats :
-		a rentre dans l'ordre :
+
+	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilit�s afficher en r�sultats :
+		� rentr� dans l'ordre :
 		QuinteFlushRoyale
 		QuinteFlush
 		carre
-=======
-	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilit�s afficher en r�sultats :
-		� rentr� dans l'ordre :
-		QuinteFlushRoyale
-		QuinteFlush
-		carr�
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
-=======
-	public void setProba(double a,double b,double c,double d,double e,double f,double g,double h,double i,double j,double k) {/* permets de changer les probabilit�s afficher en r�sultats :
-		� rentr� dans l'ordre :
-		QuinteFlushRoyale
-		QuinteFlush
-		carr�
->>>>>>> b2a7b917aac4ed32d2e3dfc89520285865c25f8b
 		full
 		Couleur
 		suite
@@ -369,13 +312,4 @@ public class interfaces extends JFrame implements ActionListener{
 		lblwin.setText("Chance de gagner : "+k+" %");
 	}
 
-	public void actionPerformed (ActionEvent e){
-        if(e.getSource()== Launcher){
-            Calculatrice k = new Calculatrice();
-            k.lancerCalcul();
-        }
-        else {
-            this.Reset();
-        }
-	}
 }
