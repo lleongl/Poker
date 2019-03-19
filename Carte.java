@@ -74,7 +74,7 @@ public class Carte implements Comparable<Carte> {
     public int getValeur() {
         return valeur;
     }
-    
+
 
     public void setCouleur(String C) { //delete this
     	this.couleur=C;
