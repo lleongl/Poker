@@ -65,7 +65,7 @@ public class Carte implements Comparable<Carte> {
     	return pic;
     	
     }
-<<<<<<< Updated upstream
+
     public void setCouleur(String C) { //delete this
     	this.couleur=C;
     }
@@ -73,7 +73,6 @@ public class Carte implements Comparable<Carte> {
     public void setValeur(int V) { //delete this
     	this.valeur=V;
     }
-=======
 
 
     public int compareTo(Carte autreCarte){
@@ -88,5 +87,5 @@ public class Carte implements Comparable<Carte> {
 		}
 	}
 
->>>>>>> Stashed changes
+
 }

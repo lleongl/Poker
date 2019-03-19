@@ -199,7 +199,6 @@ public class interfaces extends JFrame {
 		});
 		
 		Reset = new JButton("Reset");
-		Reset.addActionListener(this);
 		Reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
