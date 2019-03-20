@@ -87,13 +87,13 @@ public class Calculatrice {
 
      //       Les7Cartes les7Cartes = new Les7Cartes(les5Cartes.tLes5Cartes, les2Cartes.tLes2Cartes);
 
-            /*
-            System.out.println("les 7 Cartes :");
-            for (int i = 0; i < les7Cartes.tLes7Cartes.size(); i++) {
-                System.out.println("carte " + i + ":");
-                System.out.println(les7Cartes.tLes7Cartes.get(i).getCouleur());
-                System.out.println(les7Cartes.tLes7Cartes.get(i).getValeur());
-            }*/
+
+//            System.out.println("les 7 Cartes :");
+//            for (int i = 0; i <  tJoueurs[0].les7Cartes.tLes7Cartes.size(); i++) {
+//                System.out.println("carte " + i + ":");
+//                System.out.println(tJoueurs[0].les7Cartes.tLes7Cartes.get(i).getCouleur());
+//                System.out.println(tJoueurs[0].les7Cartes.tLes7Cartes.get(i).getValeur());
+//            }
 
             //Opération de la chaine de test
 
@@ -129,15 +129,15 @@ public class Calculatrice {
                 tJoueurs[i].setScore(0);
             }
 
-            for (int i=0; i<les5Cartes.tLes5Cartes.size()-cartesDevoilees;i++){
-                les5Cartes.tLes5Cartes.remove(0);
+            for (int i=0; i<River.size()-cartesDevoilees;i++){
+                les5Cartes.tLes5Cartes.remove(les5Cartes.tLes5Cartes.size()-1);
             }
         }
 
-/*      System.out.println("Tableau de compteurs : ");
-        for (int i=0; i<tCompteurs.length; i++){
-            System.out.print(tCompteurs[i]+" ");
-        }*/
+//      System.out.println("Tableau de compteurs : ");
+//        for (int i=0; i<tCompteurs.length; i++){
+//            System.out.print(tCompteurs[i]+" ");
+//        }
 
         //Affiche les probabilités recherchées
         int victoiresAdversaires=0;
