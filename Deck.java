@@ -5,16 +5,16 @@ public class Deck {
     LinkedList<Carte> contenu = new LinkedList<>();;
 
     public Deck() {
-        for (int i = 0; i < 13; i++) {
+        for (int i = 1; i < 14; i++) {
             for (int j = 0; j < 4; j++) {
                 switch(j) {
-                    case 0 : contenu.add(new Carte(i, "Pique"));
+                    case 0 : contenu.add(new Carte(i, "spades"));
                         break;
-                    case 1 : contenu.add(new Carte(i, "Coeur"));
+                    case 1 : contenu.add(new Carte(i, "hearts"));
                         break;
-                    case 2 : contenu.add(new Carte(i, "Trefle"));
+                    case 2 : contenu.add(new Carte(i, "clubs"));
                         break;
-                    case 3 : contenu.add(new Carte(i, "Carreau"));
+                    case 3 : contenu.add(new Carte(i, "diamonds"));
                         break;
                 }
             }

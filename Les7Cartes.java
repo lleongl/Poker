@@ -36,16 +36,16 @@ public class Les7Cartes {
         if (compteurCouleur == 1) {
             switch (chiffreCouleur) {
                 case 1:
-                    couleur = "Pique";
+                    couleur = "spades";
                     break;
                 case 2:
-                    couleur = "Carreau";
+                    couleur = "diamonds";
                     break;
                 case 3:
-                    couleur = "Coeur";
+                    couleur = "hearts";
                     break;
                 case 4:
-                    couleur = "Trefle";
+                    couleur = "clubs";
                     break;
             }
             for (int i = 0; i < this.tLes7Cartes.size(); i++) {
@@ -71,7 +71,7 @@ public class Les7Cartes {
             for (int i = 0; i < compteurValChar.length; i++) {
                 compteurValInt[i] = compteurValChar[i] - '0';
             }
-            for (int k = 0; k < compteurValInt.length - 4; k++) {
+            for (int k = 0; k < compteurValInt.length -5; k++) {
                 if (compteurValInt[k] > 0 && compteurValInt[k + 1] > 0 && compteurValInt[k + 2] > 0 && compteurValInt[k + 3] > 0 && compteurValInt[k + 4] > 0) {
                     if (p == 0) {
                         tCompteurs[0]++;
@@ -141,7 +141,7 @@ public class Les7Cartes {
             for (int i = 0; i < compteurValChar.length; i++) {
                 compteurValInt[i] = compteurValChar[i] - '0';
             }
-            for (int k = 0; k < compteurValInt.length - 4; k++) {
+            for (int k = 0; k < compteurValInt.length -5; k++) {
                 if (compteurValInt[k] > 0 && compteurValInt[k + 1] > 0 && compteurValInt[k + 2] > 0 && compteurValInt[k + 3] > 0 && compteurValInt[k + 4] > 0) {
                     if (p == 0) {
                         tCompteurs[4]++;
@@ -481,7 +481,7 @@ public class Les7Cartes {
             Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
             Collections.sort(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes, Collections.reverseOrder());
 
-            for (int k=0; k< this.tLes7Cartes.size()-4; k++){
+            for (int k=0; k< this.tLes7Cartes.size()-5; k++){
                 if (this.tLes7Cartes.get(k).getValeur()==this.tLes7Cartes.get(k).getValeur()-1 && this.tLes7Cartes.get(k+1).getValeur()==this.tLes7Cartes.get(k+1).getValeur()-1 && this.tLes7Cartes.get(k+2).getValeur()==this.tLes7Cartes.get(k+2).getValeur()-1 && this.tLes7Cartes.get(k+3).getValeur()==this.tLes7Cartes.get(k+3).getValeur()-1 && this.tLes7Cartes.get(k+4).getValeur()==this.tLes7Cartes.get(k+4).getValeur()-1){
                     suiteHauteur1=this.tLes7Cartes.get(k).getValeur();
                     break;
@@ -524,16 +524,16 @@ public class Les7Cartes {
             if (compteurCouleur == 1) {
                 switch (chiffreCouleur) {
                     case 1:
-                        couleur = "Pique";
+                        couleur = "spades";
                         break;
                     case 2:
-                        couleur = "Carreau";
+                        couleur = "diamonds";
                         break;
                     case 3:
-                        couleur = "Coeur";
+                        couleur = "hearts";
                         break;
                     case 4:
-                        couleur = "Trefle";
+                        couleur = "clubs";
                         break;
                 }
             }
@@ -702,16 +702,16 @@ public class Les7Cartes {
             if (compteurCouleur == 1) {
                 switch (chiffreCouleur) {
                     case 1:
-                        couleur = "Pique";
+                        couleur = "spades";
                         break;
                     case 2:
-                        couleur = "Carreau";
+                        couleur = "diamonds";
                         break;
                     case 3:
-                        couleur = "Coeur";
+                        couleur = "hearts";
                         break;
                     case 4:
-                        couleur = "Trefle";
+                        couleur = "clubs";
                         break;
                 }
             }
@@ -763,16 +763,16 @@ public class Les7Cartes {
         for (int i = 0; i < this.tLes7Cartes.size(); i++) {
             String couleur = this.tLes7Cartes.get(i).getCouleur();
             switch (couleur) {
-                case "Pique":
+                case "spades":
                     val = 0;
                     break;
-                case "Carreau":
+                case "diamonds":
                     val = 1;
                     break;
-                case "Coeur":
+                case "hearts":
                     val = 2;
                     break;
-                case "Trefle":
+                case "clubs":
                     val = 3;
                     break;
             }

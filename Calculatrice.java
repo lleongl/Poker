@@ -17,6 +17,7 @@ public class Calculatrice {
         boolean paire=true;
         boolean carteHaute=true;
         boolean egalite;
+        int cartesDevoilees=0;
 
         //crée le tableau de joueurs
         for (int n=0; n<tJoueurs.length;n++){
@@ -27,7 +28,14 @@ public class Calculatrice {
         tJoueurs[0].tLes2Cartes.add(Hand.get(0));
         tJoueurs[0].tLes2Cartes.add(Hand.get(1));
 
-
+        Les5Cartes les5Cartes = new Les5Cartes();
+        //cartes dévoilées
+        for (int n=0; n< River.size();n++){
+            if (River.get(n).getValeur()!=-1) {
+                les5Cartes.tLes5Cartes.add(River.get(n));
+                cartesDevoilees++;
+            }
+        }
 
         for (int k = 0; k < nbTirages; k++) {
             egalite=false;
@@ -38,17 +46,15 @@ public class Calculatrice {
             paquet.removeCard(tJoueurs[0].tLes2Cartes.get(0).getValeur(), tJoueurs[0].tLes2Cartes.get(0).getCouleur());
             paquet.removeCard(tJoueurs[0].tLes2Cartes.get(1).getValeur(), tJoueurs[0].tLes2Cartes.get(1).getCouleur());
 
+            for (int n=0; n< les5Cartes.tLes5Cartes.size();n++) {
+                paquet.removeCard(River.get(n).getValeur(), (River.get(n).getCouleur()));
+            }
+
             //distribution des cartes aux adversaires
             paquet.distribution(tJoueurs, nbAdversaires);
 //            tJoueurs[1].tLes2Cartes.clear();
 
             //tirage des 5 cartes
-            Les5Cartes les5Cartes = new Les5Cartes();
-
-            for(int i=0; i<River.size();i++) {
-                les5Cartes.tLes5Cartes.add(River.get(i));
-                paquet.removeCard(River.get(i).getValeur(), (River.get(i).getCouleur()));
-            }
             paquet.tirage(les5Cartes.tLes5Cartes);
 //            tJoueurs[1].tLes2Cartes.add(new Carte (valeur1, "Coeur"));
 //            tJoueurs[1].tLes2Cartes.add(new Carte (valeur2, "Trefle"));
@@ -75,8 +81,8 @@ public class Calculatrice {
             }*/
 
             //regroupement des 2 cartes des joueurs et de celles sur la table
-            for (int n=0; n<tJoueurs.length;n++){
-                tJoueurs[n].les7Cartes=new Les7Cartes(les5Cartes.tLes5Cartes, tJoueurs[n].tLes2Cartes);
+            for (int i=0; i<tJoueurs.length;i++){
+                tJoueurs[i].les7Cartes=new Les7Cartes(les5Cartes.tLes5Cartes, tJoueurs[i].tLes2Cartes);
             }
 
      //       Les7Cartes les7Cartes = new Les7Cartes(les5Cartes.tLes5Cartes, les2Cartes.tLes2Cartes);
@@ -97,7 +103,6 @@ public class Calculatrice {
 
             int joueurMaxScore=0;
             float maxScore=0;
-            int joueurEgalite=0;
             for (int i=0; i<tJoueurs.length;i++){
                 if (tJoueurs[i].getScore()==maxScore || tJoueurs[i].getScore()==maxScore-0.5){
                     tJoueurs[i].les7Cartes.testEgalite(tJoueurs,joueurMaxScore,i);
@@ -122,6 +127,10 @@ public class Calculatrice {
             for (int i=1; i<tJoueurs.length;i++){
                 tJoueurs[i].tLes2Cartes.clear();
                 tJoueurs[i].setScore(0);
+            }
+
+            for (int i=0; i<les5Cartes.tLes5Cartes.size()-cartesDevoilees;i++){
+                les5Cartes.tLes5Cartes.remove(0);
             }
         }
 
