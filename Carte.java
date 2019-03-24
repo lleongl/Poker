@@ -96,6 +96,12 @@ public class Carte implements Comparable<Carte> {
 			return 0;
 		}
 	}
+    
+    public String toString() {
+    	return this.getValPath()+" of "+couleur ; 
+    	
+    }
+    
 
 
 }
