@@ -42,17 +42,7 @@ public class playground extends JFrame {
 		contentPane.setLayout(null);
 		//-------------------------------------------------\\
 		
-		
-		LinkedList<Carte> t=new LinkedList<Carte>();
-		t.add(new Carte(1,"clubs"));
-		t.add(new Carte(5,"clubs"));
-		t.add(new Carte(4,"clubs"));
-		t.add(new Carte(3,"clubs"));
-		t.add(new Carte(5,"clubs"));
-		
-		System.out.println(t);
-		Collections.sort(t);
-		System.out.println(t);
+	
 		
 	
 		Select CardA = new Select();
@@ -68,6 +58,8 @@ public class playground extends JFrame {
 				
 			}
 		});
+		
+		
 		btnNewButton.setBounds(320, 344, 89, 23);
 		contentPane.add(btnNewButton);
 		
