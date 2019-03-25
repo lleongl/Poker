@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
-import java.awt.Font;
 
 public class Select extends JPanel {
 	
@@ -32,8 +31,8 @@ public class Select extends JPanel {
 	private final JButton btn11 = new JButton("V");
 	private final JButton btn12 = new JButton("D");
 	private final JButton btn13 = new JButton("R");
-	private final JButton btnCancel = new JButton("X");
-	private final JButton btnBack = new JButton("B");
+	private final JButton btnCancel = new JButton("B");
+	private final JButton btnBack = new JButton("X");
 	
 	
 	private Carte Card= new Carte();

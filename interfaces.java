@@ -13,12 +13,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
-import java.util.LinkedList;
-import java.util.ArrayList;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.CardLayout;
 public class interfaces extends JFrame {
 
 	private JPanel contentPane;
@@ -82,7 +76,7 @@ public class interfaces extends JFrame {
 		//------------------Panel pour la River---------------------\\ utilise un Border Layout
 		
 		JPanel panelRiver = new JPanel();
-		panelRiver.setBounds(194, 43, 552, 223);
+		panelRiver.setBounds(194, 43, 544, 220);
 		contentPane.add(panelRiver);
 		panelRiver.setLayout(new BorderLayout(0, 0));
 		
@@ -194,7 +188,7 @@ public class interfaces extends JFrame {
 			@Override
 			public void mouseReleased(MouseEvent arg0) { //Completer ca
 				UpdateHR();
-				setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
+				//setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
 			}
 		});
 		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));

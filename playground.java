@@ -2,17 +2,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.CardLayout;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Collections;
-import java.util.LinkedList;
 
 public class playground extends JFrame {
 
 	private JPanel contentPane;
-	private CardLayout c1 = new CardLayout();
 
 	/**
 	 * Launch the application.
@@ -34,8 +30,10 @@ public class playground extends JFrame {
 	 * Create the frame.
 	 */
 	public playground() {
+		setTitle("PlayGround");
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 827, 516);
+		setBounds(100, 100, 316, 451);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -46,7 +44,8 @@ public class playground extends JFrame {
 		
 	
 		Select CardA = new Select();
-		CardA.setLocation(320, 115);
+		CardA.setSize(102, 160);
+		CardA.setLocation(91, 38);
 		
 		getContentPane().add(CardA);
 		
@@ -60,7 +59,7 @@ public class playground extends JFrame {
 		});
 		
 		
-		btnNewButton.setBounds(320, 344, 89, 23);
+		btnNewButton.setBounds(91, 267, 102, 23);
 		contentPane.add(btnNewButton);
 		
 		
