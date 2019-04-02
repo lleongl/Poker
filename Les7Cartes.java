@@ -1,15 +1,16 @@
 import java.util.Collections;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Les7Cartes {
-    LinkedList<Carte> tLes7Cartes = new LinkedList<>();
+    ArrayList<Carte> tLes7Cartes = new ArrayList<>();
 
-    public Les7Cartes(LinkedList<Carte> tLes5Cartes, LinkedList<Carte> tLes2Cartes) {
-        for (int i = 0; i < tLes5Cartes.size() + tLes2Cartes.size(); i++) {
+    public Les7Cartes(LinkedList<Carte> les5Cartes, ArrayList<Carte> tLes2Cartes) {
+        for (int i = 0; i < les5Cartes.size() + tLes2Cartes.size(); i++) {
             if (i < tLes2Cartes.size()) {
                 tLes7Cartes.add(tLes2Cartes.get(i));
             } else {
-                tLes7Cartes.add(tLes5Cartes.get(i - tLes2Cartes.size()));
+                tLes7Cartes.add(les5Cartes.get(i - tLes2Cartes.size()));
             }
         }
     }

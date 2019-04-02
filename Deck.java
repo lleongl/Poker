@@ -59,15 +59,9 @@ public class Deck {
 
 
     }
-     public void tirage(LinkedList<Carte> tLes5Cartes){
-         //tirage des cartes sur la table
-/*        tLes5Cartes.add(new Carte(7, "Coeur"));
-        tLes5Cartes.add(new Carte(4, "Coeur"));
-        tLes5Cartes.add(new Carte(1, "Trefle"));
-        tLes5Cartes.add(new Carte(3, "Coeur"));
-        tLes5Cartes.add(new Carte(5, "Coeur"));*/
-         while (tLes5Cartes.size() < 5) {
-             tLes5Cartes.add(this.contenu.get(0));
+     public void tirage(LinkedList<Carte> les5Cartes){
+         while (les5Cartes.size() < 5) {
+             les5Cartes.add(this.contenu.get(0));
              this.contenu.remove(this.contenu.get(0));
          }
      }

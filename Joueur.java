@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Joueur {
-    public LinkedList <Carte> tLes2Cartes=new LinkedList<>();
+    public ArrayList<Carte> tLes2Cartes=new ArrayList<>();
     public Les7Cartes les7Cartes;
     private int victoire=0;
     private float score=0;

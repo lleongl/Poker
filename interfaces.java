@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,6 +33,7 @@ public class interfaces extends JFrame {
 	
 	
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -183,12 +185,12 @@ public class interfaces extends JFrame {
 		
 		//------------------Boutons pour lancer ou reset---------------------\\
 
-		JButton Launcher = new JButton("Lancer !");
+		Launcher = new JButton("Lancer !");
 		Launcher.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) { //Completer ca
 				UpdateHR();
-				//setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
+				setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
 			}
 		});
 		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
