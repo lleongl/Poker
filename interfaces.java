@@ -288,8 +288,8 @@ public class interfaces extends JFrame {
 		
 
 
-		lollosingchances.setText("Quinte flush : "+t[0]+" %");
-		lblCarr.setText("carr\\u00E9 : "+t[1]+" %");
+		lblQuinteFlushRoyale.setText("Quinte flush : "+t[0]+" %");
+		lblCarr.setText("Carr\u00E9 : "+t[1]+" %");
 		lblFull.setText("Full : "+t[2]+" %");
 		lblCouleur.setText("Couleur : "+t[3]+" %");
 		lblSuite.setText("Suite : "+t[4]+" %");
@@ -298,7 +298,7 @@ public class interfaces extends JFrame {
 		lblPaire.setText("Paire : "+t[7]+" %");
 		lblCarteHaute.setText("Carte haute : "+t[8]+" %");
 		lblwin.setText("Chance de gagner : "+t[9]+" %");
-		lblQuinteFlushRoyale.setText("Chance de perdre : "+t[10]+" %"); //Change this
+		lollosingchances.setText("Chance de perdre : "+t[10]+" %");
 	}
 
 }
