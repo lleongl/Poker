@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Deck {
-    LinkedList<Carte> contenu = new LinkedList<>();;
+    LinkedList<Carte> contenu = new LinkedList<>();
 
     public Deck() {
         for (int i = 1; i < 14; i++) {
@@ -24,6 +24,7 @@ public class Deck {
     }
 
     public LinkedList<Carte> melangePaquet() {
+        //tant qu'il y a des cartes, prend une carte du paquet trié au hasard et la met dans un nouveau paquet pour le remplir
         Random geny = new Random(System.nanoTime());
         LinkedList<Carte> paquet2 = new LinkedList<>();
         while (this.contenu.size() != 0) {
@@ -36,6 +37,7 @@ public class Deck {
     }
 
     public void removeCard(int valeur, String couleur){
+        //enlve une carte du paquet
         for (int i=0 ; i<this.contenu.size();i++){
             if (this.contenu.get(i).getValeur()==valeur && this.contenu.get(i).getCouleur()==couleur){
                 this.contenu.remove(i);
@@ -60,9 +62,12 @@ public class Deck {
 
     }
      public void tirage(LinkedList<Carte> les5Cartes){
+         //tire 5 carte au hasard du paquet et la met dans les5Cartes
          while (les5Cartes.size() < 5) {
-             les5Cartes.add(this.contenu.get(0));
-             this.contenu.remove(this.contenu.get(0));
+             Random geny= new Random(System.nanoTime());
+             Carte t= this.contenu.get(geny.nextInt(this.contenu.size()));
+             les5Cartes.add(t);
+             this.removeCard(t.getValeur(), t.getCouleur());
          }
      }
 }
