@@ -12,13 +12,13 @@ public class Carte implements Comparable<Carte> {
         this.valeur = valeur;
         
         
-        pic =new ImageIcon(Carte.class.getResource("images/"+getValPath()+"-"+couleur+".jpg"));
+        pic =new ImageIcon("images/"+getValPath()+"-"+couleur+".jpg");
         
     }
     
     
     public ImageIcon getIcon() {
-    	pic =new ImageIcon(Carte.class.getResource("images/"+getValPath()+"-"+couleur+".jpg"));
+    	pic =new ImageIcon("images/"+getValPath()+"-"+couleur+".jpg");
     	return pic;
     	
     }
@@ -63,7 +63,7 @@ public class Carte implements Comparable<Carte> {
     }
     
     public Carte() {//NUlle ou folded
-    	pic=new ImageIcon(Carte.class.getResource("images/card-back.jpg"),"cachee");
+    	pic=new ImageIcon("images/card-back.jpg","cachee");
     	valeur =-1;
     }
 

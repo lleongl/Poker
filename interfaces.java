@@ -10,7 +10,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
