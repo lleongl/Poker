@@ -52,8 +52,8 @@ public class Deck {
             Random geny= new Random(System.nanoTime());
             Carte t1= this.contenu.get(geny.nextInt(this.contenu.size()));
             Carte t2= this.contenu.get(geny.nextInt(this.contenu.size()));
-            tJoueurs[j].tLes2Cartes.add(t1);
-            tJoueurs[j].tLes2Cartes.add(t2);
+            tJoueurs[j].les2Cartes.add(t1);
+            tJoueurs[j].les2Cartes.add(t2);
             this.removeCard(t1.getValeur(),t1.getCouleur());
             this.removeCard(t2.getValeur(),t2.getCouleur());
         }

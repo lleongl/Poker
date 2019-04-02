@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class Calculatrice {
     public float[] lancerCalcul(int x,  ArrayList <Carte> Hand, ArrayList <Carte> River) {
         int nbAdversaires = x-1;
-        int nbTirages = 100000;
+        int nbTirages = 10000;
         int [] tCompteurs= new int [9];
         float[] tProba= new float[11];
         Joueur [] tJoueurs= new Joueur[nbAdversaires+1];
@@ -20,8 +20,8 @@ public class Calculatrice {
         Deck paquet = new Deck();
 
         //établit les 2 cartes initiales du joueur
-        tJoueurs[0].tLes2Cartes.add(Hand.get(0));
-        tJoueurs[0].tLes2Cartes.add(Hand.get(1));
+        tJoueurs[0].les2Cartes.add(Hand.get(0));
+        tJoueurs[0].les2Cartes.add(Hand.get(1));
 
         LinkedList<Carte> les5Cartes = new LinkedList<>();
         //remplit le tableau des 5 cartes par les cartes que le joueur a choisi
@@ -36,8 +36,8 @@ public class Calculatrice {
         for (int k = 0; k < nbTirages; k++) {
             egalite=false;
 
-            paquet.removeCard(tJoueurs[0].tLes2Cartes.get(0).getValeur(), tJoueurs[0].tLes2Cartes.get(0).getCouleur());
-            paquet.removeCard(tJoueurs[0].tLes2Cartes.get(1).getValeur(), tJoueurs[0].tLes2Cartes.get(1).getCouleur());
+            paquet.removeCard(tJoueurs[0].les2Cartes.get(0).getValeur(), tJoueurs[0].les2Cartes.get(0).getCouleur());
+            paquet.removeCard(tJoueurs[0].les2Cartes.get(1).getValeur(), tJoueurs[0].les2Cartes.get(1).getCouleur());
 
             //enleve du paquet les cartes présentes sur la table
             for (int n=0; n< les5Cartes.size();n++) {
@@ -52,7 +52,7 @@ public class Calculatrice {
 
             //regroupement des 2 cartes des joueurs et de celles sur la table
             for (int i=0; i<tJoueurs.length;i++){
-                tJoueurs[i].les7Cartes=new Les7Cartes(les5Cartes, tJoueurs[i].tLes2Cartes);
+                tJoueurs[i].les7Cartes=new Les7Cartes(les5Cartes, tJoueurs[i].les2Cartes);
             }
 
             //Opération de la chaine de test
@@ -85,9 +85,9 @@ public class Calculatrice {
 
             //remet les cartes des adversaires dans le paquet et réinitialise les 2 cartes de chaque adversaire
             for (int i=1; i<tJoueurs.length;i++){
-                paquet.contenu.add(tJoueurs[i].tLes2Cartes.get(0));
-                paquet.contenu.add(tJoueurs[i].tLes2Cartes.get(1));
-                tJoueurs[i].tLes2Cartes.clear();
+                paquet.contenu.add(tJoueurs[i].les2Cartes.get(0));
+                paquet.contenu.add(tJoueurs[i].les2Cartes.get(1));
+                tJoueurs[i].les2Cartes.clear();
                 tJoueurs[i].setScore(0);
             }
 

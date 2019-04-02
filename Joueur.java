@@ -2,10 +2,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Joueur {
-    public ArrayList<Carte> tLes2Cartes=new ArrayList<>();
+    public ArrayList<Carte> les2Cartes=new ArrayList<>();
     public Les7Cartes les7Cartes;
     private int victoire=0;
     private float score=0;
+
+
 
 
     public int getVictoire() {
