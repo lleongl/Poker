@@ -213,33 +213,6 @@ public class Les7Cartes {
             tJoueurs[p].setScore(1);
         }
 
-        //Affiche le compteur de valeur en char
-/*        compteurValChar = getCompteurValChar();
-        System.out.print("compteurValChar : ");
-        for (int k = 0; k < compteurValChar.length; k++) {
-            System.out.print(compteurValChar[k] + " ");
-        }
-        System.out.println();
-
-        //Affiche le compteur de couleur
-        compteurCouleurChar=getCompteurCouleurChar();
-        System.out.print("compteurCouleurChar : ");
-        for (int k = 0; k < compteurCouleurChar.length; k++) {
-            System.out.print(compteurCouleurChar[k] + " ");
-        }
-        System.out.println();*/
-
-//Affiche le compteur de valeur en entiers
-/*     compteurValChar = getCompteurValChar();
-        int [] compteurValInt=new int [compteurValChar.length];
-        for (int i = 0; i < compteurValChar.length; i++) {
-            compteurValInt[i]=compteurValChar[i]-'0';
-        }
-        System.out.print("compteurValInt : ");
-        for (int k = 0; k < compteurValInt.length; k++) {
-            System.out.print(compteurValInt[k] + " ");
-        }
-        System.out.println();*/
     }
 
     public void testEgalite(Joueur[] tJoueurs, int joueurMaxScore, int i) {

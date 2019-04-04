@@ -31,6 +31,10 @@ public class Calculatrice {
                 cartesDevoilees++;
             }
         }
+        //enleve du paquet les cartes présentes sur la table
+        for (int n=0; n< les5Cartes.size();n++) {
+            paquet.removeCard(les5Cartes.get(n).getValeur(), (les5Cartes.get(n).getCouleur()));
+        }
 
         //calculs effectués nbTirages fois
         for (int k = 0; k < nbTirages; k++) {
@@ -38,11 +42,6 @@ public class Calculatrice {
 
             paquet.removeCard(tJoueurs[0].les2Cartes.get(0).getValeur(), tJoueurs[0].les2Cartes.get(0).getCouleur());
             paquet.removeCard(tJoueurs[0].les2Cartes.get(1).getValeur(), tJoueurs[0].les2Cartes.get(1).getCouleur());
-
-            //enleve du paquet les cartes présentes sur la table
-            for (int n=0; n< les5Cartes.size();n++) {
-                paquet.removeCard(River.get(n).getValeur(), (River.get(n).getCouleur()));
-            }
 
             //distribution des cartes aux adversaires
             paquet.distribution(tJoueurs, nbAdversaires);
@@ -92,11 +91,10 @@ public class Calculatrice {
             }
 
             //enleve les cartes tirées au hasard pour les5Cartes et les remet dans le paquet, tout en conservant celles sélectionnées par l'utilisateur
-            for (int i=0; i<River.size()-cartesDevoilees;i++){
-                paquet.contenu.add(les5Cartes.get(les5Cartes.size()-1));
-                les5Cartes.remove(les5Cartes.size()-1);
+            for (int i=cartesDevoilees; i<5;i++){
+                paquet.contenu.add(les5Cartes.get(cartesDevoilees));
+                les5Cartes.remove(les5Cartes.get(cartesDevoilees));
             }
-
 
         }
 
@@ -106,9 +104,10 @@ public class Calculatrice {
             victoiresAdversaires+=tJoueurs[i].getVictoire();
         }
 
-        for (int i=0; i<tProba.length-2;i++){
+        for (int i=0; i<tCompteurs.length;i++){
             tProba[i]=(tCompteurs[i]/(float) nbTirages)*100;
         }
+
         tProba[9]=(tJoueurs[0].getVictoire()/(float)nbTirages)*100;
         tProba[10]=(victoiresAdversaires/(float)nbTirages)*100;
 

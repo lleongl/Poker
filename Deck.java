@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class Deck {
-    LinkedList<Carte> contenu = new LinkedList<>();
+    ArrayList<Carte> contenu = new ArrayList<>();
 
     public Deck() {
         for (int i = 1; i < 14; i++) {
@@ -23,24 +24,24 @@ public class Deck {
 
     }
 
-    public LinkedList<Carte> melangePaquet() {
-        //tant qu'il y a des cartes, prend une carte du paquet trié au hasard et la met dans un nouveau paquet pour le remplir
-        Random geny = new Random(System.nanoTime());
-        LinkedList<Carte> paquet2 = new LinkedList<>();
-        while (this.contenu.size() != 0) {
-            int randomNb = geny.nextInt(this.contenu.size());
-            Carte t = this.contenu.get(randomNb);
-            paquet2.add(t);
-            this.contenu.remove(t);
-        }
-        return paquet2;
-    }
+//    public LinkedList<Carte> melangePaquet() {
+//        //tant qu'il y a des cartes, prend une carte du paquet trié au hasard et la met dans un nouveau paquet pour le remplir
+//        Random geny = new Random(System.nanoTime());
+//        LinkedList<Carte> paquet2 = new LinkedList<>();
+//        while (this.contenu.size() != 0) {
+//            int randomNb = geny.nextInt(this.contenu.size());
+//            Carte t = this.contenu.get(randomNb);
+//            paquet2.add(t);
+//            this.contenu.remove(t);
+//        }
+//        return paquet2;
+//    }
 
     public void removeCard(int valeur, String couleur){
-        //enlve une carte du paquet
-        for (int i=0 ; i<this.contenu.size();i++){
-            if (this.contenu.get(i).getValeur()==valeur && this.contenu.get(i).getCouleur()==couleur){
-                this.contenu.remove(i);
+        //enleve une carte du paquet
+        for (Carte c : this.contenu){
+            if (c.getValeur()==valeur && c.getCouleur()==couleur){
+                this.contenu.remove(c);
                 break;
             }
         }
@@ -51,10 +52,10 @@ public class Deck {
         for (int j=1; j<nbAdversaires+1;j++){
             Random geny= new Random(System.nanoTime());
             Carte t1= this.contenu.get(geny.nextInt(this.contenu.size()));
-            Carte t2= this.contenu.get(geny.nextInt(this.contenu.size()));
             tJoueurs[j].les2Cartes.add(t1);
-            tJoueurs[j].les2Cartes.add(t2);
             this.removeCard(t1.getValeur(),t1.getCouleur());
+            Carte t2= this.contenu.get(geny.nextInt(this.contenu.size()));
+            tJoueurs[j].les2Cartes.add(t2);
             this.removeCard(t2.getValeur(),t2.getCouleur());
         }
 
