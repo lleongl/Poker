@@ -6,7 +6,7 @@ public class Deck {
     ArrayList<Carte> contenu = new ArrayList<>();
 
     public Deck() {
-        for (int i = 1; i < 14; i++) {
+        for (int i = 2; i < 15; i++) {
             for (int j = 0; j < 4; j++) {
                 switch(j) {
                     case 0 : contenu.add(new Carte(i, "spades"));

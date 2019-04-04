@@ -87,7 +87,7 @@ public class Select extends JPanel {
 		    btnAs.addMouseListener(new MouseAdapter() {
 		    	@Override
 		    	public void mouseReleased(MouseEvent arg0) {
-		    		valeur =1; //on modifie la varible valeur en fonction du bouton sur lequel on appuie
+		    		valeur =14; //on modifie la variable valeur en fonction du bouton sur lequel on appuie
 		    		Next();	// on passe au panel suivant c'est à dire Seasons
 		    	}
 		    });

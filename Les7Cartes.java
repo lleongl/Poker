@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 public class Les7Cartes {
     ArrayList<Carte> tLes7Cartes = new ArrayList<>();
+    long compteur;
+    boolean suiteAS5=false;
 
     public Les7Cartes(LinkedList<Carte> les5Cartes, ArrayList<Carte> tLes2Cartes) {
         for (int i = 0; i < les5Cartes.size() + tLes2Cartes.size(); i++) {
@@ -13,6 +15,7 @@ public class Les7Cartes {
                 tLes7Cartes.add(les5Cartes.get(i - tLes2Cartes.size()));
             }
         }
+        this.getCompteur();
     }
 
     public void chaineTest(int[] tCompteurs, Joueur[] tJoueurs, int p) {
@@ -55,18 +58,18 @@ public class Les7Cartes {
                 }
             }
 
-            long compteur = 0;
+            long compteurQF = 0;
             String t;
 
             for (int j = 0; j < cartesCouleur.size(); j++) {
                 int val = cartesCouleur.get(j).getValeur();
-                compteur += Math.pow(10, val);
+                compteurQF += Math.pow(10, val);
             }
 
-//            System.out.println("compteur des cartes de meme couleur : "+compteur);
+//            System.out.println("compteurQF des cartes de meme couleur : "+compteurQF);
 
-            //transforme en String le compteur (a changer)
-            t = compteur + "";
+            //transforme en String le compteurQF
+            t = compteurQF + "";
             compteurValChar = t.toCharArray();
             compteurValInt = new int[compteurValChar.length];
             for (int i = 0; i < compteurValChar.length; i++) {
@@ -142,16 +145,32 @@ public class Les7Cartes {
             for (int i = 0; i < compteurValChar.length; i++) {
                 compteurValInt[i] = compteurValChar[i] - '0';
             }
-            for (int k = 0; k < compteurValInt.length -5; k++) {
-                if (compteurValInt[k] > 0 && compteurValInt[k + 1] > 0 && compteurValInt[k + 2] > 0 && compteurValInt[k + 3] > 0 && compteurValInt[k + 4] > 0) {
+
+            //cas particulier de la suite de As à 5
+            if (compteurValChar.length==15) {
+                if (compteurValChar[0]!='0' && compteurValChar[9]!='0' && compteurValChar[10]!='0' && compteurValChar[11]!='0' && compteurValChar[12]!='0'&& compteurValChar[8]=='0') {
                     if (p == 0) {
                         tCompteurs[4]++;
                     }
+                    suiteAS5 = true;
                     tJoueurs[p].setScore(5);
                     meilleureMain = true;
-                    break;
                 }
+            }
 
+
+            if (!this.suiteAS5) {
+                for (int k = 0; k < compteurValInt.length - 5; k++) {
+                    if (compteurValInt[k] > 0 && compteurValInt[k + 1] > 0 && compteurValInt[k + 2] > 0 && compteurValInt[k + 3] > 0 && compteurValInt[k + 4] > 0) {
+                        if (p == 0) {
+                            tCompteurs[4]++;
+                        }
+                        tJoueurs[p].setScore(5);
+                        meilleureMain = true;
+                        break;
+                    }
+
+                }
             }
         }
 
@@ -455,16 +474,29 @@ public class Les7Cartes {
             Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
             Collections.sort(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes, Collections.reverseOrder());
 
-            for (int k=0; k< this.tLes7Cartes.size()-5; k++){
-                if (this.tLes7Cartes.get(k).getValeur()==this.tLes7Cartes.get(k).getValeur()-1 && this.tLes7Cartes.get(k+1).getValeur()==this.tLes7Cartes.get(k+1).getValeur()-1 && this.tLes7Cartes.get(k+2).getValeur()==this.tLes7Cartes.get(k+2).getValeur()-1 && this.tLes7Cartes.get(k+3).getValeur()==this.tLes7Cartes.get(k+3).getValeur()-1 && this.tLes7Cartes.get(k+4).getValeur()==this.tLes7Cartes.get(k+4).getValeur()-1){
-                    suiteHauteur1=this.tLes7Cartes.get(k).getValeur();
-                    break;
+            if (this.suiteAS5){
+                suiteHauteur1=5;
+            }
+
+            if (!this.suiteAS5) {
+                for (int k = 0; k < this.tLes7Cartes.size() - 5; k++) {
+                    if (this.tLes7Cartes.get(k).getValeur() == this.tLes7Cartes.get(k).getValeur() - 1 && this.tLes7Cartes.get(k + 1).getValeur() == this.tLes7Cartes.get(k + 1).getValeur() - 1 && this.tLes7Cartes.get(k + 2).getValeur() == this.tLes7Cartes.get(k + 2).getValeur() - 1 && this.tLes7Cartes.get(k + 3).getValeur() == this.tLes7Cartes.get(k + 3).getValeur() - 1 && this.tLes7Cartes.get(k + 4).getValeur() == this.tLes7Cartes.get(k + 4).getValeur() - 1) {
+                        suiteHauteur1 = this.tLes7Cartes.get(k).getValeur();
+                        break;
+                    }
                 }
             }
-            for (int k=0; k< tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.size()-4; k++) {
-                if (tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 1).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 1).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 2).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 2).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 3).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 3).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 4).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 4).getValeur() - 1) {
-                    suiteHauteur2 = tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k).getValeur();
-                    break;
+
+            if (tJoueurs[joueurMaxScore].les7Cartes.suiteAS5){
+                suiteHauteur2=5;
+            }
+
+            if (!tJoueurs[joueurMaxScore].les7Cartes.suiteAS5) {
+                for (int k = 0; k < tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.size() - 4; k++) {
+                    if (tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 1).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 1).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 2).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 2).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 3).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 3).getValeur() - 1 && tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 4).getValeur() == tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k + 4).getValeur() - 1) {
+                        suiteHauteur2 = tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(k).getValeur();
+                        break;
+                    }
                 }
             }
 
@@ -713,24 +745,27 @@ public class Les7Cartes {
         }
     }
 
-    public char[] getCompteurValChar() {
-        long compteur = 0;
-        String t;
-        char[] compteurValChar;
+    public void getCompteur(){
 
         for (int j = 0; j < this.tLes7Cartes.size(); j++) {
             int val = this.tLes7Cartes.get(j).getValeur();
-            compteur += Math.pow(10, val);
+            this.compteur += Math.pow(10, val);
         }
-        //transforme en String le compteur (a changer)
-        t = compteur + "";
+    }
+
+    public char[] getCompteurValChar() {
+        String t;
+        char[] compteurValChar;
+
+        //transforme en String le compteur
+        t = this.compteur + "";
         compteurValChar = t.toCharArray();
         return compteurValChar;
     }
 
     public char[] getCompteurCouleurChar() {
-        int compteur = 0;
         String t;
+        int compteurCouleur=0;
         char[] compteurCouleurChar;
         int val = 0;
 
@@ -750,10 +785,10 @@ public class Les7Cartes {
                     val = 3;
                     break;
             }
-            compteur += Math.pow(10, val);
+            compteurCouleur += Math.pow(10, val);
         }
-        //transforme en String le compteur (a changer)
-        t = compteur + "";
+        //transforme en String le compteurCouleur
+        t = compteurCouleur + "";
         compteurCouleurChar = t.toCharArray();
         return compteurCouleurChar;
     }

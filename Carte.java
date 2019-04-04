@@ -25,7 +25,7 @@ public class Carte implements Comparable<Carte> {
     public String getValPath() {
     	String ValPath ;
         switch (valeur) {
-	        case 1:  ValPath = "ace";
+	        case 14:  ValPath = "ace";
 	                 break;
 	        case 2:  ValPath = "two";
 	                 break;
