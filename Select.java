@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -33,6 +35,8 @@ public class Select extends JPanel {
 	private final JButton btn13 = new JButton("R");
 	private final JButton btnCancel = new JButton("B");
 	private final JButton btnBack = new JButton("X");
+	
+	private ArrayList<Carte> InternalDeck;
 	
 	
 	private Carte Card= new Carte();
@@ -394,5 +398,9 @@ public class Select extends JPanel {
 		UpdatePic();
 	}
 
+	public void SetInternalDeck(ArrayList<Carte> interfaceDeck) {
+		InternalDeck = interfaceDeck;
+	}
+	
 	
 }
