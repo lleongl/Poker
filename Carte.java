@@ -10,10 +10,6 @@ public class Carte implements Comparable<Carte> {
     public Carte(int valeur, String couleur) {
         this.couleur = couleur;
         this.valeur = valeur;
-        
-        
-        pic =new ImageIcon(Carte.class.getResource("images/"+getValPath()+"-"+couleur+".jpg"));
-        
     }
     
     

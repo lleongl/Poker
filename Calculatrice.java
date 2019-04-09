@@ -59,6 +59,7 @@ public class Calculatrice {
                 tJoueurs[p].les7Cartes.chaineTest(tCompteurs, tJoueurs, p);
             }
 
+            //Gestion des égalités
             int joueurMaxScore=0;
             float maxScore=0;
             for (int i=0; i<tJoueurs.length;i++){
@@ -72,7 +73,7 @@ public class Calculatrice {
             }
 
             for (int i=0; i<tJoueurs.length;i++) {
-                if (i != joueurMaxScore && tJoueurs[joueurMaxScore].getScore() == tJoueurs[i].getScore()) {
+                if (i != joueurMaxScore && (tJoueurs[joueurMaxScore].getScore() == tJoueurs[i].getScore())) {
                     egalite=true;
                     break;
                 }

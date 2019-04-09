@@ -387,7 +387,7 @@ public class Select extends JPanel {
 		//clear la  carte
 		Card = new Carte();
 		
-		// la valeur négative -1 et une valeur arbitraire qui nous permet d'afficher une carte tourné
+		// la valeur négative -1 est une valeur arbitraire qui nous permet d'afficher une carte tournée
 		valeur =-1;
 		
 		//mets à jour lblDay pour afficher cette carte tourner
