@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.event.*;
 
-public class interfaces extends JFrame {
+public class interfaces extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
     private JButton Launcher;
@@ -58,6 +60,15 @@ public class interfaces extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SendDeckToSelect();
+
+				System.out.println("it's working");
+			}
+		});
+		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -342,6 +353,11 @@ public class interfaces extends JFrame {
 		lblE.SetInternalDeck(InternalDeck.getDeck());
 		lblF.SetInternalDeck(InternalDeck.getDeck());
 		lblG.SetInternalDeck(InternalDeck.getDeck());
+	}
+	
+	public void actionPerformed (ActionEvent e){
+		SendDeckToSelect();
+		System.out.println("it's working");
 	}
 	
 	
