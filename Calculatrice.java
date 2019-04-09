@@ -66,10 +66,11 @@ public class Calculatrice {
                 if (tJoueurs[i].getScore()==maxScore || tJoueurs[i].getScore()==maxScore-0.5){
                     tJoueurs[i].les7Cartes.testEgalite(tJoueurs,joueurMaxScore,i);
                 }
+                maxScore=tJoueurs[joueurMaxScore].getScore();
                 if (tJoueurs[i].getScore()> maxScore){
-                    maxScore=tJoueurs[i].getScore();
                     joueurMaxScore=i;
                 }
+                maxScore=tJoueurs[joueurMaxScore].getScore();
             }
 
             for (int i=0; i<tJoueurs.length;i++) {
@@ -77,6 +78,10 @@ public class Calculatrice {
                     egalite=true;
                     break;
                 }
+            }
+
+            if (joueurMaxScore==0){
+                System.out.println("?");
             }
 
             if(!egalite) {

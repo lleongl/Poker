@@ -177,23 +177,27 @@ public class Les7Cartes {
         return valeurBrelan;
     }
 
-    public int valeurPaire() {
-        int valeurPaire = 0;
+    public int[] valeurPaire(int nbPaires) {
+        int [] valeurPaire = new int [nbPaires];
+        int i=0;
         for (int k = 0; k < this.compteurValChar.length; k++) {
-            if (this.compteurValChar[k] == '2') {
-                valeurPaire = this.compteurValChar.length - k - 1;
+            if (this.compteurValChar[k] == '2' || this.compteurValChar[k] == '3') {
+                valeurPaire[i] = this.compteurValChar.length - k - 1;
+                i++;
+            }
+            if (i==nbPaires){
                 break;
             }
         }
         return valeurPaire;
     }
 
-    public int[] getMaxVal(int nbCartes, int combinaisonValeur){
+    public int[] getMaxVal(int nbCartes, int combinaisonValeur1, int combinaisonValeur2){
         Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
         int [] maxVal=new int[nbCartes];
         int i=0;
         for (Carte c : this.tLes7Cartes) {
-            if (c.getValeur() != combinaisonValeur) {
+            if (c.getValeur() != combinaisonValeur1 && c.getValeur() != combinaisonValeur2) {
                 maxVal[i]=c.getValeur();
                 i++;
             }
@@ -439,8 +443,8 @@ public class Les7Cartes {
         if (carreVal1 < carreVal2) {
             tJoueurs[joueurMaxScore].setScore(8.5);
         } else {
-            int maxVal1 = this.getMaxVal(1, carreVal1)[0];
-            int maxVal2 = tJoueurs[joueurMaxScore].les7Cartes.getMaxVal(1, carreVal1)[0];
+            int maxVal1 = this.getMaxVal(1, carreVal1, 0)[0];
+            int maxVal2 = tJoueurs[joueurMaxScore].les7Cartes.getMaxVal(1, carreVal1, 0)[0];
 
             if (maxVal1 > maxVal2) {
                 tJoueurs[i].setScore(8.5);
@@ -457,8 +461,8 @@ public class Les7Cartes {
         int brelanVal2 = tJoueurs[joueurMaxScore].les7Cartes.valeurBrelan();
 
         if (brelanVal1 == brelanVal2) {
-            int paireVal1 = this.valeurPaire();
-            int paireVal2 = tJoueurs[joueurMaxScore].les7Cartes.valeurPaire();
+            int paireVal1 = this.valeurPaire(1)[0];
+            int paireVal2 = tJoueurs[joueurMaxScore].les7Cartes.valeurPaire(1)[0];
 
             if (paireVal1 > paireVal2) {
                 tJoueurs[i].setScore(7.5);
@@ -546,9 +550,10 @@ public class Les7Cartes {
         }
         if (brelanVal1 < brelanVal2) {
             tJoueurs[joueurMaxScore].setScore(4.5);
-        } else {
-            int [] maxVal1=this.getMaxVal(2,brelanVal1);
-            int [] maxVal2=tJoueurs[joueurMaxScore].les7Cartes.getMaxVal(2,brelanVal1);
+        }
+        if (brelanVal1==brelanVal2){
+            int [] maxVal1=this.getMaxVal(2,brelanVal1, 0);
+            int [] maxVal2=tJoueurs[joueurMaxScore].les7Cartes.getMaxVal(2,brelanVal1, 0);
             for(int j=0; j< maxVal1.length;j++) {
                 if (maxVal1[j] > maxVal2[j]) {
                     tJoueurs[i].setScore(8.5);
@@ -564,173 +569,81 @@ public class Les7Cartes {
     }
 
     public void egaliteDoublePaire(Joueur[] tJoueurs, int joueurMaxScore, int i) {
-        boolean egalite1 = false;
-        boolean egalite2 = false;
-        int comparaison;
-        int j = 0;
+        boolean egalite = false;
+        int [] paireVal1=this.valeurPaire(2);
+        int [] paireVal2=tJoueurs[joueurMaxScore].les7Cartes.valeurPaire(2);
 
-        int cartesEgales = 4;
-        Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
-        Collections.sort(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes, Collections.reverseOrder());
-
-        int index1 = 0;
-        int index2 = 0;
-        int compteurPaire = 0;
-        for (int k = 0; k < this.compteurValChar.length; k++) {
-            if (this.compteurValChar[k] == '2') {
-                if (compteurPaire == 0) {
-                    index1 = k;
-                    compteurPaire++;
-                }
-                if (compteurPaire == 1) {
-                    index2 = k;
-                }
-            }
-        }
-        int paire1Val1 = this.compteurValChar.length - index1 - 1;
-        int paire2Val1 = this.compteurValChar.length - index2 - 1;
-
-        compteurPaire = 0;
-        for (int k = 0; k < tJoueurs[joueurMaxScore].les7Cartes.compteurValChar.length; k++) {
-            if (tJoueurs[joueurMaxScore].les7Cartes.compteurValChar[k] == '2') {
-                if (compteurPaire == 1) {
-                    index2 = k;
-                }
-                if (compteurPaire == 0) {
-                    index1 = k;
-                    compteurPaire++;
-                }
-
-            }
-        }
-        int paire1Val2 = tJoueurs[joueurMaxScore].les7Cartes.compteurValChar.length - index1 - 1;
-        int paire2Val2 = tJoueurs[joueurMaxScore].les7Cartes.compteurValChar.length - index2 - 1;
-
-        if (paire1Val1 == paire1Val2) {
-            egalite1 = true;
-        }
-        if (paire2Val1 == paire2Val2) {
-            egalite2 = true;
-        }
-
-        if (egalite1 && egalite2) {
-            do {
-                comparaison = this.tLes7Cartes.get(j).compareTo(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(j));
-                switch (comparaison) {
-                    case 1:
-                        tJoueurs[i].setScore(3.5);
-                        tJoueurs[joueurMaxScore].setScore(3);
-                        break;
-                    case -1:
-                        tJoueurs[i].setScore(2.5);
-                        break;
-                    case 0:
-                        if (this.tLes7Cartes.get(j).getValeur() != paire1Val1 && this.tLes7Cartes.get(j).getValeur() != paire2Val1) {
-                            cartesEgales++;
-                        }
-                }
-                j++;
-            } while (comparaison == 0 && cartesEgales != 5);
-        }
-
-        if (!egalite1) {
-            if (paire1Val1 > paire1Val2) {
+        for (int k=0;k<paireVal1.length;k++){
+            if(paireVal1[k]>paireVal2[k]){
                 tJoueurs[i].setScore(3.5);
                 tJoueurs[joueurMaxScore].setScore(3);
-            } else {
-                tJoueurs[i].setScore(2.5);
+                egalite=false;
+                break;
             }
-            egalite2 = true;
+            if (paireVal1[k] < paireVal2[k]) {
+                tJoueurs[joueurMaxScore].setScore(3.5);
+                egalite=false;
+                break;
+            }
+            egalite=true;
         }
-        if (!egalite2) {
-            if (paire2Val1 > paire2Val2) {
+
+        if (egalite) {
+            int maxVal1 = this.getMaxVal(1, paireVal1[0],paireVal1[1])[0];
+            int maxVal2 = tJoueurs[joueurMaxScore].les7Cartes.getMaxVal(1, paireVal1[0],paireVal1[1])[0];
+
+            if (maxVal1 > maxVal2) {
                 tJoueurs[i].setScore(3.5);
-            } else {
-                tJoueurs[i].setScore(2.5);
+                tJoueurs[joueurMaxScore].setScore(3);
+            }
+            if (maxVal1 < maxVal2) {
+                tJoueurs[joueurMaxScore].setScore(3.5);
             }
         }
     }
 
     public void egalitePaire(Joueur[] tJoueurs, int joueurMaxScore, int i) {
-        boolean egalite1 = false;
-        int comparaison;
-        int j = 0;
+        int paireVal1=this.valeurPaire(1)[0];
+        int paireVal2=tJoueurs[joueurMaxScore].les7Cartes.valeurPaire(1)[0];
 
-        int cartesEgales = 2;
-        Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
-        Collections.sort(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes, Collections.reverseOrder());
-
-        int index = 0;
-        for (int k = 0; k < this.compteurValChar.length; k++) {
-            if (this.compteurValChar[k] == '2') {
-                index = k;
-                break;
-            }
+        if(paireVal1>paireVal2){
+            tJoueurs[i].setScore(2.5);
+            tJoueurs[joueurMaxScore].setScore(2);
         }
-        int paireVal1 = this.compteurValChar.length - index - 1;
-
-        for (int k = 0; k < tJoueurs[joueurMaxScore].les7Cartes.compteurValChar.length; k++) {
-            if (tJoueurs[joueurMaxScore].les7Cartes.compteurValChar[k] == '2') {
-                index = k;
-                break;
-            }
+        if (paireVal1<paireVal2){
+            tJoueurs[joueurMaxScore].setScore(2.5);
         }
-        int paireVal2 = tJoueurs[joueurMaxScore].les7Cartes.compteurValChar.length - index - 1;
-
-        if (paireVal1 == paireVal2) {
-            egalite1 = true;
-        }
-
-        if (egalite1 == true) {
-            do {
-                comparaison = this.tLes7Cartes.get(j).compareTo(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(j));
-                switch (comparaison) {
-                    case 1:
-                        tJoueurs[i].setScore(2.5);
-                        tJoueurs[joueurMaxScore].setScore(2);
-                        break;
-                    case -1:
-                        tJoueurs[i].setScore(1.5);
-                        break;
-                    case 0:
-                        if (this.tLes7Cartes.get(j).getValeur() != paireVal1) {
-                            cartesEgales++;
-                        }
+        if(paireVal1==paireVal2) {
+            int [] maxVal1=this.getMaxVal(3, paireVal1, 0);
+            int [] maxVal2=tJoueurs[joueurMaxScore].les7Cartes.getMaxVal(3, paireVal2, 0);
+            for(int j=0; j< maxVal1.length;j++) {
+                if (maxVal1[j] > maxVal2[j]) {
+                    tJoueurs[i].setScore(2.5);
+                    tJoueurs[joueurMaxScore].setScore(2);
+                    break;
                 }
-                j++;
-            } while (comparaison == 0 && cartesEgales != 5);
-        } else {
-            if (paireVal1 > paireVal2) {
-                tJoueurs[i].setScore(2.5);
-                tJoueurs[joueurMaxScore].setScore(2);
-            } else {
-                tJoueurs[i].setScore(1.5);
+                if (maxVal1[j] < maxVal2[j]) {
+                    tJoueurs[joueurMaxScore].setScore(2.5);
+                    break;
+                }
             }
         }
     }
 
     public void egaliteCarteHaute(Joueur[] tJoueurs, int joueurMaxScore, int i) {
-        int j = 0;
-        int comparaison;
+        int [] maxVal1=this.getMaxVal(5, 0, 0);
+        int [] maxVal2=tJoueurs[joueurMaxScore].les7Cartes.getMaxVal(5, 0, 0);
 
-        int cartesEgales = 0;
-        Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
-        Collections.sort(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes, Collections.reverseOrder());
-        do {
-            comparaison = this.tLes7Cartes.get(j).compareTo(tJoueurs[joueurMaxScore].les7Cartes.tLes7Cartes.get(j));
-            switch (comparaison) {
-                case 1:
-                    tJoueurs[i].setScore(1.5);
-                    tJoueurs[joueurMaxScore].setScore(1);
-                    break;
-                case -1:
-                    tJoueurs[i].setScore(0.5);
-                    break;
-                case 0:
-                    cartesEgales++;
+        for(int j=0; j< maxVal1.length;j++) {
+            if (maxVal1[j] > maxVal2[j]) {
+                tJoueurs[i].setScore(1.5);
+                tJoueurs[joueurMaxScore].setScore(1);
+                break;
             }
-            j++;
-        } while (comparaison == 0 && cartesEgales != 5);
-
+            if (maxVal1[j] < maxVal2[j]) {
+                tJoueurs[joueurMaxScore].setScore(1.5);
+                break;
+            }
+        }
     }
 }
