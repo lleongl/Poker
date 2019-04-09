@@ -7,12 +7,13 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.awt.event.*;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-public class Select extends JPanel {
+public class Select extends JPanel implements ActionListener{
 	
 	private CardLayout C1 = new CardLayout();
 	
@@ -86,14 +87,8 @@ public class Select extends JPanel {
 		    
 		    
 				//***Bouton As : 1***\\
-		    
-		    btnAs.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent arg0) {
-		    		valeur =14; //on modifie la variable valeur en fonction du bouton sur lequel on appuie
-		    		Next();	// on passe au panel suivant c'est à dire Seasons
-		    	}
-		    });
+
+            btnAs.addActionListener(this);
 		    
 		    btnAs.setBorder(null); //set les bordures du bouton à null nous permet de résoudre un problème d'affichage du texte
 		    months.add(btnAs);
@@ -390,7 +385,7 @@ public class Select extends JPanel {
 		//clear la  carte
 		Card = new Carte();
 		
-		// la valeur négative -1 est une valeur arbitraire qui nous permet d'afficher une carte tournée
+		// la valeur négative -1 et une valeur arbitraire qui nous permet d'afficher une carte tourné
 		valeur =-1;
 		
 		//mets à jour lblDay pour afficher cette carte tourner
@@ -412,8 +407,11 @@ public class Select extends JPanel {
 		btn12.setEnabled(false);
 		btn13.setEnabled(false);
 		
+        for(Carte x : interfaceDeck) 
+            System.out.println(x.getValeur()+" : "+x.getCouleur());
+        
 		for (Carte x : interfaceDeck) {
-			if(x.getValeur()==1)
+			if(x.getValeur()==14)
 				btnAs.setEnabled(true);
 			if(x.getValeur()==2)
 				btn2.setEnabled(true);
@@ -440,6 +438,13 @@ public class Select extends JPanel {
 			if(x.getValeur()==13)
 				btn13.setEnabled(true);
 		}
+	}
+    
+    public void actionPerformed (ActionEvent e){
+        if(e.getSource()==btnAs){
+            valeur =14; //on modifie la variable valeur en fonction du bouton sur lequel on appuie
+            Next();	// on passe au panel suivant c'est à dire Seasons
+        }
 	}
 	
 	

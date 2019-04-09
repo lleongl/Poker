@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.event.*;
 
-public class interfaces extends JFrame implements ActionListener{
+public class interfaces extends JFrame  implements MouseListener{
 
 	private JPanel contentPane;
     private JButton Launcher;
@@ -60,14 +60,6 @@ public class interfaces extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
-		contentPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				SendDeckToSelect();
-
-				System.out.println("it's working");
-			}
-		});
 		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -108,22 +100,37 @@ public class interfaces extends JFrame implements ActionListener{
 		lblA = new Select();
 		lblA.setSize(100,160);
 		Table.add(lblA);
+        lblA.addMouseListener(new MouseAdapter() {
+              @Override
+              public void mouseReleased(MouseEvent e) {
+                  SendDeckToSelect();
+              }
+          });
 		
 		lblB = new Select();
 		lblB.setSize(100,160);
 		Table.add(lblB);
-		
+		lblB.addMouseListener(this);
+        
 		lblC = new Select();
 		lblC.setSize(100,160);
 		Table.add(lblC);
+		lblC.addMouseListener(this);
+        
 		
 		lblD = new Select();
 		lblD.setSize(100,160);
 		Table.add(lblD);
+		lblD.addMouseListener(this);
+        
 		
 		lblE = new Select();
 		lblE.setSize(100,160);
 		Table.add(lblE);
+		lblE.addMouseListener(this);
+        
+        
+        addMouseListener(this);
 		
 		//------------------Panel des resultats---------------------\\
 		
@@ -192,11 +199,17 @@ public class interfaces extends JFrame implements ActionListener{
 		
 		lblF = new Select();
 		panelHand.add(lblF);
+		lblF.addMouseListener(this);
 		
 		lblG = new Select();
 		lblG.setSize(100,160);
 		panelHand.add(lblG);
+		lblG.addMouseListener(this);
+        
 		
+        
+        
+        addMouseListener(this);
 		//------------------Boutons pour lancer ou reset---------------------\\
 
 		Launcher = new JButton("Lancer !");
@@ -340,9 +353,9 @@ public class interfaces extends JFrame implements ActionListener{
 		for(Carte x : Hand) 
 			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
 		
-		for(Carte x : River) 
+		for(Carte x : River) {
 			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
-		
+		}
 		
 		// Ici on met a jour le deck interne à chaque objet Select
 		// Set Internal Deck devra alors s'occupé lui même des choix possibles ou non
@@ -355,11 +368,21 @@ public class interfaces extends JFrame implements ActionListener{
 		lblG.SetInternalDeck(InternalDeck.getDeck());
 	}
 	
-	public void actionPerformed (ActionEvent e){
-		SendDeckToSelect();
-		System.out.println("it's working");
-	}
+	public void mouseClicked(MouseEvent e) {
+				SendDeckToSelect();
+    }
 	
-	
+    public void mousePressed(MouseEvent e) {
+    }
+
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
+
 
 }
