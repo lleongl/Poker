@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -33,6 +35,7 @@ public class Select extends JPanel {
 	private final JButton btn13 = new JButton("R");
 	private final JButton btnCancel = new JButton("B");
 	private final JButton btnBack = new JButton("X");
+	
 	
 	
 	private Carte Card= new Carte();
@@ -394,5 +397,50 @@ public class Select extends JPanel {
 		UpdatePic();
 	}
 
+	public void SetInternalDeck(ArrayList<Carte> interfaceDeck) {
+		btnAs.setEnabled(false);
+		btn2.setEnabled(false);
+		btn3.setEnabled(false);
+		btn4.setEnabled(false);
+		btn5.setEnabled(false);
+		btn6.setEnabled(false);
+		btn7.setEnabled(false);
+		btn8.setEnabled(false);
+		btn9.setEnabled(false);
+		btn10.setEnabled(false);
+		btn11.setEnabled(false);
+		btn12.setEnabled(false);
+		btn13.setEnabled(false);
+		
+		for (Carte x : interfaceDeck) {
+			if(x.getValeur()==1)
+				btnAs.setEnabled(true);
+			if(x.getValeur()==2)
+				btn2.setEnabled(true);
+			if(x.getValeur()==3)
+				btn3.setEnabled(true);
+			if(x.getValeur()==4)
+				btn4.setEnabled(true);
+			if(x.getValeur()==5)
+				btn5.setEnabled(true);
+			if(x.getValeur()==6)
+				btn6.setEnabled(true);
+			if(x.getValeur()==7)
+				btn7.setEnabled(true);
+			if(x.getValeur()==8)
+				btn8.setEnabled(true);
+			if(x.getValeur()==9)
+				btn9.setEnabled(true);
+			if(x.getValeur()==10)
+				btn10.setEnabled(true);
+			if(x.getValeur()==11)
+				btn11.setEnabled(true);
+			if(x.getValeur()==12)
+				btn12.setEnabled(true);
+			if(x.getValeur()==13)
+				btn13.setEnabled(true);
+		}
+	}
+	
 	
 }

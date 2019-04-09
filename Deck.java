@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Deck {
-    ArrayList<Carte> contenu = new ArrayList<>();
+    public ArrayList<Carte> contenu = new ArrayList<>();// le mettre private après avoir corriger Calculatrice.java
 
     public Deck() {
         for (int i = 2; i < 15; i++) {
@@ -70,5 +70,9 @@ public class Deck {
              les5Cartes.add(t);
              this.removeCard(t.getValeur(), t.getCouleur());
          }
+     }
+
+     public ArrayList<Carte> getDeck() {
+    	 return contenu;
      }
 }

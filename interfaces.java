@@ -13,7 +13,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public class interfaces extends JFrame {
+import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.event.*;
+
+public class interfaces extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
     private JButton Launcher;
@@ -29,6 +33,8 @@ public class interfaces extends JFrame {
 	private ArrayList<Carte> River =new ArrayList<Carte>(5);
 	
 	private Select lblA,lblB,lblC,lblD,lblE,lblF,lblG;
+	
+	private Deck InternalDeck = new Deck();
 	
 	
 	public static void main(String[] args) {
@@ -54,6 +60,15 @@ public class interfaces extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
+		contentPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SendDeckToSelect();
+
+				System.out.println("it's working");
+			}
+		});
+		contentPane.setBackground(new Color(240, 240, 240));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -223,6 +238,7 @@ public class interfaces extends JFrame {
 		
 		Hand.set(0,lblF.getCard());
 		Hand.set(1,lblG.getCard());
+		//l'utilisation du set permet de simplifier le code car on remplace directement les cartes plutôt que de retirer les anciennes et rajouter les nouvelles
 	}
 
 	
@@ -258,17 +274,31 @@ public class interfaces extends JFrame {
 
 
 	public int getNbj() {// Retourne le nombre de joueur entrï¿½ !! Si le nombre entrï¿½ n'est pas un entier ou est < ï¿½ 1 renvoie 0 !!!
-
+		int d;
 		try {
-	        int d = Integer.parseInt(txtField_nbj.getText());
-	    } catch (NumberFormatException | NullPointerException nfe) {
-	        return 0;
+			 d=Integer.parseInt(txtField_nbj.getText());
+			 
+			 if (d<2) {// SI le nombre de joueur entrer est trop petit on prendra la valeur minimum de 2 joueurs
+				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est inférieur à 2!", "nombre de joueur insufisant" , JOptionPane.INFORMATION_MESSAGE);
+				 d =2;
+				 txtField_nbj.setText("2");
+			 }
+			 
+			 if (d>10){// Si le nombre de joueur entrer est trop grand on prendra la valeur max de 10 joueurs
+				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est supérieur à 10!", "nombre de joueur trop grand" , JOptionPane.INFORMATION_MESSAGE);
+				 d =10;
+				 txtField_nbj.setText("10");
+			 }
+				 
+				 
+	    } catch (NumberFormatException  e) { //si le String entré n'est pas un entier on prendra par défaut la valeur de 2 joueur
+	        JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " n'est pas un entier", "Poker Master : Pas un entier" , JOptionPane.INFORMATION_MESSAGE);
+	        d=2;
+	        txtField_nbj.setText("2");
+	    
 	    }
-		if(Integer.parseInt(txtField_nbj.getText())<1){
-			return 0;
-		}else {
-	    return Integer.parseInt(txtField_nbj.getText());
-		}
+		
+		return d;
 	}
 
 	public void setProba(float []t) {/* permets de changer les probabilitï¿½s afficher en rï¿½sultats :
@@ -300,5 +330,36 @@ public class interfaces extends JFrame {
 		lblwin.setText("Chance de gagner : "+t[9]+" %");
 		lollosingchances.setText("Chance de perdre : "+t[10]+" %");
 	}
+	
+	public void SendDeckToSelect() {
+		UpdateHR();//permet de toujours avoir les vrais cartes qui sont dans la River et Hand avant de les retirer du deck interne.
+		
+		InternalDeck = new Deck(); //reset à chaque fois le deck interne permet de simplifier les calculs mais on aura un temps plus long d'exécution
+		
+		//ensuite on retire les cartes déjà sélectionné
+		for(Carte x : Hand) 
+			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
+		
+		for(Carte x : River) 
+			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
+		
+		
+		// Ici on met a jour le deck interne à chaque objet Select
+		// Set Internal Deck devra alors s'occupé lui même des choix possibles ou non
+		lblA.SetInternalDeck(InternalDeck.getDeck());
+		lblB.SetInternalDeck(InternalDeck.getDeck());
+		lblC.SetInternalDeck(InternalDeck.getDeck());
+		lblD.SetInternalDeck(InternalDeck.getDeck());
+		lblE.SetInternalDeck(InternalDeck.getDeck());
+		lblF.SetInternalDeck(InternalDeck.getDeck());
+		lblG.SetInternalDeck(InternalDeck.getDeck());
+	}
+	
+	public void actionPerformed (ActionEvent e){
+		SendDeckToSelect();
+		System.out.println("it's working");
+	}
+	
+	
 
 }
