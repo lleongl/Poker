@@ -15,9 +15,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import java.awt.Color;
-import java.awt.event.*;
 
-public class interfaces extends JFrame  implements MouseListener{
+public class interfaces extends JFrame  {
 
 	private JPanel contentPane;
     private JButton Launcher;
@@ -100,37 +99,26 @@ public class interfaces extends JFrame  implements MouseListener{
 		lblA = new Select();
 		lblA.setSize(100,160);
 		Table.add(lblA);
-        lblA.addMouseListener(new MouseAdapter() {
-              @Override
-              public void mouseReleased(MouseEvent e) {
-                  SendDeckToSelect();
-              }
-          });
 		
 		lblB = new Select();
 		lblB.setSize(100,160);
 		Table.add(lblB);
-		lblB.addMouseListener(this);
         
 		lblC = new Select();
 		lblC.setSize(100,160);
 		Table.add(lblC);
-		lblC.addMouseListener(this);
         
 		
 		lblD = new Select();
 		lblD.setSize(100,160);
 		Table.add(lblD);
-		lblD.addMouseListener(this);
         
 		
 		lblE = new Select();
 		lblE.setSize(100,160);
 		Table.add(lblE);
-		lblE.addMouseListener(this);
         
         
-        addMouseListener(this);
 		
 		//------------------Panel des resultats---------------------\\
 		
@@ -199,17 +187,13 @@ public class interfaces extends JFrame  implements MouseListener{
 		
 		lblF = new Select();
 		panelHand.add(lblF);
-		lblF.addMouseListener(this);
 		
 		lblG = new Select();
 		lblG.setSize(100,160);
 		panelHand.add(lblG);
-		lblG.addMouseListener(this);
         
 		
         
-        
-        addMouseListener(this);
 		//------------------Boutons pour lancer ou reset---------------------\\
 
 		Launcher = new JButton("Lancer !");
@@ -368,21 +352,6 @@ public class interfaces extends JFrame  implements MouseListener{
 		lblG.SetInternalDeck(InternalDeck.getDeck());
 	}
 	
-	public void mouseClicked(MouseEvent e) {
-				SendDeckToSelect();
-    }
-	
-    public void mousePressed(MouseEvent e) {
-    }
-
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    public void mouseExited(MouseEvent e) {
-    }
 
 
 }

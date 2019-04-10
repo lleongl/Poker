@@ -89,155 +89,79 @@ public class Select extends JPanel implements ActionListener{
 				//***Bouton As : 1***\\
 
             btnAs.addActionListener(this);
-		    
 		    btnAs.setBorder(null); //set les bordures du bouton à null nous permet de résoudre un problème d'affichage du texte
 		    months.add(btnAs);
 		    
 		    
 				//***Bouton 2***\\
 		    
-		    btn2.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =2;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn2.addActionListener(this);
 		    btn2.setBorder(null);
 		    months.add(btn2);
 		    
 		    
 				//***Bouton 3***\\
 		    
-		    btn3.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =3;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn3.addActionListener(this);
 		    btn3.setBorder(null);
 		    months.add(btn3);
 		    
 		    
 				//***Bouton 4***\\
 		    
-		    btn4.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =4;
-		    		Next();
-		    	}
-		    });
+		    btn4.addActionListener(this);
 		    btn4.setBorder(null);
 		    months.add(btn4);
 		    
 		    
 				//***Bouton 5***\\
 		    
-		    btn5.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =5;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn5.addActionListener(this);
 		    btn5.setBorder(null);
 		    months.add(btn5);
 		    
 		    
 				//***Bouton 6***\\
 		    
-		    btn6.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent arg0) {
-		    		valeur =6;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn6.addActionListener(this);
 		    btn6.setBorder(null);
 		    months.add(btn6);
 		    
 		    
 				//***Bouton 7***\\
 		    
-		    btn7.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =7;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn7.addActionListener(this);
 		    btn7.setBorder(null);
 		    months.add(btn7);
 		    
 				//***Bouton 8***\\
 		    
-		    btn8.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =8;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn8.addActionListener(this);
 		    btn8.setBorder(null);
 		    months.add(btn8);
 		    
 		    
 				//***Bouton 9***\\
 		    
-		    btn9.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =9;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn9.addActionListener(this);
 		    btn9.setBorder(null);
 		    months.add(btn9);
 		    
 				//***Bouton 10***\\
 		    
-		    btn10.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =10;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn10.addActionListener(this);
 		    btn10.setBorder(null);
 		    months.add(btn10);
 		    
 				//***Bouton Valet : 11***\\
 		    
-		    btn11.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =11;
-		    		Next();
-		    	}
-		    });
-		    
+		    btn11.addActionListener(this);
 		    btn11.setBorder(null);
 		    months.add(btn11);
 		    
 				//***Bouton Dame : 12***\\
 		    
-		    btn12.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =12;
-		    		Next();
-		    	}
-		    });
+		    btn12.addActionListener(this);
 		    
 		    btn12.setBorder(null);
 		    months.add(btn12);
@@ -245,43 +169,20 @@ public class Select extends JPanel implements ActionListener{
 		    
 				//***Bouton Roi : 13***\\
 		    
-		    btn13.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =13;
-		    		Next();
-		    	}
-		    });
+		    btn13.addActionListener(this);
 		    
 		    btn13.setBorder(null);
 		    months.add(btn13);
 		    
 				//***Bouton Cancel***\\
 				
-		    btnCancel.addMouseListener(new MouseAdapter() { //ici nous avons le boutons retour
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		Previous();// une simple méthode pour aller à la carte précédente c'est à dire lblDay sans modifier valeur ni couleur :)
-		    	}
-		    });
-		    
+		    btnCancel.addActionListener(this);
 		    btnCancel.setBorder(null);
 		    months.add(btnCancel);
 		    
 				//***Bouton Back***\\
 				
-		    btnBack.addMouseListener(new MouseAdapter() {
-		    	@Override
-		    	public void mouseReleased(MouseEvent e) {
-		    		valeur =-1;	// la valeur négative -1 nous permet de retourner la carte
-		    		UpdatePic(); // update pic permet de mettre à jour l'affichage de la carte en fonction des valeurs courantes (valeur,couleur) de Select
-		    		Previous();// On passe ici au Paneal précédent c'est à dire lblDay
-		    		
-		    		//remarque : on ne reset pas la valeur de couleur car dans le code de carte si jaamis la carte à la valeur négative -1 sa couleur sera automatiquement modifier
-		    		// celà nous permet de nous simplifier la vie car l'affichage est controlé par la valeur !
-		    	}
-		    });
-		    
+		    btnBack.addActionListener(this);
 		    btnBack.setBorder(null);
 		    months.add(btnBack);
 		    
@@ -407,8 +308,6 @@ public class Select extends JPanel implements ActionListener{
 		btn12.setEnabled(false);
 		btn13.setEnabled(false);
 		
-        for(Carte x : interfaceDeck) 
-            System.out.println(x.getValeur()+" : "+x.getCouleur());
         
 		for (Carte x : interfaceDeck) {
 			if(x.getValeur()==14)
@@ -444,7 +343,55 @@ public class Select extends JPanel implements ActionListener{
         if(e.getSource()==btnAs){
             valeur =14; //on modifie la variable valeur en fonction du bouton sur lequel on appuie
             Next();	// on passe au panel suivant c'est à dire Seasons
+        }else if (e.getSource()==btn2) {
+        	valeur =2;
+            Next();
+        }else if (e.getSource()==btn3) {
+        	valeur =3;
+            Next();
+        }else if (e.getSource()==btn4) {
+        	valeur =4;
+            Next();
+        }else if (e.getSource()==btn5) {
+        	valeur =5;
+            Next();
+        }else if (e.getSource()==btn6) {
+        	valeur =6;
+            Next();
+        }else if (e.getSource()==btn7) {
+        	valeur =7;
+            Next();
+        }else if (e.getSource()==btn8) {
+        	valeur =8;
+            Next();
+        }else if (e.getSource()==btn9) {
+        	valeur =9;
+            Next();
+        }else if (e.getSource()==btn10) {
+        	valeur =10;
+            Next();
+        }else if (e.getSource()==btn11) {
+        	valeur =11;
+            Next();
+        }else if (e.getSource()==btn12) {
+        	valeur =12;
+            Next();
+        }else if (e.getSource()==btn13) {
+        	valeur =13;
+            Next();
+        }else if (e.getSource()==btnCancel) {
+    		Previous();// une simple méthode pour aller à la carte précédente c'est à dire lblDay sans modifier valeur ni couleur :)
+        }else if(e.getSource()==btnBack) {
+        	valeur =-1;	// la valeur négative -1 nous permet de retourner la carte
+    		UpdatePic(); // update pic permet de mettre à jour l'affichage de la carte en fonction des valeurs courantes (valeur,couleur) de Select
+    		Previous();// On passe ici au Paneal précédent c'est à dire lblDay
+    		
+    		//remarque : on ne reset pas la valeur de couleur car dans le code de carte si jaamis la carte à la valeur négative -1 sa couleur sera automatiquement modifier
+    		// celà nous permet de nous simplifier la vie car l'affichage est controlé par la valeur !
+        	
         }
+        
+        
 	}
 	
 	
