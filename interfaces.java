@@ -1,20 +1,19 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import javax.swing.SwingConstants;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class interfaces extends JFrame  {
 
@@ -53,6 +52,7 @@ public class interfaces extends JFrame  {
 	
 	
 	public interfaces() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(interfaces.class.getResource("/images/pokerIcon.png")));
 		//------------------Fenetre---------------------\\
 		setTitle("Poker Master");
 		setResizable(false);
@@ -67,6 +67,7 @@ public class interfaces extends JFrame  {
 		//------------------Panel pour le nombre de Joueur---------------------\\ utilise un FlowLayout
 		
 		JPanel panelNbJ = new JPanel();
+		panelNbJ.setBackground(new Color(255, 255, 255,63));
 		panelNbJ.setBounds(24, 43, 117, 52);
 		contentPane.add(panelNbJ);
 		panelNbJ.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -83,6 +84,7 @@ public class interfaces extends JFrame  {
 		//------------------Panel pour la River---------------------\\ utilise un Border Layout
 		
 		JPanel panelRiver = new JPanel();
+		panelRiver.setBackground(new Color(255, 255, 255,63));
 		panelRiver.setBounds(194, 43, 544, 220);
 		contentPane.add(panelRiver);
 		panelRiver.setLayout(new BorderLayout(0, 0));
@@ -93,6 +95,7 @@ public class interfaces extends JFrame  {
 		panelRiver.add(riverTxt, BorderLayout.NORTH);
 		
 		JPanel Table = new JPanel();	//GridLayout
+		Table.setBackground(new Color(255, 255, 255,0));
 		panelRiver.add(Table, BorderLayout.CENTER);
 		Table.setLayout(new GridLayout(0, 5, 10, 10));
 		
@@ -123,6 +126,7 @@ public class interfaces extends JFrame  {
 		//------------------Panel des resultats---------------------\\
 		
 		JPanel panelResults = new JPanel();
+		panelResults.setBackground(new Color(255, 255, 255,63));
 		panelResults.setBounds(767, 43, 202, 409);
 		contentPane.add(panelResults);
 		panelResults.setLayout(new GridLayout(12, 1, 0, 0));
@@ -133,54 +137,55 @@ public class interfaces extends JFrame  {
 		panelResults.add(lblproba);
 		
 		 lblQuinteFlushRoyale = new JLabel("Quinte flush royale :");
-		lblQuinteFlushRoyale.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblQuinteFlushRoyale.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblQuinteFlushRoyale);
 		
 		
 		 lblCarr = new JLabel("Carr\u00E9 :");
-		lblCarr.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCarr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblCarr);
 		
 		 lblFull = new JLabel("Full :");
-		lblFull.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblFull.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblFull);
 		
 		 lblCouleur = new JLabel("Couleur :");
-		lblCouleur.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCouleur.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblCouleur);
 		
 		 lblSuite = new JLabel("Suite :");
-		lblSuite.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblSuite.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblSuite);
 		
 		 lblBrelan = new JLabel("Brelan :");
-		lblBrelan.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblBrelan.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblBrelan);
 		
 		 lblDoublePaire = new JLabel("Double paire :");
-		lblDoublePaire.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblDoublePaire.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblDoublePaire);
 		
 		 lblPaire = new JLabel("Paire : ");
-		lblPaire.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPaire.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblPaire);
 		
 		 lblCarteHaute = new JLabel("Carte haute : ");
-		lblCarteHaute.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCarteHaute.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblCarteHaute);
 		
 		 lblwin = new JLabel("Chance de gagner : ");
-		lblwin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblwin.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lblwin);
 
 
 		 lollosingchances = new JLabel("Quinte flush :");
-		lollosingchances.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lollosingchances.setFont(new Font("Tahoma", Font.BOLD, 15));
 		panelResults.add(lollosingchances);
 		
 		//------------------Panel Hand---------------------\\ utilise un GridLayout
 		
 		JPanel panelHand = new JPanel();
+		panelHand.setBackground(new Color(0, 0, 0,0));
 		panelHand.setBounds(372, 370, 210, 160);
 		contentPane.add(panelHand);
 		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
@@ -199,9 +204,23 @@ public class interfaces extends JFrame  {
 		Launcher = new JButton("Lancer !");
 		Launcher.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent arg0) { //Completer ca
+			public void mouseReleased(MouseEvent arg0) { 
+				
 				UpdateHR();
-				setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
+				if(Hand.get(0).getValeur() <0 || Hand.get(1).getValeur() <0) {//On vérifie la taille de la main en vérifiant que la valeur des cartes est positives
+			        JOptionPane.showMessageDialog(null, " Veuillez choisir au moins deux cartes", "Poker Master : Main incomplète" , JOptionPane.INFORMATION_MESSAGE);
+				}else{// puis on fait de même pour la main qui doit avoir soit 0 carte positive soit au moins 3
+					int c=0;
+						for (Carte x:River) {
+							if(x.getValeur()>0)
+								c++;
+						}
+					if(c==0 || c>=3) {
+						setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
+					}else {
+						JOptionPane.showMessageDialog(null,"Veuillez poser au moins 3 cartes ou aucune carte", "Poker Master : Table incomplète" , JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
 			}
 		});
 		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -218,6 +237,13 @@ public class interfaces extends JFrame  {
 		Reset.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Reset.setBounds(473, 319, 210, 40);
 		contentPane.add(Reset);
+		
+		JLabel lblBG = new JLabel("");
+		lblBG.setHorizontalAlignment(SwingConstants.CENTER);
+		Image img =new ImageIcon(Select.class.getResource("/images/bgPoker.jpg")).getImage().getScaledInstance(994,571,Image.SCALE_SMOOTH);
+		lblBG.setIcon(new ImageIcon(img));
+		lblBG.setBounds(0, 0, 994, 571);
+		contentPane.add(lblBG);
 		
 		
 		//------------------Reste du constructeur---------------------\\
@@ -351,7 +377,4 @@ public class interfaces extends JFrame  {
 		lblF.SetInternalDeck(InternalDeck.getDeck());
 		lblG.SetInternalDeck(InternalDeck.getDeck());
 	}
-	
-
-
 }
