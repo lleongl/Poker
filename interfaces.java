@@ -79,7 +79,7 @@ public class interfaces extends JFrame  {
 		
 	
 		txtField_nbj = new JTextField();
-		txtField_nbj.setText("1");
+		txtField_nbj.setText("2");
 		panelNbJ.add(txtField_nbj);
 		txtField_nbj.setColumns(2);
 		

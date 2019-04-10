@@ -267,7 +267,7 @@ public class Select extends JPanel implements ActionListener{
 
 	
 	public void UpdatePic() {	// mets à jour le panneau lblDay qui est censé afficher la carte en utilisant les variables valeur et couleurs modifié ou non
-		//chagne les attributs interne de la Carte
+		//change les attributs interne de la Carte
 		Card.setCouleur(Couleur);
 		Card.setValeur(valeur);
 		
