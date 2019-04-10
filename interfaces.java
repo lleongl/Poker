@@ -73,6 +73,8 @@ public class interfaces extends JFrame  {
 		panelNbJ.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblnbj = new JLabel("Nombre de joueurs");
+		lblnbj.setForeground(new Color(255, 255, 255));
+		lblnbj.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelNbJ.add(lblnbj);
 		
 	
@@ -126,12 +128,13 @@ public class interfaces extends JFrame  {
 		//------------------Panel des resultats---------------------\\
 		
 		JPanel panelResults = new JPanel();
-		panelResults.setBackground(new Color(255, 255, 255,63));
-		panelResults.setBounds(767, 43, 202, 409);
+		panelResults.setBackground(new Color(255, 255, 255,255));
+		panelResults.setBounds(748, 43, 236, 409);
 		contentPane.add(panelResults);
 		panelResults.setLayout(new GridLayout(12, 1, 0, 0));
 		
 		JLabel lblproba = new JLabel("Probabilit\u00E9s");
+		lblproba.setBackground(new Color(255, 255, 255));
 		lblproba.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblproba.setHorizontalAlignment(SwingConstants.CENTER);
 		panelResults.add(lblproba);
@@ -186,7 +189,7 @@ public class interfaces extends JFrame  {
 		
 		JPanel panelHand = new JPanel();
 		panelHand.setBackground(new Color(0, 0, 0,0));
-		panelHand.setBounds(372, 370, 210, 160);
+		panelHand.setBounds(364, 370, 210, 160);
 		contentPane.add(panelHand);
 		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
 		
@@ -202,6 +205,7 @@ public class interfaces extends JFrame  {
 		//------------------Boutons pour lancer ou reset---------------------\\
 
 		Launcher = new JButton("Lancer !");
+		Launcher.setBackground(new Color(173, 255, 47));
 		Launcher.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) { 
@@ -223,19 +227,20 @@ public class interfaces extends JFrame  {
 				}
 			}
 		});
-		Launcher.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Launcher.setBounds(256, 319, 210, 40);
+		Launcher.setFont(new Font("Tahoma", Font.BOLD, 19));
+		Launcher.setBounds(240, 319, 210, 40);
 		contentPane.add(Launcher);
 		
 		Reset = new JButton("Reset");
+		Reset.setBackground(new Color(153, 50, 204));
 		Reset.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				Reset();
 			}
 		});
-		Reset.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Reset.setBounds(473, 319, 210, 40);
+		Reset.setFont(new Font("Tahoma", Font.BOLD, 19));
+		Reset.setBounds(492, 319, 210, 40);
 		contentPane.add(Reset);
 		
 		JLabel lblBG = new JLabel("");
@@ -338,9 +343,6 @@ public class interfaces extends JFrame  {
 		winning chances
 		losing chances
 		*/
-		
-
-
 		lblQuinteFlushRoyale.setText("Quinte flush : "+t[0]+" %");
 		lblCarr.setText("Carr\u00E9 : "+t[1]+" %");
 		lblFull.setText("Full : "+t[2]+" %");
