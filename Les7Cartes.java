@@ -27,7 +27,7 @@ public class Les7Cartes {
         this.getCompteur();
     }
 
-    public void chaineTest(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void chaineTest(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         //tests pour la Quinte Flush
         this.quinteFlush(tCompteurs, tJoueurs, p);
 
@@ -74,51 +74,51 @@ public class Les7Cartes {
 
     }
 
-    public void testEgalite(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void testEgalite(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
 
         //Egalite carte haute
-        if (tJoueurs[i].getScore() == 1) {
+        if (tJoueurs.get(i).getScore() == 1) {
             this.egaliteCarteHaute(tJoueurs, joueursMaxScore, i);
         }
 
         //egalite paire
-        if (tJoueurs[i].getScore() == 2) {
+        if (tJoueurs.get(i).getScore() == 2) {
             this.egalitePaire(tJoueurs, joueursMaxScore, i);
         }
 
         //egalite double Paire
-        if (tJoueurs[i].getScore() == 3) {
+        if (tJoueurs.get(i).getScore() == 3) {
             this.egaliteDoublePaire(tJoueurs, joueursMaxScore, i);
         }
 
         //egalite Brelan
-        if (tJoueurs[i].getScore() == 4) {
+        if (tJoueurs.get(i).getScore() == 4) {
             this.egaliteBrelan(tJoueurs, joueursMaxScore, i);
         }
 
         //egalite Suite
-        if (tJoueurs[i].getScore() == 5) {
+        if (tJoueurs.get(i).getScore() == 5) {
             this.egaliteSuite(tJoueurs, joueursMaxScore, i);
         }
 
         //egalite Couleur
-        if (tJoueurs[i].getScore() == 6) {
+        if (tJoueurs.get(i).getScore() == 6) {
             this.egaliteCouleur(tJoueurs, joueursMaxScore, i);
         }
 
         //egalite Full
-        if (tJoueurs[i].getScore() == 7) {
+        if (tJoueurs.get(i).getScore() == 7) {
             this.egaliteFull(tJoueurs, joueursMaxScore, i);
         }
 
         //egalite Carre
-        if (tJoueurs[i].getScore() == 8) {
+        if (tJoueurs.get(i).getScore() == 8) {
             this.egaliteCarre(tJoueurs, joueursMaxScore, i);
 
         }
 
         //egalite Quinte Flush
-        if (tJoueurs[i].getScore() == 9) {
+        if (tJoueurs.get(i).getScore() == 9) {
             this.egaliteQuinteFlush(tJoueurs, joueursMaxScore, i);
         }
     }
@@ -244,7 +244,7 @@ public class Les7Cartes {
     }
 
 
-    public void quinteFlush(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void quinteFlush(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         LinkedList<Carte> cartesMemeCouleur = getCartesMemeCouleur();
         char[] compteurValCharQF;
         long compteurQF = 0;
@@ -264,7 +264,7 @@ public class Les7Cartes {
                 if (p == 0) {
                     tCompteurs[0]++;
                 }
-                tJoueurs[p].setScore(9);
+                tJoueurs.get(p).setScore(9);
                 meilleureMain = true;
                 break;
             }
@@ -277,7 +277,7 @@ public class Les7Cartes {
                     if (p == 0) {
                         tCompteurs[0]++;
                     }
-                    tJoueurs[p].setScore(9);
+                    tJoueurs.get(p).setScore(9);
                     meilleureMain = true;
                 }
             }
@@ -285,7 +285,7 @@ public class Les7Cartes {
     }
 
 
-    public void carre(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void carre(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         this.getCompteurValChar();
 
         //Vérifie si 4 cartes de même valeur sont dans les7Cartes
@@ -294,13 +294,13 @@ public class Les7Cartes {
                 if (p == 0) {
                     tCompteurs[1]++;
                 }
-                tJoueurs[p].setScore(8);
+                tJoueurs.get(p).setScore(8);
                 meilleureMain = true;
             }
         }
     }
 
-    public void full(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void full(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         //Vérifie s'il y a 3 cartes ayant une même valeur et 2 autres cartes ayant une même valeur (différentes de celle des 3 cartes)
         for (int k = 0; k < compteurValChar.length; k++) {
             if (compteurValChar[k] == '3') {
@@ -314,28 +314,28 @@ public class Les7Cartes {
             if (p == 0) {
                 tCompteurs[2]++;
             }
-            tJoueurs[p].setScore(7);
+            tJoueurs.get(p).setScore(7);
             meilleureMain = true;
         }
     }
 
-    public void couleur(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void couleur(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         if (compteurCouleur > 0) {
             if (p == 0) {
                 tCompteurs[3]++;
             }
-            tJoueurs[p].setScore(6);
+            tJoueurs.get(p).setScore(6);
             meilleureMain = true;
         }
     }
 
-    public void suite(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void suite(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         for (int k = 0; k < compteurValChar.length - 5; k++) {
             if (compteurValChar[k] != '0' && compteurValChar[k + 1] != '0' && compteurValChar[k + 2] != '0' && compteurValChar[k + 3] != '0' && compteurValChar[k + 4] != '0') {
                 if (p == 0) {
                     tCompteurs[4]++;
                 }
-                tJoueurs[p].setScore(5);
+                tJoueurs.get(p).setScore(5);
                 meilleureMain = true;
                 break;
             }
@@ -349,51 +349,51 @@ public class Les7Cartes {
                         tCompteurs[4]++;
                     }
                     suiteAS5 = true;
-                    tJoueurs[p].setScore(5);
+                    tJoueurs.get(p).setScore(5);
                     meilleureMain = true;
                 }
             }
         }
     }
 
-    public void brelan(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void brelan(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         if (compteurBrelan > 0) {
             if (p == 0) {
                 tCompteurs[5]++;
             }
-            tJoueurs[p].setScore(4);
+            tJoueurs.get(p).setScore(4);
             meilleureMain = true;
         }
     }
 
-    public void doublePaire(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void doublePaire(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         if (compteurPaire > 1) {
             if (p == 0) {
                 tCompteurs[6]++;
             }
-            tJoueurs[p].setScore(3);
+            tJoueurs.get(p).setScore(3);
             meilleureMain = true;
         }
     }
 
-    public void paire(int[] tCompteurs, Joueur[] tJoueurs, int p) {
+    public void paire(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         if (compteurPaire > 0) {
             if (p == 0) {
                 tCompteurs[7]++;
             }
-            tJoueurs[p].setScore(2);
+            tJoueurs.get(p).setScore(2);
             meilleureMain = true;
         }
     }
 
-    public void carteHaute(int[] tCompteurs,  Joueur[] tJoueurs, int p) {
+    public void carteHaute(int[] tCompteurs,  ArrayList<Joueur> tJoueurs, int p) {
         if (p == 0) {
             tCompteurs[8]++;
         }
-        tJoueurs[p].setScore(1);
+        tJoueurs.get(p).setScore(1);
     }
 
-    public void egaliteQuinteFlush(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteQuinteFlush(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         int QFHauteur1;
         int QFHauteur2;
         LinkedList<Carte> cartesMemeCouleur1 = this.getCartesMemeCouleur();
@@ -411,12 +411,12 @@ public class Les7Cartes {
         } else QFHauteur2 = cartesMemeCouleur2.get(1).getValeur();
 
         if (QFHauteur1 > QFHauteur2) {
-            tJoueurs[i].setScore(9.5);
+            tJoueurs.get(i).setScore(9.5);
             for (Joueur j :joueursMaxScore){
                 j.setScore(9);
             }
             joueursMaxScore.clear();
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
         }
         if (QFHauteur1 < QFHauteur2) {
             for (Joueur j :joueursMaxScore){
@@ -424,14 +424,14 @@ public class Les7Cartes {
             }
         }
         if (QFHauteur1==QFHauteur2){
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
             for (Joueur j :joueursMaxScore){
                 j.setScore(9.5);
             }
         }
     }
 
-    public void egaliteCarre(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteCarre(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         int carreVal1 = 0;
         int carreVal2 = 0;
 
@@ -449,12 +449,12 @@ public class Les7Cartes {
         }
 
         if (carreVal1 > carreVal2) {
-            tJoueurs[i].setScore(8.5);
+            tJoueurs.get(i).setScore(8.5);
             for (Joueur j :joueursMaxScore){
                 j.setScore(8);
             }
             joueursMaxScore.clear();
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
         }
         if (carreVal1 < carreVal2) {
             for (Joueur j :joueursMaxScore){
@@ -466,12 +466,12 @@ public class Les7Cartes {
             int maxVal2 = joueursMaxScore.get(0).les7Cartes.getMaxVal(1, carreVal1, 0)[0];
 
             if (maxVal1 > maxVal2) {
-                tJoueurs[i].setScore(8.5);
+                tJoueurs.get(i).setScore(8.5);
                 for (Joueur j :joueursMaxScore){
                     j.setScore(8);
                 }
                 joueursMaxScore.clear();
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
             }
             if (maxVal1 < maxVal2) {
                 for (Joueur j :joueursMaxScore){
@@ -479,7 +479,7 @@ public class Les7Cartes {
                 }
             }
             if (maxVal1==maxVal2){
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 for (Joueur j :joueursMaxScore){
                     j.setScore(8.5);
                 }
@@ -487,7 +487,7 @@ public class Les7Cartes {
         }
     }
 
-    public void egaliteFull(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteFull(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         int brelanVal1 = this.valeurBrelan();
         int brelanVal2 = joueursMaxScore.get(0).les7Cartes.valeurBrelan();
 
@@ -496,12 +496,12 @@ public class Les7Cartes {
             int paireVal2 = joueursMaxScore.get(0).les7Cartes.valeurPaire(1)[0];
 
             if (paireVal1 > paireVal2) {
-                tJoueurs[i].setScore(7.5);
+                tJoueurs.get(i).setScore(7.5);
                 for (Joueur j :joueursMaxScore){
                     j.setScore(7);
                 }
                 joueursMaxScore.clear();
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
             }
             if (paireVal1 < paireVal2) {
                 for (Joueur j :joueursMaxScore){
@@ -509,19 +509,19 @@ public class Les7Cartes {
                 }
             }
             if (paireVal1==paireVal2){
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 for (Joueur j :joueursMaxScore){
                     j.setScore(7.5);
                 }
             }
         } else {
             if (brelanVal1 > brelanVal2) {
-                tJoueurs[i].setScore(7.5);
+                tJoueurs.get(i).setScore(7.5);
                 for (Joueur j :joueursMaxScore){
                     j.setScore(7);
                 }
                 joueursMaxScore.clear();
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
             }
             if (brelanVal1 < brelanVal2) {
                 for (Joueur j :joueursMaxScore){
@@ -531,7 +531,7 @@ public class Les7Cartes {
         }
     }
 
-    public void egaliteCouleur(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteCouleur(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         boolean egalite=false;
         LinkedList<Carte> cartesMemeCouleur1 = this.getCartesMemeCouleur();
         LinkedList<Carte> cartesMemeCouleur2 = joueursMaxScore.get(0).les7Cartes.getCartesMemeCouleur();
@@ -540,12 +540,12 @@ public class Les7Cartes {
 
         for (int j = 0; j < 5; j++) {
             if (cartesMemeCouleur1.get(j).getValeur() > cartesMemeCouleur2.get(j).getValeur()) {
-                tJoueurs[i].setScore(6.5);
+                tJoueurs.get(i).setScore(6.5);
                 for (Joueur k :joueursMaxScore){
                     k.setScore(6);
                 }
                 joueursMaxScore.clear();
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 egalite=false;
                 break;
             }
@@ -559,14 +559,14 @@ public class Les7Cartes {
             egalite=true;
         }
         if (egalite){
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
             for (Joueur j :joueursMaxScore){
                 j.setScore(6.5);
             }
         }
     }
 
-    public void egaliteSuite(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteSuite(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         int suiteHauteur1 = 0;
         int suiteHauteur2 = 0;
         Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
@@ -596,12 +596,12 @@ public class Les7Cartes {
             }
         }
         if (suiteHauteur1 > suiteHauteur2) {
-            tJoueurs[i].setScore(5.5);
+            tJoueurs.get(i).setScore(5.5);
             for (Joueur k :joueursMaxScore){
                 k.setScore(5);
             }
             joueursMaxScore.clear();
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
         }
         if (suiteHauteur1 < suiteHauteur2) {
             for (Joueur j :joueursMaxScore){
@@ -609,25 +609,25 @@ public class Les7Cartes {
             }
         }
         if (suiteHauteur1==suiteHauteur2){
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
             for (Joueur j :joueursMaxScore){
                 j.setScore(5.5);
             }
         }
     }
 
-    public void egaliteBrelan(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteBrelan(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         boolean egalite=false;
         int brelanVal1 = this.valeurBrelan();
         int brelanVal2 = joueursMaxScore.get(0).les7Cartes.valeurBrelan();
 
         if (brelanVal1 > brelanVal2) {
-            tJoueurs[i].setScore(4.5);
+            tJoueurs.get(i).setScore(4.5);
             for (Joueur k :joueursMaxScore){
                 k.setScore(4);
             }
             joueursMaxScore.clear();
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
         }
         if (brelanVal1 < brelanVal2) {
             for (Joueur j :joueursMaxScore){
@@ -639,12 +639,12 @@ public class Les7Cartes {
             int [] maxVal2=joueursMaxScore.get(0).les7Cartes.getMaxVal(2,brelanVal1, 0);
             for(int j=0; j< maxVal1.length;j++) {
                 if (maxVal1[j] > maxVal2[j]) {
-                    tJoueurs[i].setScore(4.5);
+                    tJoueurs.get(i).setScore(4.5);
                     for (Joueur k :joueursMaxScore){
                         k.setScore(4);
                     }
                     joueursMaxScore.clear();
-                    joueursMaxScore.add(tJoueurs[i]);
+                    joueursMaxScore.add(tJoueurs.get(i));
                     egalite=false;
                     break;
                 }
@@ -658,7 +658,7 @@ public class Les7Cartes {
                 egalite=true;
             }
             if (egalite){
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 for (Joueur j :joueursMaxScore){
                     j.setScore(4.5);
                 }
@@ -666,19 +666,19 @@ public class Les7Cartes {
         }
     }
 
-    public void egaliteDoublePaire(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteDoublePaire(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         boolean egalite = false;
         int [] paireVal1=this.valeurPaire(2);
         int [] paireVal2=joueursMaxScore.get(0).les7Cartes.valeurPaire(2);
 
         for (int k=0;k<paireVal1.length;k++){
             if(paireVal1[k]>paireVal2[k]){
-                tJoueurs[i].setScore(3.5);
+                tJoueurs.get(i).setScore(3.5);
                 for (Joueur j :joueursMaxScore){
                     j.setScore(3);
                 }
                 joueursMaxScore.clear();
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 egalite=false;
                 break;
             }
@@ -697,19 +697,19 @@ public class Les7Cartes {
             int maxVal2 = joueursMaxScore.get(0).les7Cartes.getMaxVal(1, paireVal1[0],paireVal1[1])[0];
 
             if (maxVal1 > maxVal2) {
-                tJoueurs[i].setScore(3.5);
+                tJoueurs.get(i).setScore(3.5);
                 for (Joueur k :joueursMaxScore){
                     k.setScore(3);
                 }
                 joueursMaxScore.clear();
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
             }
             if (maxVal1 < maxVal2) {
                 for (Joueur j :joueursMaxScore){
                     j.setScore(3.5);
                 }            }
             if (maxVal1==maxVal2){
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 for (Joueur j :joueursMaxScore){
                     j.setScore(3.5);
                 }
@@ -717,18 +717,18 @@ public class Les7Cartes {
         }
     }
 
-    public void egalitePaire(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egalitePaire(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         boolean egalite=false;
         int paireVal1=this.valeurPaire(1)[0];
         int paireVal2=joueursMaxScore.get(0).les7Cartes.valeurPaire(1)[0];
 
         if(paireVal1>paireVal2){
-            tJoueurs[i].setScore(2.5);
+            tJoueurs.get(i).setScore(2.5);
             for (Joueur k :joueursMaxScore){
                 k.setScore(2);
             }
             joueursMaxScore.clear();
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
         }
         if (paireVal1<paireVal2){
             for (Joueur j :joueursMaxScore){
@@ -740,12 +740,12 @@ public class Les7Cartes {
             int [] maxVal2=joueursMaxScore.get(0).les7Cartes.getMaxVal(3, paireVal2, 0);
             for(int j=0; j< maxVal1.length;j++) {
                 if (maxVal1[j] > maxVal2[j]) {
-                    tJoueurs[i].setScore(2.5);
+                    tJoueurs.get(i).setScore(2.5);
                     for (Joueur k :joueursMaxScore){
                         k.setScore(2);
                     }
                     joueursMaxScore.clear();
-                    joueursMaxScore.add(tJoueurs[i]);
+                    joueursMaxScore.add(tJoueurs.get(i));
                     egalite=false;
                     break;
                 }
@@ -759,7 +759,7 @@ public class Les7Cartes {
                 egalite =true;
             }
             if (egalite){
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 for (Joueur j :joueursMaxScore){
                     j.setScore(2.5);
                 }
@@ -767,19 +767,19 @@ public class Les7Cartes {
         }
     }
 
-    public void egaliteCarteHaute(Joueur[] tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
+    public void egaliteCarteHaute(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         boolean egalite=false;
         int [] maxVal1=this.getMaxVal(5, 0, 0);
         int [] maxVal2=joueursMaxScore.get(0).les7Cartes.getMaxVal(5, 0, 0);
 
         for(int j=0; j< maxVal1.length;j++) {
             if (maxVal1[j] > maxVal2[j]) {
-                tJoueurs[i].setScore(1.5);
+                tJoueurs.get(i).setScore(1.5);
                 for (Joueur k :joueursMaxScore){
                     k.setScore(1);
                 }
                 joueursMaxScore.clear();
-                joueursMaxScore.add(tJoueurs[i]);
+                joueursMaxScore.add(tJoueurs.get(i));
                 egalite=false;
                 break;
             }
@@ -793,7 +793,7 @@ public class Les7Cartes {
             egalite=true;
         }
         if (egalite){
-            joueursMaxScore.add(tJoueurs[i]);
+            joueursMaxScore.add(tJoueurs.get(i));
             for (Joueur j :joueursMaxScore){
                 j.setScore(1.5);
             }

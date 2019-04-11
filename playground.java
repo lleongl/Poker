@@ -5,8 +5,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class playground extends JFrame {
+public class playground extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
 
@@ -39,7 +40,7 @@ public class playground extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		//-------------------------------------------------\\
-		
+		addMouseListener(this);
 	
 		
 	
@@ -57,11 +58,33 @@ public class playground extends JFrame {
 				
 			}
 		});
-		
+
+		CardA.addMouseListener(this);
 		
 		btnNewButton.setBounds(91, 267, 102, 23);
 		contentPane.add(btnNewButton);
 		
 		
 	}
+
+	public void mousePressed(MouseEvent e) {
+
+	}
+
+	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	public void mouseExited(MouseEvent e) {
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("n'importe quoi");
+	}
+
+
 }

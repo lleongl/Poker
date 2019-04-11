@@ -128,7 +128,7 @@ public class interfaces extends JFrame  {
 		//------------------Panel des resultats---------------------\\
 		
 		JPanel panelResults = new JPanel();
-		panelResults.setBackground(new Color(255, 255, 255,255));
+		panelResults.setBackground(new Color(255, 255, 255,100));
 		panelResults.setBounds(748, 43, 236, 409);
 		contentPane.add(panelResults);
 		panelResults.setLayout(new GridLayout(12, 1, 0, 0));
@@ -211,9 +211,9 @@ public class interfaces extends JFrame  {
 			public void mouseReleased(MouseEvent arg0) { 
 				
 				UpdateHR();
-				if(Hand.get(0).getValeur() <0 || Hand.get(1).getValeur() <0) {//On vérifie la taille de la main en vérifiant que la valeur des cartes est positives
-			        JOptionPane.showMessageDialog(null, " Veuillez choisir au moins deux cartes", "Poker Master : Main incomplète" , JOptionPane.INFORMATION_MESSAGE);
-				}else{// puis on fait de même pour la main qui doit avoir soit 0 carte positive soit au moins 3
+				if(Hand.get(0).getValeur() <0 || Hand.get(1).getValeur() <0) {//On vï¿½rifie la taille de la main en vï¿½rifiant que la valeur des cartes est positives
+			        JOptionPane.showMessageDialog(null, " Veuillez choisir au moins deux cartes", "Poker Master : Main incomplï¿½te" , JOptionPane.INFORMATION_MESSAGE);
+				}else{// puis on fait de mï¿½me pour la main qui doit avoir soit 0 carte positive soit au moins 3
 					int c=0;
 						for (Carte x:River) {
 							if(x.getValeur()>0)
@@ -221,8 +221,9 @@ public class interfaces extends JFrame  {
 						}
 					if(c==0 || c>=3) {
 						setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
+						repaint();
 					}else {
-						JOptionPane.showMessageDialog(null,"Veuillez poser au moins 3 cartes ou aucune carte", "Poker Master : Table incomplète" , JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,"Veuillez poser au moins 3 cartes ou aucune carte", "Poker Master : Table incomplï¿½te" , JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			}
@@ -266,7 +267,7 @@ public class interfaces extends JFrame  {
 		
 		Hand.set(0,lblF.getCard());
 		Hand.set(1,lblG.getCard());
-		//l'utilisation du set permet de simplifier le code car on remplace directement les cartes plutôt que de retirer les anciennes et rajouter les nouvelles
+		//l'utilisation du set permet de simplifier le code car on remplace directement les cartes plutï¿½t que de retirer les anciennes et rajouter les nouvelles
 	}
 
 	
@@ -307,19 +308,19 @@ public class interfaces extends JFrame  {
 			 d=Integer.parseInt(txtField_nbj.getText());
 			 
 			 if (d<2) {// SI le nombre de joueur entrer est trop petit on prendra la valeur minimum de 2 joueurs
-				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est inférieur à 2!", "nombre de joueur insufisant" , JOptionPane.INFORMATION_MESSAGE);
+				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est infï¿½rieur ï¿½ 2!", "nombre de joueur insufisant" , JOptionPane.INFORMATION_MESSAGE);
 				 d =2;
 				 txtField_nbj.setText("2");
 			 }
 			 
 			 if (d>10){// Si le nombre de joueur entrer est trop grand on prendra la valeur max de 10 joueurs
-				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est supérieur à 10!", "nombre de joueur trop grand" , JOptionPane.INFORMATION_MESSAGE);
+				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est supï¿½rieur ï¿½ 10!", "nombre de joueur trop grand" , JOptionPane.INFORMATION_MESSAGE);
 				 d =10;
 				 txtField_nbj.setText("10");
 			 }
 				 
 				 
-	    } catch (NumberFormatException  e) { //si le String entré n'est pas un entier on prendra par défaut la valeur de 2 joueur
+	    } catch (NumberFormatException  e) { //si le String entrï¿½ n'est pas un entier on prendra par dï¿½faut la valeur de 2 joueur
 	        JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " n'est pas un entier", "Poker Master : Pas un entier" , JOptionPane.INFORMATION_MESSAGE);
 	        d=2;
 	        txtField_nbj.setText("2");
@@ -359,9 +360,9 @@ public class interfaces extends JFrame  {
 	public void SendDeckToSelect() {
 		UpdateHR();//permet de toujours avoir les vrais cartes qui sont dans la River et Hand avant de les retirer du deck interne.
 		
-		InternalDeck = new Deck(); //reset à chaque fois le deck interne permet de simplifier les calculs mais on aura un temps plus long d'exécution
+		InternalDeck = new Deck(); //reset ï¿½ chaque fois le deck interne permet de simplifier les calculs mais on aura un temps plus long d'exï¿½cution
 		
-		//ensuite on retire les cartes déjà sélectionné
+		//ensuite on retire les cartes dï¿½jï¿½ sï¿½lectionnï¿½
 		for(Carte x : Hand) 
 			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
 		
@@ -369,8 +370,8 @@ public class interfaces extends JFrame  {
 			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
 		}
 		
-		// Ici on met a jour le deck interne à chaque objet Select
-		// Set Internal Deck devra alors s'occupé lui même des choix possibles ou non
+		// Ici on met a jour le deck interne ï¿½ chaque objet Select
+		// Set Internal Deck devra alors s'occupï¿½ lui mï¿½me des choix possibles ou non
 		lblA.SetInternalDeck(InternalDeck.getDeck());
 		lblB.SetInternalDeck(InternalDeck.getDeck());
 		lblC.SetInternalDeck(InternalDeck.getDeck());

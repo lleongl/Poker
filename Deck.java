@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Deck {
-    public ArrayList<Carte> contenu = new ArrayList<>();// le mettre private après avoir corriger Calculatrice.java
+    public ArrayList<Carte> contenu = new ArrayList<>();// le mettre private aprï¿½s avoir corriger Calculatrice.java
 
     public Deck() {
         for (int i = 2; i < 15; i++) {
@@ -47,15 +47,15 @@ public class Deck {
         }
     }
 
-    public void distribution(Joueur[] tJoueurs, int nbAdversaires){
+    public void distribution(ArrayList<Joueur> tJoueurs, int nbAdversaires){
         //distribue 2 cartes par avdersaire
         for (int j=1; j<nbAdversaires+1;j++){
             Random geny= new Random(System.nanoTime());
             Carte t1= this.contenu.get(geny.nextInt(this.contenu.size()));
-            tJoueurs[j].les2Cartes.add(t1);
+            tJoueurs.get(j).les2Cartes.add(t1);
             this.removeCard(t1.getValeur(),t1.getCouleur());
             Carte t2= this.contenu.get(geny.nextInt(this.contenu.size()));
-            tJoueurs[j].les2Cartes.add(t2);
+            tJoueurs.get(j).les2Cartes.add(t2);
             this.removeCard(t2.getValeur(),t2.getCouleur());
         }
 
