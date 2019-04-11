@@ -1,16 +1,18 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Calculatrice {
     public float[] lancerCalcul(int x, ArrayList<Carte> Hand, ArrayList<Carte> River) {
         int nbAdversaires = x - 1;
-        int nbTirages = 10000;
+        int nbTirages = 35000;
         int[] tCompteurs = new int[9];
         float[] tProba = new float[11];
         ArrayList<Joueur> tJoueurs = new ArrayList<>(nbAdversaires+1);
         boolean egalite;
         int cartesDevoilees = 0;
         int defaites=0;
+        DecimalFormat df = new DecimalFormat("########.00");
 
         //crée le tableau de joueurs
         for (int n = 0; n < nbAdversaires+1; n++) {
@@ -103,11 +105,14 @@ public class Calculatrice {
 
         //calcule les probabilités de victoire et de défaite
         for (int i = 0; i < tCompteurs.length; i++) {
-            tProba[i] = (tCompteurs[i] / (float) nbTirages) * 100;
+            float probaI =(tCompteurs[i] / (float) nbTirages) * 100;
+            tProba[i] = Float.parseFloat(df.format(probaI).replace(',', '.'));
         }
 
-        tProba[9] = (tJoueurs.get(0).getVictoire() / (float) nbTirages) * 100;
-        tProba[10] = (defaites / (float) nbTirages) * 100;
+        float chancesVictoire=(tJoueurs.get(0).getVictoire() / (float) nbTirages) * 100;
+        float chancesDefaites=(defaites / (float) nbTirages) * 100;
+        tProba[9] = Float.parseFloat(df.format(chancesVictoire).replace(',', '.'));
+        tProba[10] = Float.parseFloat(df.format(chancesDefaites).replace(',', '.'));
 
         return tProba;
     }
