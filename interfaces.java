@@ -212,7 +212,7 @@ public class interfaces extends JFrame  {
 				
 				UpdateHR();
 				if(Hand.get(0).getValeur() <0 || Hand.get(1).getValeur() <0) {//On v�rifie la taille de la main en v�rifiant que la valeur des cartes est positives
-			        JOptionPane.showMessageDialog(null, " Veuillez choisir au moins deux cartes", "Poker Master : Main incompl�te" , JOptionPane.INFORMATION_MESSAGE);
+			        JOptionPane.showMessageDialog(null, " Veuillez choisir au moins deux cartes", "Poker Master : Main incomplete" , JOptionPane.INFORMATION_MESSAGE);
 				}else{// puis on fait de m�me pour la main qui doit avoir soit 0 carte positive soit au moins 3
 					int c=0;
 						for (Carte x:River) {
@@ -223,7 +223,7 @@ public class interfaces extends JFrame  {
 						setProba(new Calculatrice().lancerCalcul(getNbj(),getHand(),getRiver()));
 						repaint();
 					}else {
-						JOptionPane.showMessageDialog(null,"Veuillez poser au moins 3 cartes ou aucune carte", "Poker Master : Table incompl�te" , JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null,"Veuillez poser au moins 3 cartes ou aucune carte", "Poker Master : Table incomplete" , JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			}
@@ -308,13 +308,13 @@ public class interfaces extends JFrame  {
 			 d=Integer.parseInt(txtField_nbj.getText());
 			 
 			 if (d<2) {// SI le nombre de joueur entrer est trop petit on prendra la valeur minimum de 2 joueurs
-				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est inf�rieur � 2!", "nombre de joueur insufisant" , JOptionPane.INFORMATION_MESSAGE);
+				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est inferieur a 2!", "nombre de joueur insufisant" , JOptionPane.INFORMATION_MESSAGE);
 				 d =2;
 				 txtField_nbj.setText("2");
 			 }
 			 
 			 if (d>10){// Si le nombre de joueur entrer est trop grand on prendra la valeur max de 10 joueurs
-				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est sup�rieur � 10!", "nombre de joueur trop grand" , JOptionPane.INFORMATION_MESSAGE);
+				 JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " est superieur a 10!", "nombre de joueur trop grand" , JOptionPane.INFORMATION_MESSAGE);
 				 d =10;
 				 txtField_nbj.setText("10");
 			 }
