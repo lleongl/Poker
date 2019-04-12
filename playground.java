@@ -44,7 +44,7 @@ public class playground extends JFrame implements MouseListener {
 	
 		
 	
-		Select CardA = new Select();
+		Select CardA = new Select(this);
 		CardA.setSize(102, 160);
 		CardA.setLocation(91, 38);
 		
@@ -84,6 +84,10 @@ public class playground extends JFrame implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("n'importe quoi");
+	}
+
+	public void test(){
+		System.out.println("Good");
 	}
 
 

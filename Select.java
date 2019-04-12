@@ -1,19 +1,15 @@
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.CardLayout;
 import java.awt.Color;
-import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.*;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 
-public class Select extends JPanel implements ActionListener {
+public class Select extends JPanel implements ActionListener, MouseListener  {
 
     private CardLayout C1 = new CardLayout();
 
@@ -49,9 +45,12 @@ public class Select extends JPanel implements ActionListener {
     private final JLabel C_Coeur = new JLabel();
 
     private JLabel lblDay = new JLabel();
+    playground a;
 
 
-    public Select() {
+    public Select(playground a) {
+        this.a =a;
+
         this.setSize(100, 160);    // taille de 100*160
         Day.setBackground(new Color(0, 0, 0, 0));
         months.setBackground(Color.BLACK);    //fond de Months noir
@@ -76,6 +75,8 @@ public class Select extends JPanel implements ActionListener {
         UpdatePic(); // mettre une première fois à jour permet d'afficher une carte retourné
         Day.add(lblDay);
 
+        Day.addMouseListener(this);
+        addMouseListener(this);
         //--------------------Months-------------------\\
 
         this.add(months, "CARD_2");
@@ -336,6 +337,7 @@ public class Select extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        a.test();
         if (e.getSource() == btnAs) {
             valeur = 14; //on modifie la variable valeur en fonction du bouton sur lequel on appuie
             Next();    // on passe au panel suivant c'est à dire Seasons
@@ -389,5 +391,27 @@ public class Select extends JPanel implements ActionListener {
 
 
     }
+
+
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        a.test();
+    }
+
+
 
 }
