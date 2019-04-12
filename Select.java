@@ -45,11 +45,11 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
     private final JLabel C_Coeur = new JLabel();
 
     private JLabel lblDay = new JLabel();
-    playground a;
+    interfaces Parent;
 
 
-    public Select(playground a) {
-        this.a =a;
+    public Select(interfaces Parent) {
+        this.Parent =Parent;
 
         this.setSize(100, 160);    // taille de 100*160
         Day.setBackground(new Color(0, 0, 0, 0));
@@ -67,6 +67,7 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         lblDay.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+            	SetInternalDeck();
                 Next(); // passe au panneau suivant nous permettant d'éditer la carte
             }
         });
@@ -196,6 +197,7 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         C_Carreau.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+            	SetInternalDeck();
                 Couleur = "diamonds";
                 Next();// on passe au Panel suivant
                 UpdatePic();// on met à jour lblDay
@@ -209,6 +211,7 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         C_pique.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+            	SetInternalDeck();
                 Couleur = "spades";
                 Next();
                 UpdatePic();
@@ -222,6 +225,7 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         C_trefle.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+            	SetInternalDeck();
                 Couleur = "clubs";
                 Next();
                 UpdatePic();
@@ -235,6 +239,7 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         C_Coeur.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+            	SetInternalDeck();
                 Couleur = "hearts";
                 Next();
                 UpdatePic();
@@ -290,7 +295,10 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         UpdatePic();
     }
 
-    public void SetInternalDeck(ArrayList<Carte> interfaceDeck) {
+    public void SetInternalDeck() {
+    	
+    	ArrayList<Carte> interfaceDeck = Parent.getInternalDeck();
+    	
         btnAs.setEnabled(false);
         btn2.setEnabled(false);
         btn3.setEnabled(false);
@@ -304,7 +312,7 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         btn11.setEnabled(false);
         btn12.setEnabled(false);
         btn13.setEnabled(false);
-
+        System.out.println("it's good");
 
         for (Carte x : interfaceDeck) {
             if (x.getValeur() == 14)
@@ -337,7 +345,6 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
     }
 
     public void actionPerformed(ActionEvent e) {
-        a.test();
         if (e.getSource() == btnAs) {
             valeur = 14; //on modifie la variable valeur en fonction du bouton sur lequel on appuie
             Next();    // on passe au panel suivant c'est à dire Seasons
@@ -409,7 +416,6 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
     }
 
     public void mouseClicked(MouseEvent e) {
-        a.test();
     }
 
 

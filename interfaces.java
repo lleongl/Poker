@@ -101,25 +101,25 @@ public class interfaces extends JFrame  {
 		panelRiver.add(Table, BorderLayout.CENTER);
 		Table.setLayout(new GridLayout(0, 5, 10, 10));
 		
-		lblA = new Select();
+		lblA = new Select(this);
 		lblA.setSize(100,160);
 		Table.add(lblA);
 		
-		lblB = new Select();
+		lblB = new Select(this);
 		lblB.setSize(100,160);
 		Table.add(lblB);
         
-		lblC = new Select();
+		lblC = new Select(this);
 		lblC.setSize(100,160);
 		Table.add(lblC);
         
 		
-		lblD = new Select();
+		lblD = new Select(this);
 		lblD.setSize(100,160);
 		Table.add(lblD);
         
 		
-		lblE = new Select();
+		lblE = new Select(this);
 		lblE.setSize(100,160);
 		Table.add(lblE);
         
@@ -193,10 +193,10 @@ public class interfaces extends JFrame  {
 		contentPane.add(panelHand);
 		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
 		
-		lblF = new Select();
+		lblF = new Select(this);
 		panelHand.add(lblF);
 		
-		lblG = new Select();
+		lblG = new Select(this);
 		lblG.setSize(100,160);
 		panelHand.add(lblG);
         
@@ -268,6 +268,16 @@ public class interfaces extends JFrame  {
 		Hand.set(0,lblF.getCard());
 		Hand.set(1,lblG.getCard());
 		//l'utilisation du set permet de simplifier le code car on remplace directement les cartes plut�t que de retirer les anciennes et rajouter les nouvelles
+		
+		InternalDeck = new Deck(); //reset � chaque fois le deck interne permet de simplifier les calculs mais on aura un temps plus long d'ex�cution
+		
+		//ensuite on retire les cartes d�j� s�lectionn�
+		for(Carte x : Hand) 
+			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
+		
+		for(Carte x : River) 
+			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
+		
 	}
 
 	
@@ -357,27 +367,8 @@ public class interfaces extends JFrame  {
 		lollosingchances.setText("Chance de perdre : "+t[10]+" %");
 	}
 	
-	public void SendDeckToSelect() {
-		UpdateHR();//permet de toujours avoir les vrais cartes qui sont dans la River et Hand avant de les retirer du deck interne.
-		
-		InternalDeck = new Deck(); //reset � chaque fois le deck interne permet de simplifier les calculs mais on aura un temps plus long d'ex�cution
-		
-		//ensuite on retire les cartes d�j� s�lectionn�
-		for(Carte x : Hand) 
-			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
-		
-		for(Carte x : River) {
-			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
-		}
-		
-		// Ici on met a jour le deck interne � chaque objet Select
-		// Set Internal Deck devra alors s'occup� lui m�me des choix possibles ou non
-		lblA.SetInternalDeck(InternalDeck.getDeck());
-		lblB.SetInternalDeck(InternalDeck.getDeck());
-		lblC.SetInternalDeck(InternalDeck.getDeck());
-		lblD.SetInternalDeck(InternalDeck.getDeck());
-		lblE.SetInternalDeck(InternalDeck.getDeck());
-		lblF.SetInternalDeck(InternalDeck.getDeck());
-		lblG.SetInternalDeck(InternalDeck.getDeck());
+	public ArrayList<Carte> getInternalDeck() {
+		UpdateHR();
+		return InternalDeck.getDeck();
 	}
 }
