@@ -3,7 +3,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -45,236 +44,96 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
     private final JLabel C_Coeur = new JLabel();
 
     private JLabel lblDay = new JLabel();
-    interfaces Parent;
+    
+    private interfaces Parent;
 
 
     public Select(interfaces Parent) {
-        this.Parent =Parent;
+    	
+        this.Parent =Parent;// son parent est l'interface qui l'a cree, il nous permettra de r�cuperer les valeurs de autres cartes presentes
 
         this.setSize(100, 160);    // taille de 100*160
         Day.setBackground(new Color(0, 0, 0, 0));
-        months.setBackground(Color.BLACK);    //fond de Months noir
-        seasons.setBackground(Color.DARK_GRAY);//fon de saison noir grisé
+        months.setBackground(Color.DARK_GRAY);    //fond de Months noir
+        seasons.setBackground(Color.BLACK);//fond de saison noir gris
 
         this.setLayout(C1); //la classe select aura un Card layout
-        this.add(Day, "CARD_1");
+        this.add(Day);
 
         //--------------------Days-------------------\\
 
 
         Day.setLayout(null); // le Panel Day n'a pas besoin de Layout particulier :)
-
-        lblDay.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            	SetInternalDeck();
-                Next(); // passe au panneau suivant nous permettant d'éditer la carte
-            }
-        });
+        lblDay.addMouseListener(this);// on mets un MouseListener dessus pour detecter les clics dessus
         lblDay.setHorizontalAlignment(SwingConstants.CENTER);// permet de centrer la carte dans le Jpanel Day
-        lblDay.setBounds(0, 0, 100, 160); // set la taille de 100*160 permet de remplir entièrement le Jpanel Select
-        UpdatePic(); // mettre une première fois à jour permet d'afficher une carte retourné
+        lblDay.setBounds(0, 0, 100, 160); // set la taille de 100*160 permet de remplir entierement le Jpanel Select
+        UpdatePic(); // mettre une premiere fois a jour permet d'afficher une carte retourner
         Day.add(lblDay);
 
-        Day.addMouseListener(this);
-        addMouseListener(this);
-        //--------------------Months-------------------\\
+        
+        //--------------------Seasons-------------------\\
 
-        this.add(months, "CARD_2");
-        months.setLayout(new GridLayout(3, 5, 1, 1));
+        this.add(seasons);
+        seasons.setLayout(new GridLayout(3, 5, 1, 1));
         // months utilisera un grid layout de 3 lignes et 5 colonnes
-        // avec un écart horizontal et vertical de 1 pour faire office de séparateur
-
-
-        //***Bouton As : 1***\\
-
-        btnAs.addActionListener(this);
-        btnAs.setBorder(null); //set les bordures du bouton à null nous permet de résoudre un problème d'affichage du texte
-        months.add(btnAs);
-
-
-        //***Bouton 2***\\
-
-        btn2.addActionListener(this);
-        btn2.setBorder(null);
-        months.add(btn2);
-
-
-        //***Bouton 3***\\
-
-        btn3.addActionListener(this);
-        btn3.setBorder(null);
-        months.add(btn3);
-
-
-        //***Bouton 4***\\
-
-        btn4.addActionListener(this);
-        btn4.setBorder(null);
-        months.add(btn4);
-
-
-        //***Bouton 5***\\
-
-        btn5.addActionListener(this);
-        btn5.setBorder(null);
-        months.add(btn5);
-
-
-        //***Bouton 6***\\
-
-        btn6.addActionListener(this);
-        btn6.setBorder(null);
-        months.add(btn6);
-
-
-        //***Bouton 7***\\
-
-        btn7.addActionListener(this);
-        btn7.setBorder(null);
-        months.add(btn7);
-
-        //***Bouton 8***\\
-
-        btn8.addActionListener(this);
-        btn8.setBorder(null);
-        months.add(btn8);
-
-
-        //***Bouton 9***\\
-
-        btn9.addActionListener(this);
-        btn9.setBorder(null);
-        months.add(btn9);
-
-        //***Bouton 10***\\
-
-        btn10.addActionListener(this);
-        btn10.setBorder(null);
-        months.add(btn10);
-
-        //***Bouton Valet : 11***\\
-
-        btn11.addActionListener(this);
-        btn11.setBorder(null);
-        months.add(btn11);
-
-        //***Bouton Dame : 12***\\
-
-        btn12.addActionListener(this);
-
-        btn12.setBorder(null);
-        months.add(btn12);
-
-
-        //***Bouton Roi : 13***\\
-
-        btn13.addActionListener(this);
-
-        btn13.setBorder(null);
-        months.add(btn13);
-
-        //***Bouton Cancel***\\
-
-        btnCancel.addActionListener(this);
-        btnCancel.setBorder(null);
-        months.add(btnCancel);
-
-        //***Bouton Back***\\
-
-        btnBack.addActionListener(this);
-        btnBack.setBorder(null);
-        months.add(btnBack);
+        // avec un ecart horizontal et vertical de 1 pour faire office de separateur
+        
+        butonSetup(btnAs);
+        butonSetup(btn2);
+        butonSetup(btn3);
+        butonSetup(btn4);
+        butonSetup(btn5);
+        butonSetup(btn6);
+        butonSetup(btn7);
+        butonSetup(btn8);
+        butonSetup(btn9);
+        butonSetup(btn10);
+        butonSetup(btn11);
+        butonSetup(btn12);
+        butonSetup(btn13);
+        butonSetup(btnCancel);
+        butonSetup(btnBack);
 
         //--------------------Months-------------------\\
 
-        this.add(seasons, "CARD_3");
-        seasons.setLayout(new GridLayout(0, 2, 2, 0));// Season utilisera un Grid Layout de 2 par 2
+        this.add(months);
+        months.setLayout(new GridLayout(0, 2, 2, 0));// Seasons utilisera un Grid Layout de 2 par 2
 
-        //Ici on met au clair les dimensions de l'image c'est à dire 50 de largeur et 40 de hauteur
+        //Ici on met au clair les dimensions de l'image c'est a dire 50 de largeur et 40 de hauteur
         Image img = new ImageIcon(Select.class.getResource("/images/Couleur_Carreau.png")).getImage().getScaledInstance(50, 40, Image.SCALE_SMOOTH);
-
-        C_Carreau.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            	SetInternalDeck();
-                Couleur = "diamonds";
-                Next();// on passe au Panel suivant
-                UpdatePic();// on met à jour lblDay
-            }
-        });
-        C_Carreau.setHorizontalAlignment(SwingConstants.CENTER); // permet de centrer l'image
-        C_Carreau.setIcon(new ImageIcon(img)); //afficher l'image dans le label
-
-
+        ColorSetup(C_Carreau,img);
+        
         img = new ImageIcon(Select.class.getResource("/images/Couleur_Pique.png")).getImage().getScaledInstance(50, 40, Image.SCALE_SMOOTH);
-        C_pique.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            	SetInternalDeck();
-                Couleur = "spades";
-                Next();
-                UpdatePic();
-            }
-        });
-        C_pique.setHorizontalAlignment(SwingConstants.CENTER);
-        C_pique.setIcon(new ImageIcon(img));
-
+        ColorSetup(C_pique,img);
 
         img = new ImageIcon(Select.class.getResource("/images/Couleur_Trefle.png")).getImage().getScaledInstance(50, 40, Image.SCALE_SMOOTH);
-        C_trefle.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            	SetInternalDeck();
-                Couleur = "clubs";
-                Next();
-                UpdatePic();
-            }
-        });
-        C_trefle.setHorizontalAlignment(SwingConstants.CENTER);
-        C_trefle.setIcon(new ImageIcon(img));
-
+        ColorSetup(C_trefle,img);
 
         img = new ImageIcon(Select.class.getResource("/images/Couleur_Coeur.png")).getImage().getScaledInstance(50, 40, Image.SCALE_SMOOTH);
-        C_Coeur.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            	SetInternalDeck();
-                Couleur = "hearts";
-                Next();
-                UpdatePic();
-            }
-        });
-        C_Coeur.setHorizontalAlignment(SwingConstants.CENTER);
-        C_Coeur.setIcon(new ImageIcon(img));
+        ColorSetup(C_Coeur,img);
 
-
-        //ajoute au paneau season les Jlabels des couleurs
-        seasons.add(C_Carreau);
-        seasons.add(C_pique);
-        seasons.add(C_trefle);
-        seasons.add(C_Coeur);
-
-
+        
+        addMouseListener(this);
     }
 
-    public void Next() { // change le panneau afficher par la card Layout en passant à la suivante
+    public void Next() { // change le panneau afficher par la card Layout en passant a� la suivante
         C1.next(this);
     }
 
-    public void Previous() { // change le panneau afficher par la card Layout en passant à la précédente
+    public void Previous() { // change le panneau afficher par la card Layout en passant a la precedente
         C1.previous(this);
     }
 
 
-    public void UpdatePic() {    // mets à jour le panneau lblDay qui est censé afficher la carte en utilisant les variables valeur et couleurs modifié ou non
+    public void UpdatePic() {    
+    	// mets a� jour le panneau lblDay qui est cense afficher la carte en utilisant les variables valeur et couleurs modifie ou non
         //change les attributs interne de la Carte
         Card.setCouleur(Couleur);
         Card.setValeur(valeur);
 
-        //récupère depuis la carte l'icone a afficher puis fit sa taille au Jpanel lblDay
+        //recupere depuis la carte l'icone a afficher puis fit sa taille au Jpanel lblDay
         Image shot = Card.getIcon().getImage().getScaledInstance(lblDay.getWidth(), lblDay.getHeight(), Image.SCALE_SMOOTH);
-        //mets à jour l'icone a afficher
+        //mets a� jour l'icone a afficher
         lblDay.setIcon(new ImageIcon(shot));
 
     }
@@ -288,10 +147,10 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         //clear la  carte
         Card = new Carte();
 
-        // la valeur négative -1 et une valeur arbitraire qui nous permet d'afficher une carte tourné
+        // la valeur negative -1 et une valeur arbitraire qui nous permet d'afficher une carte tournee
         valeur = -1;
 
-        //mets à jour lblDay pour afficher cette carte tourner
+        //mets a jour lblDay pour afficher cette carte tourner
         UpdatePic();
     }
 
@@ -312,7 +171,6 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
         btn11.setEnabled(false);
         btn12.setEnabled(false);
         btn13.setEnabled(false);
-        System.out.println("it's good");
 
         for (Carte x : interfaceDeck) {
             if (x.getValeur() == 14)
@@ -347,7 +205,7 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnAs) {
             valeur = 14; //on modifie la variable valeur en fonction du bouton sur lequel on appuie
-            Next();    // on passe au panel suivant c'est à dire Seasons
+            Next();    // on passe au panel suivant c'est a dire Seasons
         } else if (e.getSource() == btn2) {
             valeur = 2;
             Next();
@@ -385,39 +243,82 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
             valeur = 13;
             Next();
         } else if (e.getSource() == btnCancel) {
-            Previous();// une simple méthode pour aller à la carte précédente c'est à dire lblDay sans modifier valeur ni couleur :)
+            Previous();// une simple methode pour aller a la carte predente c'est a� dire lblDay sans modifier valeur ni couleur :)
         } else if (e.getSource() == btnBack) {
-            valeur = -1;    // la valeur négative -1 nous permet de retourner la carte
-            UpdatePic(); // update pic permet de mettre à jour l'affichage de la carte en fonction des valeurs courantes (valeur,couleur) de Select
-            Previous();// On passe ici au Paneal précédent c'est à dire lblDay
+            valeur = -1;    // la valeur negative -1 nous permet de retourner la carte
+            UpdatePic(); // update pic permet de mettre a jour l'affichage de la carte en fonction des valeurs courantes (valeur,couleur) de Select
+            Previous();// On passe ici au Panel precedent c'est a dire lblDay
 
-            //remarque : on ne reset pas la valeur de couleur car dans le code de carte si jaamis la carte à la valeur négative -1 sa couleur sera automatiquement modifier
-            // celà nous permet de nous simplifier la vie car l'affichage est controlé par la valeur !
+            //remarque : on ne reset pas la valeur de couleur car dans le code de carte si jamais la carte a la valeur negative -1 sa couleur sera automatiquement modifier
+            // cela� nous permet de nous simplifier la vie car l'affichage est controle par la valeur !
 
         }
 
 
     }
 
-
+    public void mouseReleased(MouseEvent e) {
+    	if (e.getSource() ==lblDay) {
+    		Next();
+    	}
+    	
+    	//--------------------Choix de la couleur-------------------\\
+    	if (e.getSource() ==C_Carreau) {
+    		ColorChoice("diamonds");
+    	}else if (e.getSource() ==C_pique) {
+    		ColorChoice("spades");
+    	}else if (e.getSource() ==C_trefle) {
+    		ColorChoice("clubs");
+    	}else if (e.getSource() ==C_Coeur) {
+    		ColorChoice("hearts");
+    	}
+    	
+    	
+    }
+    
+    
     public void mousePressed(MouseEvent e) {
 
     }
-
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
     public void mouseEntered(MouseEvent e) {
-
+		SetInternalDeck();//On verifie les cartes selectionnable
     }
-
     public void mouseExited(MouseEvent e) {
     }
-
     public void mouseClicked(MouseEvent e) {
     }
+    
+    //Les methodes Setup nous permettrons d'alleger le constructeur en code redondant.
+    public void butonSetup(JButton btn) {
+    	btn.addActionListener(this);
+    	// on a prefere un action Listener a un MouseListener car le MosueListener 
+        //n'aurait pas pris en compte le set enable du bouton
+    	
+        btn.setBorder(null);//set les bordures du bouton a null nous permet de resoudre un probleme d'affichage du texte
+        seasons.add(btn);
+    }
 
-
-
+    public void ColorSetup(JLabel C,Image img) {
+    	C.addMouseListener(this);
+        C.setHorizontalAlignment(SwingConstants.CENTER); // permet de centrer l'image
+        C.setIcon(new ImageIcon(img)); //afficher l'image dans le label
+        months.add(C);
+    }
+    
+    public void ColorChoice(String x) {
+    	boolean selectionnable =false;
+        ArrayList<Carte> Pioche = Parent.getInternalDeck();
+        for(Carte y: Pioche) 
+        	if(y.getValeur()==valeur && y.getCouleur()==x)
+        		selectionnable=true;
+        
+        
+    	if(selectionnable) {// On verifie que la pioche contient bien cette couleur
+            Couleur = x;
+        	UpdatePic();// on met a jour lblDay ( l'image de la carte)
+            Next();
+    		}else {
+    			JOptionPane.showMessageDialog(null,"Cette Carte est deja posee", "Poker Master : Couleur indisponible" , JOptionPane.INFORMATION_MESSAGE);
+    		}
+    }
 }

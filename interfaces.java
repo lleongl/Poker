@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.border.EmptyBorder;
 
@@ -17,43 +16,36 @@ import java.awt.Toolkit;
 
 public class interfaces extends JFrame  {
 
-	private JPanel contentPane;
+	private JPanel contentPane;// Panneau principal 
+	
     private JButton Launcher;
     private JButton Reset;
 	
-	private JTextField txtField_nbj;
+	private JTextField txtField_nbj;// le nombre de joueur
+	
 	private JLabel lblQuinteFlushRoyale,lollosingchances,lblCarr,
 	lblFull,lblCouleur,lblSuite,lblBrelan,lblDoublePaire,lblPaire,
-	lblCarteHaute,lblwin;
+	lblCarteHaute,lblwin; //le texte des resultats
 	
 	
-	private ArrayList<Carte> Hand =new ArrayList<Carte>(2);
-	private ArrayList<Carte> River =new ArrayList<Carte>(5);
+	private ArrayList<Carte> Hand =new ArrayList<Carte>(2);	//main du joueur
+	private ArrayList<Carte> River =new ArrayList<Carte>(5);	//Table
 	
-	private Select lblA,lblB,lblC,lblD,lblE,lblF,lblG;
+	private Select lblA,lblB,lblC,lblD,lblE,lblF,lblG; // les 5 cartes sur la table et les deux cartes du joueur
 	
-	private Deck InternalDeck = new Deck();
+	private Deck InternalDeck = new Deck(); // pioche
 	
 	
 	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					interfaces frame = new interfaces();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		interfaces fenetre = new interfaces();
+		fenetre.setVisible(true);
 	}
 
 	
 	
 	public interfaces() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(interfaces.class.getResource("/images/pokerIcon.png")));
 		//------------------Fenetre---------------------\\
+		
 		setTitle("Poker Master");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,6 +55,8 @@ public class interfaces extends JFrame  {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(interfaces.class.getResource("/images/pokerIcon.png")));
+		
 		
 		//------------------Panel pour le nombre de Joueur---------------------\\ utilise un FlowLayout
 		
@@ -71,17 +65,17 @@ public class interfaces extends JFrame  {
 		panelNbJ.setBounds(24, 43, 117, 52);
 		contentPane.add(panelNbJ);
 		panelNbJ.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			
+			JLabel lblnbj = new JLabel("Nombre de joueurs");
+			lblnbj.setForeground(new Color(255, 255, 255));
+			lblnbj.setFont(new Font("Tahoma", Font.BOLD, 11));
+			panelNbJ.add(lblnbj);
+			
 		
-		JLabel lblnbj = new JLabel("Nombre de joueurs");
-		lblnbj.setForeground(new Color(255, 255, 255));
-		lblnbj.setFont(new Font("Tahoma", Font.BOLD, 11));
-		panelNbJ.add(lblnbj);
-		
-	
-		txtField_nbj = new JTextField();
-		txtField_nbj.setText("2");
-		panelNbJ.add(txtField_nbj);
-		txtField_nbj.setColumns(2);
+			txtField_nbj = new JTextField();
+			txtField_nbj.setText("2");
+			panelNbJ.add(txtField_nbj);
+			txtField_nbj.setColumns(2);
 		
 		//------------------Panel pour la River---------------------\\ utilise un Border Layout
 		
@@ -91,37 +85,37 @@ public class interfaces extends JFrame  {
 		contentPane.add(panelRiver);
 		panelRiver.setLayout(new BorderLayout(0, 0));
 		
-		JLabel riverTxt = new JLabel("TURN/FLOP/RIVER\r\n");
-		riverTxt.setHorizontalAlignment(SwingConstants.CENTER);
-		riverTxt.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		panelRiver.add(riverTxt, BorderLayout.NORTH);
-		
-		JPanel Table = new JPanel();	//GridLayout
-		Table.setBackground(new Color(255, 255, 255,0));
-		panelRiver.add(Table, BorderLayout.CENTER);
-		Table.setLayout(new GridLayout(0, 5, 10, 10));
-		
-		lblA = new Select(this);
-		lblA.setSize(100,160);
-		Table.add(lblA);
-		
-		lblB = new Select(this);
-		lblB.setSize(100,160);
-		Table.add(lblB);
-        
-		lblC = new Select(this);
-		lblC.setSize(100,160);
-		Table.add(lblC);
-        
-		
-		lblD = new Select(this);
-		lblD.setSize(100,160);
-		Table.add(lblD);
-        
-		
-		lblE = new Select(this);
-		lblE.setSize(100,160);
-		Table.add(lblE);
+			JLabel riverTxt = new JLabel("TURN/FLOP/RIVER\r\n");
+			riverTxt.setHorizontalAlignment(SwingConstants.CENTER);
+			riverTxt.setFont(new Font("Tahoma", Font.PLAIN, 50));
+			panelRiver.add(riverTxt, BorderLayout.NORTH);
+			
+			JPanel Table = new JPanel();	//GridLayout
+			Table.setBackground(new Color(255, 255, 255,0));
+			panelRiver.add(Table, BorderLayout.CENTER);
+			Table.setLayout(new GridLayout(0, 5, 10, 10));
+				
+				lblA = new Select(this);
+				lblA.setSize(100,160);
+				Table.add(lblA);
+				
+				lblB = new Select(this);
+				lblB.setSize(100,160);
+				Table.add(lblB);
+		        
+				lblC = new Select(this);
+				lblC.setSize(100,160);
+				Table.add(lblC);
+		        
+				
+				lblD = new Select(this);
+				lblD.setSize(100,160);
+				Table.add(lblD);
+		        
+				
+				lblE = new Select(this);
+				lblE.setSize(100,160);
+				Table.add(lblE);
         
         
 		
@@ -132,58 +126,58 @@ public class interfaces extends JFrame  {
 		panelResults.setBounds(748, 43, 236, 409);
 		contentPane.add(panelResults);
 		panelResults.setLayout(new GridLayout(12, 1, 0, 0));
-		
-		JLabel lblproba = new JLabel("Probabilit\u00E9s");
-		lblproba.setBackground(new Color(255, 255, 255));
-		lblproba.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblproba.setHorizontalAlignment(SwingConstants.CENTER);
-		panelResults.add(lblproba);
-		
-		 lblQuinteFlushRoyale = new JLabel("Quinte flush royale :");
-		lblQuinteFlushRoyale.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblQuinteFlushRoyale);
-		
-		
-		 lblCarr = new JLabel("Carr\u00E9 :");
-		lblCarr.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblCarr);
-		
-		 lblFull = new JLabel("Full :");
-		lblFull.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblFull);
-		
-		 lblCouleur = new JLabel("Couleur :");
-		lblCouleur.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblCouleur);
-		
-		 lblSuite = new JLabel("Suite :");
-		lblSuite.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblSuite);
-		
-		 lblBrelan = new JLabel("Brelan :");
-		lblBrelan.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblBrelan);
-		
-		 lblDoublePaire = new JLabel("Double paire :");
-		lblDoublePaire.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblDoublePaire);
-		
-		 lblPaire = new JLabel("Paire : ");
-		lblPaire.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblPaire);
-		
-		 lblCarteHaute = new JLabel("Carte haute : ");
-		lblCarteHaute.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblCarteHaute);
-		
-		 lblwin = new JLabel("Chance de gagner : ");
-		lblwin.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lblwin);
-
-
-		 lollosingchances = new JLabel("Quinte flush :");
-		lollosingchances.setFont(new Font("Tahoma", Font.BOLD, 15));
-		panelResults.add(lollosingchances);
+			
+			JLabel lblproba = new JLabel("Probabilit\u00E9s");
+			lblproba.setBackground(new Color(255, 255, 255));
+			lblproba.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblproba.setHorizontalAlignment(SwingConstants.CENTER);
+			panelResults.add(lblproba);
+			
+			 lblQuinteFlushRoyale = new JLabel("Quinte flush royale :");
+			lblQuinteFlushRoyale.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblQuinteFlushRoyale);
+			
+			
+			 lblCarr = new JLabel("Carr\u00E9 :");
+			lblCarr.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblCarr);
+			
+			 lblFull = new JLabel("Full :");
+			lblFull.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblFull);
+			
+			 lblCouleur = new JLabel("Couleur :");
+			lblCouleur.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblCouleur);
+			
+			 lblSuite = new JLabel("Suite :");
+			lblSuite.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblSuite);
+			
+			 lblBrelan = new JLabel("Brelan :");
+			lblBrelan.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblBrelan);
+			
+			 lblDoublePaire = new JLabel("Double paire :");
+			lblDoublePaire.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblDoublePaire);
+			
+			 lblPaire = new JLabel("Paire : ");
+			lblPaire.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblPaire);
+			
+			 lblCarteHaute = new JLabel("Carte haute : ");
+			lblCarteHaute.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblCarteHaute);
+			
+			 lblwin = new JLabel("Chance de gagner : ");
+			lblwin.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lblwin);
+	
+	
+			 lollosingchances = new JLabel("Quinte flush :");
+			lollosingchances.setFont(new Font("Tahoma", Font.BOLD, 15));
+			panelResults.add(lollosingchances);
 		
 		//------------------Panel Hand---------------------\\ utilise un GridLayout
 		
@@ -192,17 +186,17 @@ public class interfaces extends JFrame  {
 		panelHand.setBounds(364, 370, 210, 160);
 		contentPane.add(panelHand);
 		panelHand.setLayout(new GridLayout(1, 2, 10, 0));
-		
-		lblF = new Select(this);
-		panelHand.add(lblF);
-		
-		lblG = new Select(this);
-		lblG.setSize(100,160);
-		panelHand.add(lblG);
+			
+			lblF = new Select(this);
+			panelHand.add(lblF);
+			
+			lblG = new Select(this);
+			lblG.setSize(100,160);
+			panelHand.add(lblG);
         
 		
         
-		//------------------Boutons pour lancer ou reset---------------------\\
+		//------------------Bouton pour lancer ---------------------\\
 
 		Launcher = new JButton("Lancer !");
 		Launcher.setBackground(new Color(173, 255, 47));
@@ -232,6 +226,9 @@ public class interfaces extends JFrame  {
 		Launcher.setBounds(240, 319, 210, 40);
 		contentPane.add(Launcher);
 		
+		
+		//------------------bouton Reset---------------------\\
+		
 		Reset = new JButton("Reset");
 		Reset.setBackground(new Color(153, 50, 204));
 		Reset.addMouseListener(new MouseAdapter() {
@@ -244,7 +241,10 @@ public class interfaces extends JFrame  {
 		Reset.setBounds(492, 319, 210, 40);
 		contentPane.add(Reset);
 		
-		JLabel lblBG = new JLabel("");
+		
+		//------------------Background---------------------\\
+		
+		JLabel lblBG = new JLabel();
 		lblBG.setHorizontalAlignment(SwingConstants.CENTER);
 		Image img =new ImageIcon(Select.class.getResource("/images/bgPoker.jpg")).getImage().getScaledInstance(994,571,Image.SCALE_SMOOTH);
 		lblBG.setIcon(new ImageIcon(img));
@@ -252,7 +252,7 @@ public class interfaces extends JFrame  {
 		contentPane.add(lblBG);
 		
 		
-		//------------------Reste du constructeur---------------------\\
+		//------------------Tourner chaque carte---------------------\\
 		
 		Reset();
 
@@ -269,9 +269,9 @@ public class interfaces extends JFrame  {
 		Hand.set(1,lblG.getCard());
 		//l'utilisation du set permet de simplifier le code car on remplace directement les cartes plut�t que de retirer les anciennes et rajouter les nouvelles
 		
-		InternalDeck = new Deck(); //reset � chaque fois le deck interne permet de simplifier les calculs mais on aura un temps plus long d'ex�cution
+		InternalDeck = new Deck(); //reset a chaque fois le deck interne permet de simplifier les calculs mais on aura un temps plus long d'execution
 		
-		//ensuite on retire les cartes d�j� s�lectionn�
+		//ensuite on retire les cartes selectionnees de la pioche
 		for(Carte x : Hand) 
 			InternalDeck.removeCard(x.getValeur(), x.getCouleur());
 		
@@ -312,7 +312,7 @@ public class interfaces extends JFrame  {
 	}
 
 
-	public int getNbj() {// Retourne le nombre de joueur entr� !! Si le nombre entr� n'est pas un entier ou est < � 1 renvoie 0 !!!
+	public int getNbj() {// Retourne le nombre de joueur entre !! Si le nombre entre n'est pas un entier ou est < a 1 renvoie 0 !!!
 		int d;
 		try {
 			 d=Integer.parseInt(txtField_nbj.getText());
@@ -330,7 +330,7 @@ public class interfaces extends JFrame  {
 			 }
 				 
 				 
-	    } catch (NumberFormatException  e) { //si le String entr� n'est pas un entier on prendra par d�faut la valeur de 2 joueur
+	    } catch (NumberFormatException  e) { //si le String entree n'est pas un entier on prendra par defaut la valeur de 2 joueur
 	        JOptionPane.showMessageDialog(null,txtField_nbj.getText()+ " n'est pas un entier", "Poker Master : Pas un entier" , JOptionPane.INFORMATION_MESSAGE);
 	        d=2;
 	        txtField_nbj.setText("2");
@@ -340,8 +340,8 @@ public class interfaces extends JFrame  {
 		return d;
 	}
 
-	public void setProba(float []t) {/* permets de changer les probabilit�s afficher en r�sultats :
-		� rentr� dans l'ordre :
+	public void setProba(float []t) {/* permets de changer les probabilitees et d'afficher le resultats :
+		a rentrer dans l'ordre :
 		QuinteFlush
 		carre
 		full
@@ -371,4 +371,5 @@ public class interfaces extends JFrame  {
 		UpdateHR();
 		return InternalDeck.getDeck();
 	}
+
 }
