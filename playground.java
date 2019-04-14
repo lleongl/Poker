@@ -44,7 +44,7 @@ public class playground extends JFrame implements MouseListener {
 	
 		
 	
-		Select CardA = new Select(this);
+		Select CardA = new Select(new interfaces());
 		CardA.setSize(102, 160);
 		CardA.setLocation(91, 38);
 		
