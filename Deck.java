@@ -72,7 +72,7 @@ public class Deck {
          }
      }
 
-    public ArrayList<Carte> getDeck() {
+    public ArrayList<Carte> getDeck() {// permet de recuperer le contenu du deck sous forme d'arraylist de Carte
         return contenu;
     }
 }

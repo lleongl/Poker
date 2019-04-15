@@ -1,4 +1,3 @@
-
 import javax.swing.ImageIcon;
 public class Carte implements Comparable<Carte> {
 
@@ -7,18 +6,18 @@ public class Carte implements Comparable<Carte> {
     private ImageIcon pic;
     
 
-    public Carte(int valeur, String couleur) {
+    public Carte(int valeur, String couleur) { // constructeur de la carte
         this.couleur = couleur;
         this.valeur = valeur;
     }
     
     
-    public ImageIcon getIcon() {
+    public ImageIcon getIcon() {// retourne l'ImageIcon de la carte
     	pic =new ImageIcon(Carte.class.getResource("images/"+getValPath()+"-"+couleur+".jpg"));
     	return pic;
-    	
     }
-    public String getValPath() {
+    
+    public String getValPath() {// permet de definir de facon claire le prefixe du fichier image associe a une valeur particuliere
     	String ValPath ;
         switch (valeur) {
 	        case 14:  ValPath = "ace";
@@ -58,30 +57,30 @@ public class Carte implements Comparable<Carte> {
         
     }
     
-    public Carte() {//Nulle ou folded
-    	pic=new ImageIcon(Carte.class.getResource("images/card-back.jpg"),"cachee");
-    	valeur =-1;
+    public Carte() {//Constructeur si la carte est tournee
+    	pic=new ImageIcon(Carte.class.getResource("images/card-back.jpg"),"cachee"); // affichera le dos de la carte
+    	valeur =-1;// la valeur -1 represente une carte tourne
     }
 
-    public String getCouleur() {
+    public String getCouleur() {	//permet de recuperer la couleur de la carte
         return couleur;
     }
 
-    public int getValeur() {
+    public int getValeur() {	//permet de recuperer la valeur de la carte
         return valeur;
     }
 
 
-    public void setCouleur(String C) { //delete this
+    public void setCouleur(String C) { //permet de changer la couleur de la carte
     	this.couleur=C;
     }
     
-    public void setValeur(int V) { //delete this
+    public void setValeur(int V) { //permet de changer la valeur de la carte
     	this.valeur=V;
     }
 
 
-    public int compareTo(Carte autreCarte){
+    public int compareTo(Carte autreCarte){ // methode CompareTo
 		if (this.getValeur()<autreCarte.getValeur()){
 			return -1;
 		}
@@ -93,7 +92,7 @@ public class Carte implements Comparable<Carte> {
 		}
 	}
     
-    public String toString() {
+    public String toString() {	//methode ToString
     	return this.getValPath()+" of "+couleur ; 
     	
     }

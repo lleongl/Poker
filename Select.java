@@ -10,12 +10,15 @@ import java.awt.event.*;
 
 public class Select extends JPanel implements ActionListener, MouseListener  {
 
-    private CardLayout C1 = new CardLayout();
-
+    private CardLayout C1 = new CardLayout();// le Layout de la classe Select
+    
+    //-------les differents Panels contenu dans Select-------\\
     private JPanel Day = new JPanel();
     private JPanel months = new JPanel();
     private JPanel seasons = new JPanel();
 
+    //-------------Les boutons present dans seasons------------\\
+    
     private final JButton btnAs = new JButton("1");
     private final JButton btn2 = new JButton("2");
     private final JButton btn3 = new JButton("3");
@@ -32,20 +35,25 @@ public class Select extends JPanel implements ActionListener, MouseListener  {
     private final JButton btnCancel = new JButton("B");
     private final JButton btnBack = new JButton("X");
 
-
+    //--------------La carte interne a Select--------------\\
+    
     private Carte Card = new Carte();
 
+    //---------------Valeur initiale de la carte--------------\\
+    
     private int valeur = -1;
     private String Couleur;
 
+    //--------Les Jpanels representant les couleurs---------\\
+    
     private final JLabel C_Carreau = new JLabel();
     private final JLabel C_pique = new JLabel();
     private final JLabel C_trefle = new JLabel();
     private final JLabel C_Coeur = new JLabel();
-
-    private JLabel lblDay = new JLabel();
     
-    private interfaces Parent;
+    private JLabel lblDay = new JLabel();	// Permet d'afficher l'image de la carte courante
+    
+    private interfaces Parent;	//permet d'acceder a tout moment a son parent
 
 
     public Select(interfaces Parent) {
