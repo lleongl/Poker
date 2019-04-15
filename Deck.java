@@ -72,7 +72,7 @@ public class Deck {
          }
      }
 
-     public ArrayList<Carte> getDeck() {
-    	 return contenu;
-     }
+    public ArrayList<Carte> getDeck() {
+        return contenu;
+    }
 }

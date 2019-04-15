@@ -38,3 +38,5 @@
 /Select$21.class
 /interfaces$3.class
 *.class
+*.iml
+*.xml

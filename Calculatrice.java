@@ -6,6 +6,7 @@ public class Calculatrice {
     public float[] lancerCalcul(int x, ArrayList<Carte> Hand, ArrayList<Carte> River) {
         int nbAdversaires = x - 1;
         int nbTirages = 35000;
+        //stocke le nombre d'apparition de chaque combinaison
         int[] tCompteurs = new int[9];
         float[] tProba = new float[11];
         ArrayList<Joueur> tJoueurs = new ArrayList<>(nbAdversaires+1);
@@ -103,7 +104,7 @@ public class Calculatrice {
 
         }
 
-        //calcule les probabilités de victoire et de défaite
+        //calcule les probabilités des combinaisons, de victoire et de défaite
         for (int i = 0; i < tCompteurs.length; i++) {
             float probaI =(tCompteurs[i] / (float) nbTirages) * 100;
             tProba[i] = Float.parseFloat(df.format(probaI).replace(',', '.'));

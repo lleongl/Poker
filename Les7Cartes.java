@@ -1,5 +1,3 @@
-import sun.awt.image.ImageWatched;
-
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -23,7 +21,7 @@ public class Les7Cartes {
                 tLes7Cartes.add(les5Cartes.get(i - tLes2Cartes.size()));
             }
         }
-        //récupère le compteur propre à chaque ensemble de 7Cartes pour l'utiliser dans les tests de combinaison
+        //récupère le compteur propre à chaque ensemble de 7 Cartes (par rapport aux valeurs) pour l'utiliser dans les tests de combinaison
         this.getCompteur();
     }
 
@@ -130,7 +128,7 @@ public class Les7Cartes {
         }
     }
 
-    //valeurs du compteur stockées dans un tableau
+    //digits du compteur stockées dans un tableau
     public void getCompteurValChar() {
         String t;
         t = this.compteur + "";
@@ -192,6 +190,7 @@ public class Les7Cartes {
         return valeurPaire;
     }
 
+    //renvoie les valeurs des cartes ayant les plus grandes valeurs en tenant compte de certaines valeurs à ne pas prendre
     public int[] getMaxVal(int nbCartes, int combinaisonValeur1, int combinaisonValeur2){
         Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
         int [] maxVal=new int[nbCartes];
@@ -301,7 +300,7 @@ public class Les7Cartes {
     }
 
     public void full(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
-        //Vérifie s'il y a 3 cartes ayant une même valeur et 2 autres cartes ayant une même valeur (différentes de celle des 3 cartes)
+        //Vérifie s'il y a 3 cartes ayant une même valeur et au moins 2 autres cartes ayant une même valeur (différente de celle des 3 cartes)
         for (int k = 0; k < compteurValChar.length; k++) {
             if (compteurValChar[k] == '3') {
                 compteurBrelan++;
@@ -319,6 +318,7 @@ public class Les7Cartes {
         }
     }
 
+    //Vérifie si au moins 5 cartes ont la meme couleur
     public void couleur(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         if (compteurCouleur > 0) {
             if (p == 0) {
@@ -329,6 +329,7 @@ public class Les7Cartes {
         }
     }
 
+    //Verifie si au moins 5 cartes se suivent (en valeur)
     public void suite(int[] tCompteurs, ArrayList<Joueur> tJoueurs, int p) {
         for (int k = 0; k < compteurValChar.length - 5; k++) {
             if (compteurValChar[k] != '0' && compteurValChar[k + 1] != '0' && compteurValChar[k + 2] != '0' && compteurValChar[k + 3] != '0' && compteurValChar[k + 4] != '0') {
@@ -402,9 +403,10 @@ public class Les7Cartes {
         Collections.sort(cartesMemeCouleur1, Collections.reverseOrder());
         Collections.sort(cartesMemeCouleur2, Collections.reverseOrder());
 
+        //Etablit la carte de la plus haute valeur parmi l'ensemble des cartes de la combinaison
         if (cartesMemeCouleur1.get(0).getValeur() != 14) {
             QFHauteur1 = cartesMemeCouleur1.get(0).getValeur();
-        } else QFHauteur1 = cartesMemeCouleur1.get(1).getValeur();
+        } else QFHauteur1 = cartesMemeCouleur1.get(1).getValeur(); //cas particulier de la QF As a 5
 
         if (cartesMemeCouleur2.get(0).getValeur() != 14) {
             QFHauteur2 = cartesMemeCouleur2.get(0).getValeur();
@@ -462,6 +464,7 @@ public class Les7Cartes {
             }
         }
         if (carreVal1==carreVal2){
+            //etablit une 5eme carte, ayant la plus haute valeur
             int maxVal1 = this.getMaxVal(1, carreVal1, 0)[0];
             int maxVal2 = joueursMaxScore.get(0).les7Cartes.getMaxVal(1, carreVal1, 0)[0];
 
@@ -572,6 +575,7 @@ public class Les7Cartes {
         Collections.sort(this.tLes7Cartes, Collections.reverseOrder());
         Collections.sort(joueursMaxScore.get(0).les7Cartes.tLes7Cartes, Collections.reverseOrder());
 
+        //Etablit la carte de la plus haute valeur parmi l'ensemble des cartes de la combinaison
         if (this.suiteAS5) {
             suiteHauteur1 = 5;
         }
@@ -635,6 +639,7 @@ public class Les7Cartes {
             }
         }
         if (brelanVal1==brelanVal2){
+            //etablit une 4eme et une 5eme carte, ayant les plus hautes valeurs
             int [] maxVal1=this.getMaxVal(2,brelanVal1, 0);
             int [] maxVal2=joueursMaxScore.get(0).les7Cartes.getMaxVal(2,brelanVal1, 0);
             for(int j=0; j< maxVal1.length;j++) {
@@ -693,6 +698,7 @@ public class Les7Cartes {
         }
 
         if (egalite) {
+            //etablit une 5eme carte, ayant la plus haute valeur
             int maxVal1 = this.getMaxVal(1, paireVal1[0],paireVal1[1])[0];
             int maxVal2 = joueursMaxScore.get(0).les7Cartes.getMaxVal(1, paireVal1[0],paireVal1[1])[0];
 
@@ -736,6 +742,7 @@ public class Les7Cartes {
             }
         }
         if(paireVal1==paireVal2) {
+            //etablit une 3eme, 4eme et 5eme carte, ayant les plus hautes valeurs
             int [] maxVal1=this.getMaxVal(3, paireVal1, 0);
             int [] maxVal2=joueursMaxScore.get(0).les7Cartes.getMaxVal(3, paireVal2, 0);
             for(int j=0; j< maxVal1.length;j++) {
@@ -769,6 +776,7 @@ public class Les7Cartes {
 
     public void egaliteCarteHaute(ArrayList<Joueur> tJoueurs, LinkedList<Joueur> joueursMaxScore, int i) {
         boolean egalite=false;
+        //etablit les 5 cartes, ayant les plus hautes valeurs
         int [] maxVal1=this.getMaxVal(5, 0, 0);
         int [] maxVal2=joueursMaxScore.get(0).les7Cartes.getMaxVal(5, 0, 0);
 
