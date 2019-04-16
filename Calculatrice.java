@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Calculatrice {
     public float[] lancerCalcul(int x, ArrayList<Carte> Hand, ArrayList<Carte> River) {
         int nbAdversaires = x - 1;
-        int nbTirages = 35000;
+        int nbTirages = 50000;
         //stocke le nombre d'apparition de chaque combinaison
         int[] tCompteurs = new int[9];
         float[] tProba = new float[11];
